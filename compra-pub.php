@@ -10,6 +10,7 @@
     $tpl->addFile("CERTIDAO", "certidao-compra.html");
     $tpl->PROCESSO = "PROCESSO PARA AQUISIÇÃO E REGISTRO DE ARMA DE FOGO";
     $tpl->DISABLE = "disabled";
+    $tpl->TITLE = "Aquisição de arma de fogo";
     $tpl->block("BLOCK_AUTORIZACAO");
     $tpl->block("BLOCK_COMPRA_PUB");
     $tpl->block("BLOCK_PUB_2");

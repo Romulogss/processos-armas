@@ -9,6 +9,7 @@
     $tpl->addFile("FOOTER", "footer.html");
     $tpl->addFile("CAPA", "capa.html");
     $tpl->PROCESSO = "PROCESSO PARA RENOVAÇÃO DE PAF/CRAF DE ARMA DE FOGO";
+    $tpl->TITLE = "Renovação de PAF/CRAF";
     $tpl->block("BLOCK_DEMAIS");
     $tpl->block("BLOCK_PORTE");
     $tpl->block("BLOCK_INT");
