@@ -3,7 +3,7 @@
     require_once("lib/raelgc/view/Template.php");
     use raelgc\view\Template;
 
-    $tpl = new Template("template.html");
+    $tpl = new Template("./view/template.html");
     $tpl->addFile("HEADER", "view/header.html");
     $tpl->addFile("FOOTER", "view/footer.html");
     $tpl->addFile("CAPA", "view/capa.html");
