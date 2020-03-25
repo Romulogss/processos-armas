@@ -12,6 +12,7 @@ input {
     border-radius: 5px;
     border-width: 1px;
     border-color: black;
+    text-transform: uppercase;
 }
 
 input:disabled {
@@ -34,11 +35,13 @@ textarea {
     border-width: 1px;
     border-radius: 5px;
     border-color: black;
+    text-transform: uppercase;
 }
 
 table input,
 table textarea {
     font-weight: bold;
+    text-transform: uppercase;
 }
 
 .table {
@@ -88,4 +91,8 @@ table textarea {
 
 table.table {
     text-align: center;
+}
+
+#tipo-transf {
+    text-transform: uppercase;
 }

@@ -16,7 +16,7 @@
             <tr>
                 <td><input type="text" placeholder="TIPO E CALIBRE"></td>
                 <td style="font-weight: bold;">
-                    <!-- BEGIN BLOCK_INT -->
+                <!-- BEGIN BLOCK_INT -->
                     <input type="text" placeholder="dd/mm/aaaa"></td>
                 <!-- END BLOCK_INT -->
                 <!-- BEGIN BLOCK_PUB -->
@@ -26,11 +26,12 @@
                 <!-- END BLOCK_PUB -->
                 <td style="font-weight: bold;">
                     <!-- BEGIN BLOCK_COMPRA_INT -->
-                    AQUISIÇÃO <input type="text" placeholder="COMÉRCIO/INDÚSTRIA" style="border-top-width: 0px;">
+                    AQUISIÇÃO <input type="text" placeholder="COMÉRCIO/INDÚSTRIA">
                     <!-- END BLOCK_COMPRA_INT -->
                     <!-- BEGIN BLOCK_COMPRA_PUB -->
                     <input disabled style="border-color: transparent; color: black " type="text " value="AQUISIÇÃO " size="10px ">
                     <select class="custom-select">
+                        <option selected>TIPO DE COMPRA</option>
                         <option>COMÉRCIO</option>
                         <option>INDÚSTRIA</option>
                     </select>
@@ -39,11 +40,12 @@
                     EMISSÃO DE PORTE RR/RENOVAÇÃO DE CRAF
                     <!-- END BLOCK_PORTE -->
                     <!-- BEGIN BLOCK_TRANSF_INT -->
-                        TRANFERÊNCIA <input type="text" style="border-top-width: 0px;">
+                        TRANFERÊNCIA <input type="text" id="tipo-int" onblur="tipoTransfInt()">
                     <!-- END BLOCK_TRANSF_INT -->
                     <!-- BEGIN BLOCK_TRANSF_PUB -->
                     <input disabled style="border-color: transparent; color: black " type="text " value="TRANSFERÊNCIA " size="13px ">
-                    <select class="custom-select" id="tipo-t" onselect="tipoTransf()">
+                    <select class="custom-select" id="tipo-t" onblur="tipoTransf()">
+                        <option selected>TIPO DE TRANSF.</option>
                         <option value="SIGMA">SIGMA/SIGMA</option>
                         <option value="SINARM">SINARM/SIGMA</option>
                         <option value="SIGMA">SIGMA/SINARM</option>
@@ -87,7 +89,7 @@
                 <td><textarea cols="30" rows="3" placeholder="GRAD - RG - NOME COMPLETO - CPC/CPR/ETC... DO ADQUIRENTE"></textarea></td>
                 <td><strong>SEÇÃO DE MATERIAL BÉLICO</strong></td>
                 <td style="font-weight: bold;">
-                    <!-- BEGIN BLOCK_INT_2 -->
+                <!-- BEGIN BLOCK_INT_2 -->
                     <input type="text" placeholder="dd/mm/aaaa"></td>
                 <!-- END BLOCK_INT_2 -->
                 <!-- BEGIN BLOCK_PUB_2 -->

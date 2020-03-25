@@ -13,6 +13,7 @@
     $tpl->TITLE = "Aquisição de arma de fogo";
     $tpl->block("BLOCK_AUTORIZACAO");
     $tpl->block("BLOCK_COMPRA_PUB");
+    $tpl->block("BLOCK_PUB");
     $tpl->block("BLOCK_PUB_2");
     $tpl->show();
 
