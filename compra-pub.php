@@ -4,10 +4,10 @@
     use raelgc\view\Template;
 
     $tpl = new Template("template.html");
-    $tpl->addFile("HEADER", "header.html");
-    $tpl->addFile("FOOTER", "footer.html");
-    $tpl->addFile("CAPA", "capa.html");
-    $tpl->addFile("CERTIDAO", "certidao-compra.html");
+    $tpl->addFile("HEADER", "view/header.html");
+    $tpl->addFile("FOOTER", "view/footer.html");
+    $tpl->addFile("CAPA", "view/capa.html");
+    $tpl->addFile("CERTIDAO", "view/certidao-compra.html");
     $tpl->PROCESSO = "PROCESSO PARA AQUISIÇÃO E REGISTRO DE ARMA DE FOGO";
     $tpl->DISABLE = "disabled";
     $tpl->TITLE = "Aquisição de arma de fogo";
