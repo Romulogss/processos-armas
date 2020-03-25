@@ -8,7 +8,7 @@
     $tpl->addFile("FOOTER", "footer.html");
     $tpl->addFile("CAPA", "capa.html");
     $tpl->addFile("CERTIDAO", "certidao-compra.html");
-    $tpl->PROCESSO = "PROCESSO PARA AQUISIÇÃOE REGISTRO DE ARMA DE FOGO";
+    $tpl->PROCESSO = "PROCESSO PARA AQUISIÇÃO E REGISTRO DE ARMA DE FOGO";
     $tpl->DISABLE = "disabled";
     $tpl->block("BLOCK_AUTORIZACAO");
     $tpl->block("BLOCK_COMPRA_PUB");

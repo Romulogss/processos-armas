@@ -25,7 +25,9 @@ select.custom-select {
     font-weight: bold;
     height: 30px;
     padding: 0;
-    color: black
+    color: black;
+    border-width: 1px;
+    border-color: black;
 }
 
 textarea {

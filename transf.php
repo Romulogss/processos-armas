@@ -7,10 +7,11 @@
     $tpl->addFile("HEADER", "header.html");
     $tpl->addFile("FOOTER", "footer.html");
     $tpl->addFile("CAPA", "capa.html");
-    $tpl->addFile("CERTIDAO", "certidao-compra.html");
-    $tpl->PROCESSO = "PROCESSO PARA AQUISIÇÃO E REGISTRO DE ARMA DE FOGO";
-    $tpl->block("BLOCK_AUTORIZACAO");
-    $tpl->block("BLOCK_COMPRA_INT");
+    $tpl->addFile("CERTIDAO", "certidao-transf.html");
+    $tpl->PROCESSO = "PROCESSO PARA TRANSFERÊNCIA E REGISTRO DE ARMA DE FOGO";
+    $tpl->TITLE = "Transferência de arma de fogo";
+    $tpl->block("BLOCK_DEMAIS");
+    $tpl->block("BLOCK_TRANSF_INT");
     $tpl->block("BLOCK_INT");
     $tpl->block("BLOCK_INT_2");
     $tpl->show();

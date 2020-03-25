@@ -3,7 +3,7 @@
         <thead>
             <tr>
                 <th scope="row" colspan="3">{PROCESSO}</th>
-                <th scope="col" style="border-width: 1px 1px 0 0;"><input type="text" disabled></th>
+                <th scope="col" style="border-width: 1px 1px 0 0;"><input type="text" disabled placeholder="FOTO 3x4"></th>
             </tr>
         </thead>
         <tbody>
@@ -11,7 +11,7 @@
                 <td><strong>Nº <input type="text" size="8px" {DISABLE}></strong></td>
                 <td><strong>DATA DE ENTRADA</strong></td>
                 <td><strong>OBJETO</strong></td>
-                <td style="border-width: 0 1px 0 0;"><input type="text" disabled></td>
+                <td style="border-width: 0 1px 0 0;"><input type="text" disabled placeholder="FOTO 3x4"></td>
             </tr>
             <tr>
                 <td><input type="text" placeholder="TIPO E CALIBRE"></td>
@@ -38,8 +38,19 @@
                     <!-- BEGIN BLOCK_PORTE -->
                     EMISSÃO DE PORTE RR/RENOVAÇÃO DE CRAF
                     <!-- END BLOCK_PORTE -->
+                    <!-- BEGIN BLOCK_TRANSF_INT -->
+                        TRANFERÊNCIA <input type="text" style="border-top-width: 0px;">
+                    <!-- END BLOCK_TRANSF_INT -->
+                    <!-- BEGIN BLOCK_TRANSF_PUB -->
+                    <input disabled style="border-color: transparent; color: black " type="text " value="TRANSFERÊNCIA " size="13px ">
+                    <select class="custom-select" id="tipo-t" onselect="tipoTransf()">
+                        <option value="SIGMA">SIGMA/SIGMA</option>
+                        <option value="SINARM">SINARM/SIGMA</option>
+                        <option value="SIGMA">SIGMA/SINARM</option>
+                    </select>
+                    <!-- END BLOCK_TRANSF_PUB -->
                 </td>
-                <td style="border-width: 0 1px 1px 0;"><input type="text" disabled></td>
+                <td style="border-width: 0 1px 1px 0;"><input type="text" disabled placeholder="FOTO 3x4"></td>
             </tr>
         </tbody>
     </table>
@@ -73,7 +84,7 @@
         </thead>
         <tbody>
             <tr>
-                <td><textarea cols="30" rows="3"></textarea></td>
+                <td><textarea cols="30" rows="3" placeholder="GRAD - RG - NOME COMPLETO - CPC/CPR/ETC... DO ADQUIRENTE"></textarea></td>
                 <td><strong>SEÇÃO DE MATERIAL BÉLICO</strong></td>
                 <td style="font-weight: bold;">
                     <!-- BEGIN BLOCK_INT_2 -->
