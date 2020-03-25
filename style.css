@@ -1,0 +1,89 @@
+p {
+    font-size: 1.2em;
+}
+
+hr {
+    border-color: #000;
+    width: 100%;
+}
+
+input {
+    text-align: center;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: black;
+}
+
+input:disabled {
+    background-color: transparent;
+}
+
+select.custom-select {
+    text-align-last: center;
+    border-radius: 5px;
+    width: 150px;
+    font-weight: bold;
+    height: 30px;
+    padding: 0;
+    color: black
+}
+
+textarea {
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: black;
+}
+
+table input,
+table textarea {
+    font-weight: bold;
+}
+
+.table {
+    height: 132px;
+    width: 720px;
+}
+
+.table thead th {
+    border-width: 1px;
+    border-color: #000;
+}
+
+.table thead {
+    border-bottom-color: #000;
+}
+
+.table th {
+    border-color: #000;
+}
+
+.table td {
+    border-color: #000;
+}
+
+.table thead th input,
+.table tbody td:last-child input {
+    border-color: transparent;
+}
+
+@media print {
+    .no-print {
+        display: none;
+    }
+    .page-break {
+        page-break-before: always;
+    }
+    input {
+        border-width: 0;
+    }
+    textarea {
+        border-width: 0px;
+    }
+    select.custom-select {
+        border-color: transparent;
+    }
+}
+
+table.table {
+    text-align: center;
+}
