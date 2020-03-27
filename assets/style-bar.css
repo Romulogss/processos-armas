@@ -1,0 +1,40 @@
+* {
+    font-family: 'Times New Roman';
+}
+
+body {
+    width: 21cm;
+    height: 29.7cm;
+    text-align: center;
+}
+
+td, table {
+    border-width: 5px;
+}
+
+input {
+    font-weight: bold;
+    text-align: center;
+}
+
+main {
+    font-size: 16px;
+    margin-left: 70px;
+    margin-right: 70px
+}
+
+P {
+    text-align: justify;
+}
+
+@media print {
+    input {
+        border-color: transparent;
+    }
+    .no-print {
+        display: none;
+    }
+    .page-break {
+        page-break-before: always;
+    }
+}

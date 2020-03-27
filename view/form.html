@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="../assets/bar.js"></script>
+    <title>INFORMÇÕES GERAIS DO BAR</title>
+</head>
+
+<div class="container">
+    <form action="bar.html" id="informações-bar">
+        <div class="form-group">
+            <label for="text-aux-com">Informe a quantidade de armas, de cada espécie e especificas quantas são de cada
+                calibre, adquiridas no comércio</label>
+            <textarea id="text-aux-com" cols="50" rows="4" class="form-control"
+                placeholder="EX: 17(DEZESSETE) PISTOLAS, SENDO  09(NOVE)Cal. .40S&W E 12(DOZE) Cal. 9mm 01(UMA)Cal. .380, E 02(DOIS) REVÓLVERES Cal..38 E RIFLES,CARABINAS 01(UMA)Cal,.22 E 01(UMA)ESPINGARDA Cal. 20"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="text-aux-ind">Informe a quantidade de armas, de cada espécie e especificas quantas são de cada
+                calibre, aquiridas na indústria</label>
+            <textarea id="text-aux-ind" cols="50" rows="4" class="form-control"
+                placeholder="EX: 17(DEZESSETE) PISTOLAS, SENDO  09(NOVE)Cal. .40S&W E 12(DOZE) Cal. 9mm 01(UMA)Cal. .380, E 02(DOIS) REVÓLVERES Cal..38 E RIFLES,CARABINAS 01(UMA)Cal,.22 E 01(UMA)ESPINGARDA Cal. 20"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary"  onsubmit="getDadosGerais()"> Dados Ok</button>
+    </form>
+</div>
+</html>
