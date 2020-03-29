@@ -3,11 +3,7 @@
 }
 
 body {
-    width: 21cm;
-    height: 29.7cm;
     text-align: center;
-    margin-left: 30px;
-    margin-right: 30px;
 }
 
 td, table {
@@ -19,19 +15,29 @@ input {
     text-align: center;
 }
 
-form * {
+#lista-industria,
+#lista-comercio {
+    text-align: justify;
+}
+
+#lista-industria *,
+#lista-comercio * {
     padding: 0;
     margin: 0;
 }
 
-form label {
+#lista-comercio label,
+#lista-industria label {
     font-weight: bold;
     font-style: italic !important;
 }
 
-form input,
-form select,
-form p {
+#lista-comercio input,
+#lista-comercio select,
+#lista-comercio p,
+#lista-industria input,
+#lista-industria select,
+#lista-industria p {
     text-align: justify;
     font-weight: normal;
     font-style: italic !important;
@@ -39,8 +45,6 @@ form p {
 
 main {
     font-size: 16px;
-    margin-left: 60px;
-    margin-right: 60px
 }
 
 P {
@@ -48,6 +52,12 @@ P {
 }
 
 @media print {
+    body.container {
+        width: 18.5cm;
+        text-align: center;
+        margin-left: 30px;
+        margin-right: 30px;
+    }
     input, select {
         border-color: transparent;
     }

@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/style-bar.css?{TIME}">
-    <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/5ed507ef8aa53d8ecfea96d96bc7214cd2476fd2/FileSaver.min.js"></script>
+    <script
+        src="https://cdn.rawgit.com/eligrey/FileSaver.js/5ed507ef8aa53d8ecfea96d96bc7214cd2476fd2/FileSaver.min.js"></script>
     <script src="./assets/bar.js?{TIME}"></script>
     <title>BAR</title>
 </head>
@@ -27,8 +28,8 @@
     <br>
     <br>
     <br>
-    <header style="height: 150px;font-size: 15px;font-weight: bold;">
-        <div class="row">
+    <header style="font-size: 15px;font-weight: bold;max-width: 100%;" class="row">
+        <div class="col">
             <table class="table" border="3" style="text-align: center;">
                 <tr>
                     <td>
@@ -52,9 +53,9 @@
         </div>
     </header>
     <main>
-        <section style="text-align: center;font-weight: bold;" id="salvar"> Para Conhecimento da PMPA e devida execução, pubico o
-            seguinte: <br> 1ª PARTE - Serviços Diários <br> Sem alteração <br> 2ª PARTE - Instrução <br> Sem alteração
-            <br> 3ª PARTE - Assuntos Gerais e Administrativos: <br>
+        <section style="text-align: center;font-weight: bold;" id="salvar"> Para Conhecimento da PMPA e devida execução,
+            pubico o seguinte: <br> 1ª PARTE - Serviços Diários <br> Sem alteração <br> 2ª PARTE - Instrução <br> Sem
+            alteração <br> 3ª PARTE - Assuntos Gerais e Administrativos: <br>
             <span style="text-decoration: underline;">I. REGISTRO DE ARMAS DE FOGO DA POLÍCIA MILITAR DO ESTADO DO PARÁ
                 - Autorização - Transcrição:</span>
         </section>
@@ -78,8 +79,9 @@
                         os Policiais Militares solicitam aquisição, cadastro e registro de arma de fogo de uso
                         permitido, adquiridas através do fabricante, dou o seguinte despacho: <br> <br> Deferido para:
                     </i></p>
-                <form style="text-align: justify;" id="processos-ind"></form>
-                <button class="btn btn-primary no-print" onclick="novoPM()">Adiocionar novo registro</button>
+                <div id="lista-industria">
+                </div>
+                <button class="btn btn-primary no-print" onclick="novoPM('industria')">Adiocionar novo registro</button>
             </div>
             <div id="comercio">
                 <p style="font-style: italic;text-decoration: underline;"><strong id="armas-do-comercio">
@@ -88,13 +90,13 @@
                         os Policiais Militares solicitam aquisição, cadastro e registro de arma de fogo de uso
                         permitido, adquiridas através do fabricante, dou o seguinte despacho: <br> <br> Deferido para:
                     </i></p>
-                <form style="text-align: justify;" id="processos-com">
-                </form>
-                <button class="btn btn-primary no-print" onclick="novoPM()">Adiocionar novo registro</button>
+                <div id="lista-comercio">
+                </div>
+                <button class="btn btn-primary no-print" onclick="novoPM('comercio')">Adiocionar novo registro</button>
             </div>
         </section>
     </main>
-    <button onclick="salvar()">SALVAR</button>
+    <button onclick="salvar()" class="btn btn-danger no-print">SALVAR</button>
 </body>
 
 </html>

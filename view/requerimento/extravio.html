@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Extravio de arma de fogo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/style-extravio.css">
+    <script src="../../assets/main.js"></script>
+</head>
+
+<body class="container">
+    <header class="row justify-content-center" style="padding-top: 25px;">
+        <div class="col-2" style="text-align: right;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Bras%C3%A3o_do_Par%C3%A1.svg/1200px-Bras%C3%A3o_do_Par%C3%A1.svg.png"
+                alt="BRASÃO DO ESTADO DO PARÁ" height="auto" style="max-width: 55%;" class="img-fluid">
+        </div>
+        <div class="col-8" style="text-align: center;">
+            <p>
+                <strong> GOVERNO DO ESTADO DO PARÁ <br> SECRETARIA DE ESTADO DE SEGURANÇA PÚBLICA E DEFESA SOCIAL <br>
+                    POLÍCIA MÍLITAR DO ESTADO DO PARÁ <br> DIRETORIA DE APOIO LOGÍSTICO <br> SEÇÃO DE MATERIAL BÉLICO
+                </strong>
+            </p>
+        </div>
+        <div class="col-2">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Bras%C3%A3o_PMPA.PNG"
+                alt="BRASÃO DA POLÍCIA MÍLITAR" height="auto" style="max-width: 55%;" class="img-fluid">
+        </div>
+    </header>
+    <hr color="black" width="100%">
+    <main>
+        <div class="row justify-content-center">
+            <div class="col">
+                <h4 style="text-align: center;"> Ao Sr. Diretor de Apoio Logístico da Polícia Militar do Estado do Pará
+                </h4>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col">
+                <form>
+                    <label for="nome">Eu,</label>
+                    <input type="text" id="nome" onblur="getDadosAssinatura();this.size = this.value.length+6;">
+                    <label for="garduacao">Posto/Graduação</label>
+                    <input type="text" id="graduacao" onblur="getDadosAssinatura()" oninput="this.size = this.value.length;+6"><br>
+                    <label for="rg">RG</label>
+                    <input type="text" id="rg" onblur="getDadosAssinatura()" oninput="this.size = this.value.length;+6">
+                    <label>CPF</label>
+                    <input type="text" onblur="getDadosAssinatura()">
+                    <p style="display: inline;">venho perantet V.Sª. expor e ao final de requerer o seguinte:</p>
+                </form>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col">
+                <p> Informar o extravio da minha arma de fogo, conforme abaixo descrita, e solicitar que se der baixa no
+                    SIGMA. </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <table class="" border="1">
+                    <tbody>
+                        <tr>
+                            <th>Espécie</th>
+                            <td><input type="text"></td>
+                            <th>Marca</th>
+                            <td><input type="text" size="10"></td>
+                            <th>Calibre</th>
+                            <td><input type="text"></td>
+                            <th>Modelo</th>
+                            <td><input type="text" oninput="this.size = this.value.length;+6"></td>
+                        </tr>
+                        <tr>
+                            <th>Cap. de Munições</th>
+                            <td><input type="text"></td>
+                            <th>Tamanho do Cano</th>
+                            <td><input type="text" size="10"></td>
+                            <th>País de Fabric.</th>
+                            <td><input type="text"></td>
+                            <th>Nº de Série</th>
+                            <td><input type="text" oninput="this.size = this.value.length;+6"></td>
+                        </tr>
+                        <tr>
+                            <th>Nº SIGMA</th>
+                            <td><input type="text"></td>
+                            <td colspan="2"> Alma do Cano <br>
+                                <input type="radio" name="alma" id="lisa">
+                                <label for="lisa">Lisa</label><br>
+                                <input type="radio" name="alma" id="raiada">
+                                <label for="raiada">Raiada</label>
+                            </td>
+                            <td> Acabamento <input type="radio" name="alma" id="oxidada">
+                                <label for="oxidada">Oxidada</label>
+                                <input type="radio" name="alma" id="acoinox">
+                                <label for="acoinox">Aço Inox</label>
+                                <input type="radio" name="alma" id="Niquelada">
+                                <label for="Niquelada">Niquelada</label>
+                            </td>
+                            <td> Funcionamento <br>
+                                <input type="radio" name="alma" id="Repetição">
+                                <label for="Repetição">Repetição</label><br>
+                                <input type="radio" name="alma" id="Semi-Automática">
+                                <label for="Semi-Automática">Semi-Automática</label><br>
+                                <input type="radio" name="alma" id="Automática">
+                                <label for="Automática">Automática</label>
+                            </td>
+                            <td colspan="2"> Motivo do extravio<br>
+                                <input type="radio" name="alma" id="Perda">
+                                <label for="Perda">Perda</label><br>
+                                <input type="radio" name="alma" id="Extravio">
+                                <label for="Extravio">Extravio</label><br>
+                                <input type="radio" name="alma" id="roubo-furto">
+                                <label for="roubo-furto">Furto/Roubo</label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col">
+                <p>Declaro estar ciente do contido na Portaria N° 069/2019, aditada ao Boletim Geral N° 078 de 02 de
+                    Abril de 2019</p>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col">
+                <p>Nestes termos,<br><br> Pede deferimento.</p>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="row justify-content-center">
+            <div class="col">
+                <p style="text-align: center;"> Belém-PA,
+                    <script>
+                        document.write(`${dia} de ${mesNome} de ${ano}`)
+                    </script>
+                </p>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="row justify-content-center">
+            <div class="col">
+                <hr color="#000" width="50%">
+                <p id="assinatura" style="text-align: center;"></p>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
