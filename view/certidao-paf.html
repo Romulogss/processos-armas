@@ -18,12 +18,13 @@
         <p style="text-align: justify;padding-left: 80px;padding-right: 80px;font-size: 1.2em;"> Certifico que, de
             conformidade com a Lei Federal n° 10.826, de 22 de dezembro de 2003, regulamentada pelo Decreto Federal n°
             nº 9.785/2019, e pela Portaria nº 069/2019 – GAB. CMD/PMPA, publicada no Aditamento ao Boletim Geral nº
-            078/2019 – PMPA, que o <textarea cols="65" rows="1" id="dados-PM" placeholder="GRAD - RG - NOME COMPLETO"></textarea>, atende todas as orientações
-            para a <strong>EMISSÃO/RENOVAÇÃO DE PAF/CRAF</strong> da referente arma: <input type="text"
-                placeholder="TIPO DE ARMA" id="tipo">, <input type="text" placeholder="MARCA DA ARMA" id="marca">, cal. <input
-                type="text" placeholder="CALIBRE" size="4px" id="calibre">, Mod. <input type="text" placeholder="MODELO DA ARMA"
-                id="modelo">, Nº de série <input type="text" size="10px" id="serie"> e Nº do SIGMA <input type="text"
-                size="10px" id="sigma" onblur="replicarDadosPorte()"> para fins de direito. </p>
+            078/2019 – PMPA, que o <textarea cols="65" rows="1" id="dados-PM"
+                placeholder="GRAD/POSTO - RG - NOME COMPLETO"></textarea>, atende todas as orientações para a
+            <strong>{TIPO_PROCESSO}</strong> da referente arma: <input type="text"
+                placeholder="TIPO DE ARMA" id="tipo">, <input type="text" placeholder="MARCA DA ARMA" id="marca">, cal.
+            <input type="text" placeholder="CALIBRE" size="4px" id="calibre">, Mod. <input type="text"
+                placeholder="MODELO DA ARMA" id="modelo">, Nº de série <input type="text" size="10px" id="serie"> e Nº
+            do SIGMA <input type="text" size="10px" id="sigma" onblur="replicarDadosPorte()"> para fins de direito. </p>
     </div>
     <br>
     <br>
@@ -63,7 +64,7 @@
 <br>
 <main>
     <div class="row justify-content-center">
-        <h4>PROCESSO PARA RENOVAÇÃO DE PAF/CRAF DE ARMA DE FOGO</h4>
+        <h4>PROCESSO PARA {TIPO_PROCESSO} DE ARMA DE FOGO</h4>
     </div>
     <br>
     <br>
@@ -75,15 +76,16 @@
     <br>
     <div class="row justify-content-center">
         <p style="text-align: justify;padding-left: 80px;padding-right: 80px;font-size: 1.2em;">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nos termos do art. 4° da lei
+            Nos termos do art. 4° da lei
             10.826/2003 c/c o art. 26 § 4° do decreto N° 9758/2019 e da portaria N° 069/2019 - GAB. CMD/PMPA, publicado
-            no Boletim Geral N° 078/2019 - PMPA, <strong>AUTORIZO</strong> o policial militar <textarea cols="65"
-                rows="1" id="dados-PM-cel" placeholder="GRAD - RG - NOME COMPLETO"></textarea> a adquirir a <strong>EMISSÃO/RENOVAÇÃO DE PAF/CRAF</strong> para
-            a referente arma: <input type="text" placeholder="TIPO" id="tipo-cel">, <input type="text"
-                placeholder="MARCA" id="marca-cel">, cal. <input type="text" placeholder="CALIBRE" size="4px"
-                id="calibre-cel">, Mod. <input type="text" placeholder="MODELO" id="modelo-cel">, Nº de série <input
-                type="text" size="10px" id="serie-cel" placeholder="XXX 123456..."> e Nº de SIGMA <input type="text" size="10px" id="sigma-cel" placeholder="EX:12457859...">
-            para fins de direito. </p>
+            no Boletim Geral N° 078/2019 - PMPA, <strong>AUTORIZO</strong> o policial militar da reserva remunerada
+            <textarea cols="65" rows="1" id="dados-PM-cel" placeholder="GRAD/POSTO - RG - NOME COMPLETO"></textarea> a
+            adquirir a <strong>{TIPO_PROCESSO}</strong> para a referente arma: <input type="text" placeholder="TIPO"
+                id="tipo-cel">, <input type="text" placeholder="MARCA" id="marca-cel">, cal. <input type="text"
+                placeholder="CALIBRE" size="4px" id="calibre-cel">, Mod. <input type="text" placeholder="MODELO"
+                id="modelo-cel">, Nº de série <input type="text" size="10px" id="serie-cel" placeholder="XXX 123456...">
+            e Nº de SIGMA <input type="text" size="10px" id="sigma-cel" placeholder="EX:12457859..."> para fins de
+            direito. </p>
     </div>
     <br>
     <br>

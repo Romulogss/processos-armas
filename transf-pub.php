@@ -15,6 +15,7 @@
     $tpl->block("BLOCK_PUB_2");
     $tpl->DISABLE = "disabled";
     $tpl->TITLE = "Transferência de arma de fogo";
+    $tpl->TIME = time();
     $tpl->show();
 
 ?>

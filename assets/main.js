@@ -60,12 +60,12 @@ const tipoTransf = () => {
     const tipo = document.getElementById('tipo-t').value
     console.log(tipo)
     document.getElementById('tipo-transf').innerHTML = tipo;
-    
+
 }
 
 const tipoTransfInt = () => {
     let tipo = document.getElementById('tipo-int').value;
     tipo = tipo.split('/')
     document.getElementById('tipo-transf').innerHTML = tipo[0]
-    
+
 }

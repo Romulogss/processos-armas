@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col">
             <p style="font-size: 11px; text-align: center;font-style: italic;font-weight: bold;">BOLETIM ADMINISTRATIVO
-                - ARMAMENTO Nº <input type="text" size="1cm"> - <input type="text" size="1cm"> À <input type="text"
+                - ARMAMENTO Nº <input type="text" size="1cm" id="num-bar"> - <input type="text" size="1cm"> À <input type="text"
                     size="1cm"> DE <input type="text" size="7.5cm"> DE
                 <script>document.write(new Date().getFullYear())</script>
             </p>
@@ -54,8 +54,8 @@
     </header>
     <main>
         <section style="text-align: center;font-weight: bold;" id="salvar"> Para Conhecimento da PMPA e devida execução,
-            pubico o seguinte: <br> 1ª PARTE - Serviços Diários <br> Sem alteração <br> 2ª PARTE - Instrução <br> Sem
-            alteração <br> 3ª PARTE - Assuntos Gerais e Administrativos: <br>
+            pubico o seguinte: <br> 1ª PARTE - Serviços Diários <br><br> Sem alteração <br><br> 2ª PARTE - Instrução <br><br> Sem
+            alteração <br><br> 3ª PARTE - Assuntos Gerais e Administrativos: <br>
             <span style="text-decoration: underline;">I. REGISTRO DE ARMAS DE FOGO DA POLÍCIA MILITAR DO ESTADO DO PARÁ
                 - Autorização - Transcrição:</span>
         </section>
@@ -79,8 +79,8 @@
                         os Policiais Militares solicitam aquisição, cadastro e registro de arma de fogo de uso
                         permitido, adquiridas através do fabricante, dou o seguinte despacho: <br> <br> Deferido para:
                     </i></p>
-                <div id="lista-industria">
-                </div>
+                <form id="lista-industria">
+                </form>
                 <button class="btn btn-primary no-print" onclick="novoPM('industria')">Adiocionar novo registro</button>
             </div>
             <div id="comercio">

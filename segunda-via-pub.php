@@ -4,18 +4,19 @@
     use raelgc\view\Template;
 
     $tpl = new Template("./view/template.html");
+    $tpl->addFile("CERTIDAO", "view/certidao-paf.html");
     $tpl->addFile("HEADER", "view/header.html");
     $tpl->addFile("FOOTER", "view/footer.html");
     $tpl->addFile("CAPA", "view/capa.html");
-    $tpl->addFile("CERTIDAO", "view/certidao-compra.html");
-    $tpl->PROCESSO = "PROCESSO PARA AQUISIÇÃO E REGISTRO DE ARMA DE FOGO";
-    $tpl->DISABLE = "disabled";
-    $tpl->TITLE = "Aquisição de arma de fogo";
-    $tpl->block("BLOCK_AUTORIZACAO");
-    $tpl->block("BLOCK_COMPRA_PUB");
+    $tpl->PROCESSO = "PROCESSO PARA EMISSÃO DE 2ª VIA DE CRAF";
+    $tpl->TITLE = "Emissão de 2ª via de CRAF";
+    $tpl->TIPO_PROCESSO = "EMISSÃO DE 2ª VIA DE CRAF";
+    $tpl->block("BLOCK_DEMAIS");
+    $tpl->block("BLOCK_PORTE");
     $tpl->block("BLOCK_PUB");
     $tpl->block("BLOCK_PUB_2");
     $tpl->TIME = time();
+    $tpl->DISABLE = "disabled";
     $tpl->show();
 
 ?>
