@@ -3,7 +3,8 @@
         <thead>
             <tr>
                 <th scope="row" colspan="3">{PROCESSO}</th>
-                <th scope="col" style="border-width: 1px 1px 0 0;"><input type="text" disabled placeholder="FOTO 3x4"></th>
+                <th scope="col" style="border-width: 1px 1px 0 0;"><input type="text" disabled placeholder="FOTO 3x4">
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -16,7 +17,7 @@
             <tr>
                 <td><input type="text" placeholder="TIPO E CALIBRE"></td>
                 <td style="font-weight: bold;">
-                <!-- BEGIN BLOCK_INT -->
+                    <!-- BEGIN BLOCK_INT -->
                     <input type="text" placeholder="dd/mm/aaaa"></td>
                 <!-- END BLOCK_INT -->
                 <!-- BEGIN BLOCK_PUB -->
@@ -25,25 +26,25 @@
                 </script>
                 <!-- END BLOCK_PUB -->
                 <td style="font-weight: bold;">
-                    <!-- BEGIN BLOCK_COMPRA_INT -->
-                    AQUISIÇÃO <input type="text" placeholder="COMÉRCIO/INDÚSTRIA">
+                    <!-- BEGIN BLOCK_COMPRA_INT --> AQUISIÇÃO <input type="text" placeholder="COMÉRCIO/INDÚSTRIA">
                     <!-- END BLOCK_COMPRA_INT -->
                     <!-- BEGIN BLOCK_COMPRA_PUB -->
-                    <input disabled style="border-color: transparent; color: black " type="text " value="AQUISIÇÃO " size="10px ">
+                    <input disabled style="border-color: transparent; color: black " type="text " value="AQUISIÇÃO "
+                        size="10px ">
                     <select class="custom-select">
                         <option selected>TIPO DE COMPRA</option>
                         <option>COMÉRCIO</option>
                         <option>INDÚSTRIA</option>
                     </select>
                     <!-- END BLOCK_COMPRA_PUB -->
-                    <!-- BEGIN BLOCK_PORTE -->
-                    {TIPO_PROCESSO}
+                    <!-- BEGIN BLOCK_PORTE --> {TIPO_PROCESSO}
                     <!-- END BLOCK_PORTE -->
-                    <!-- BEGIN BLOCK_TRANSF_INT -->
-                        TRANFERÊNCIA <input type="text" id="tipo-int" onblur="tipoTransfInt()">
+                    <!-- BEGIN BLOCK_TRANSF_INT --> TRANFERÊNCIA <input type="text" id="tipo-int"
+                        onblur="tipoTransfInt()">
                     <!-- END BLOCK_TRANSF_INT -->
                     <!-- BEGIN BLOCK_TRANSF_PUB -->
-                    <input disabled style="border-color: transparent; color: black " type="text " value="TRANSFERÊNCIA " size="13px ">
+                    <input disabled style="border-color: transparent; color: black " type="text " value="TRANSFERÊNCIA "
+                        size="13px ">
                     <select class="custom-select" id="tipo-t" onblur="tipoTransf()">
                         <option selected>TIPO DE TRANSF.</option>
                         <option value="SIGMA">SIGMA/SIGMA</option>
@@ -86,10 +87,11 @@
         </thead>
         <tbody>
             <tr>
-                <td><textarea cols="30" rows="3" placeholder="GRAD/POSTO - RG - NOME COMPLETO - CPC/CPR/ETC... DO ADQUIRENTE"></textarea></td>
+                <td><textarea cols="30" rows="3"
+                        placeholder="GRAD/POSTO - RG - NOME COMPLETO - CPC/CPR/ETC... DO ADQUIRENTE"></textarea></td>
                 <td><strong>SEÇÃO DE MATERIAL BÉLICO</strong></td>
                 <td style="font-weight: bold;">
-                <!-- BEGIN BLOCK_INT_2 -->
+                    <!-- BEGIN BLOCK_INT_2 -->
                     <input type="text" placeholder="dd/mm/aaaa"></td>
                 <!-- END BLOCK_INT_2 -->
                 <!-- BEGIN BLOCK_PUB_2 -->
@@ -110,6 +112,8 @@
     </table>
 </div>
 </main>
+<br>
+<br>
 <br>
 <br>
 <br>
