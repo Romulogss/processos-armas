@@ -32,7 +32,6 @@ const getDadosGerais = () => {
 }
 
 const montarForm = () => {
-    qtdProcessos;
     for (let i = 1; i <= qtdProcessosInd; i++) {
         qtdProcessos++;
         let nProcesso = ("000" + i).slice(-3);
@@ -41,16 +40,16 @@ const montarForm = () => {
     <span class="no-print"><label for="tombamento-${qtdProcessos}">TOMBAMENTO</label> <input type="text" id="tombamento-${qtdProcessos}"></span><br>
     <label for="nome-${qtdProcessos}">${nProcesso}-NOME: </label>
     <input type="text" size="90" id="nome-${qtdProcessos}"><br>
-    <label> FILIAÇÃO: <input type="text" size="30" id="pai-${qtdProcessos}" oninput="this.size = this.value.length + 6;">
-        <span style="font-weight: normal;">e</span> <input type="text" size="30" id="mae-${qtdProcessos}"
+    <label> FILIAÇÃO: <input type="text" size="30" placeholder="PAI" id="pai-${qtdProcessos}" onblur="paiMae()" oninput="this.size = this.value.length + 6;">
+        <span style="font-weight: normal;" id="e-${qtdProcessos}">e</span> <input type="text" placeholder="MAE" size="30" id="mae-${qtdProcessos}"
             oninput="this.size = this.value.length + 6;">
     </label><br>
     <label> DATA E LOCAL DE NASCIMENTO: <input type="date" id="nascimento-${qtdProcessos}"> <span style="padding:10px"></span> <input
             type="text">
     </label><br>
     <label> END.RESID: <input type="text" size="30" id="residencia-${qtdProcessos}" oninput="this.size = this.value.length + 6;"> <span
-            style="padding:10px"></span> <input type="text" size="10" id="cidade-uf-${qtdProcessos}"
-            oninput="this.size = this.value.length + 6;" placeholder="CIDADE-UF">
+            style="padding:10px"></span> <input type="text" size="10" id="cidade-${qtdProcessos}"
+            oninput="this.size = this.value.length + 6;" placeholder="cidade">
     </label><br>
     <label> END. TRABALHO: <input type="text" size="30" oninput="this.size = this.value.length + 6;">
     </label> <br>
@@ -135,16 +134,15 @@ const montarForm = () => {
     <span class="no-print"><label for="tombamento-${qtdProcessos}">TOMBAMENTO</label> <input type="text" id="tombamento-${qtdProcessos}"></span><br>
     <label for="nome-${qtdProcessos}">${nProcesso}-NOME: </label>
     <input type="text" size="90" id="nome-${qtdProcessos}"><br>
-    <label> FILIAÇÃO: <input type="text" size="30" id="pai-${qtdProcessos}" oninput="this.size = this.value.length + 6;">
-        <span style="font-weight: normal;">e</span> <input type="text" size="30" id="mae-${qtdProcessos}"
+    <label> FILIAÇÃO: <input type="text" size="30" id="pai-${qtdProcessos}" onblur="paiMae()" placeholder="PAI" oninput="this.size = this.value.length + 6;">
+        <span style="font-weight: normal;" id="e-${qtdProcessos}">e</span> <input type="text" placeholder="MAE" size="30" id="mae-${qtdProcessos}"
             oninput="this.size = this.value.length + 6;">
     </label><br>
     <label> DATA E LOCAL DE NASCIMENTO: <input type="date" id="nascimento-${qtdProcessos}"> <span style="padding:10px"></span> <input
             type="text">
     </label><br>
     <label> END.RESID: <input type="text" size="30" id="residencia-${qtdProcessos}" oninput="this.size = this.value.length + 6;"> <span
-            style="padding:10px"></span> <input type="text" size="10" id="cidade-uf-${qtdProcessos}"
-            oninput="this.size = this.value.length + 6;" placeholder="CIDADE-UF">
+            style="padding:10px"></span> <select id="cidade-${qtdProcessos}"></select>
     </label><br>
     <label> END. TRABALHO: <input type="text" size="30" oninput="this.size = this.value.length + 6;">
     </label> <br>
@@ -222,7 +220,55 @@ const montarForm = () => {
     }
 }
 
+const paiMae = () => {
+    if(!this.value) {
+        document.getElementById('pai-1').remove()
+        document.getElementById('e').remove()
+    }
+}
+
 const pegar = (id, processo) => document.getElementById(id + '-' + processo).value;
+
+const pegarCPF = (processo) => {
+    let cpf = pegar('cpf', processo)
+    cpf = cpf.split('.')
+    cpf_modificado = cpf[0] + cpf[1]
+    cpf = cpf[2].split('-');
+    cpf_modificado += cpf[0] + cpf[1]
+    return cpf_modificado;
+}
+
+const pegarData = (id, processo) => {
+    let data = pegar(id, processo);
+    data = data.split('-');
+    data = data[2] + '/' + data[1] + '/' + data[0];
+    return data;
+
+}
+
+const pegarDataPub = () => {
+    const meses = [
+        'Janeiro',
+        'Fevereiro',
+        'Março',
+        'Abril',
+        'Maio',
+        'Junho',
+        'Julho',
+        'Agosto',
+        'Setembro',
+        'Outubro',
+        'Novembro',
+        'Dezembro'
+    ]
+    const dia = document.getElementById('dia-pub').value;
+    let mes = document.getElementById('mes-pub').value;
+    for (let mes_idx in meses) {
+        if (mes.toString().toLowerCase() === meses[mes_idx].toLowerCase()) mes = ("0" + (parseInt(mes_idx) + 1)).slice(-2);
+    }
+
+    return dia + '/' + mes + '/' + new Date().getFullYear();
+}
 
 const montarLinhaAEL = processo => {
     const orgao = '900000528';
@@ -241,16 +287,16 @@ const montarLinhaAEL = processo => {
     const pais = pegar('pais', processo);
     const tipoPubli = 1;
     const numBar = document.getElementById('num-bar').value + new Date().getFullYear();
-    const dataPublic = '';
-    const cpf = pegar('cpf', processo);
+    const dataPublic = pegarDataPub();
+    const cpf = pegarCPF(processo);
     const nome = pegar('nome', processo);
-    const nascimento = pegar('nascimento', processo);
+    const nascimento = pegarData('nascimento', processo);
     const rg = pegar('rg', processo)
-    const dataExpedicaoRG = pegar('emissao', processo);
+    const dataExpedicaoRG = pegarData('emissao', processo);
     const orgaoexpedidor = pegar('expedidor', processo);
-    const pai = pegar('pai', processo).length > 0 ? pegar('pai', processo) : 'NAO CONSTA';
-    const mae = pegar('mae', processo).length > 0 ? pegar('mae', processo) : 'NAO CONSTA';
-    const cidade = pegar('cidade-uf', processo).slice('-')[0]
+    const pai = pegar('pai', processo) ? pegar('pai', processo) : 'NAO CONSTA';
+    const mae = pegar('mae', processo) ? pegar('mae', processo) : 'NAO CONSTA';
+    const cidade = pegar('cidade', processo).slice('-')[0]
     console.log(tombamento, nSerie, marca, especie, modelo, calibre, funcionamento, canos, comprimentoCano,
         uniMedidade, alma, pais, tipoPubli, numBar, dataPublic, cpf, nome, nascimento, rg, dataExpedicaoRG, orgaoexpedidor, pai, mae, cidade);
 

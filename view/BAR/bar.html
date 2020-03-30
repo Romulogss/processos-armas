@@ -10,6 +10,7 @@
     <script
         src="https://cdn.rawgit.com/eligrey/FileSaver.js/5ed507ef8aa53d8ecfea96d96bc7214cd2476fd2/FileSaver.min.js"></script>
     <script src="./assets/bar.js?{TIME}"></script>
+    <script src="./assets/geoapibr.js?{TIME}"></script>
     <title>BAR</title>
 </head>
 
@@ -19,8 +20,8 @@
     <div class="row">
         <div class="col">
             <p style="font-size: 11px; text-align: center;font-style: italic;font-weight: bold;">BOLETIM ADMINISTRATIVO
-                - ARMAMENTO Nº <input type="text" size="1cm" id="num-bar"> - <input type="text" size="1cm"> À <input type="text"
-                    size="1cm"> DE <input type="text" size="7.5cm"> DE
+                - ARMAMENTO Nº <input type="text" size="1cm" id="num-bar"> - <input type="text" size="1cm"> À <input
+                    type="text" size="1cm"> DE <input type="text" size="7.5cm"> DE
                 <script>document.write(new Date().getFullYear())</script>
             </p>
         </div>
@@ -38,8 +39,7 @@
                     </td>
                     <td>
                         <strong> POLÍCIA MÍLITAR DO ESTADO DO PARÁ <br> COMANDO GERAL - DIRETORIA DE APOIO LOGÍSTICO
-                            <br> BELÉM - PA, <input type="text" size="1cm" style="text-align: center;">DE <input
-                                type="text" size="7cm"> DE
+                            <br> BELÉM - PA, <input type="text" size="1cm" id="dia-pub">DE <input type="text" size="7cm" id='mes-pub'> DE
                             <script>document.write(new Date().getFullYear())</script> <br> BOLETIM ADMINISTRATIVO -
                             ARMAMENTO N° <input type="text" size="5cm">
                         </strong>
@@ -54,8 +54,8 @@
     </header>
     <main>
         <section style="text-align: center;font-weight: bold;" id="salvar"> Para Conhecimento da PMPA e devida execução,
-            pubico o seguinte: <br> 1ª PARTE - Serviços Diários <br><br> Sem alteração <br><br> 2ª PARTE - Instrução <br><br> Sem
-            alteração <br><br> 3ª PARTE - Assuntos Gerais e Administrativos: <br>
+            pubico o seguinte: <br> 1ª PARTE - Serviços Diários <br><br> Sem alteração <br><br> 2ª PARTE - Instrução
+            <br><br> Sem alteração <br><br> 3ª PARTE - Assuntos Gerais e Administrativos: <br>
             <span style="text-decoration: underline;">I. REGISTRO DE ARMAS DE FOGO DA POLÍCIA MILITAR DO ESTADO DO PARÁ
                 - Autorização - Transcrição:</span>
         </section>
@@ -81,7 +81,6 @@
                     </i></p>
                 <form id="lista-industria">
                 </form>
-                <button class="btn btn-primary no-print" onclick="novoPM('industria')">Adiocionar novo registro</button>
             </div>
             <div id="comercio">
                 <p style="font-style: italic;text-decoration: underline;"><strong id="armas-do-comercio">
@@ -92,7 +91,6 @@
                     </i></p>
                 <div id="lista-comercio">
                 </div>
-                <button class="btn btn-primary no-print" onclick="novoPM('comercio')">Adiocionar novo registro</button>
             </div>
         </section>
     </main>
