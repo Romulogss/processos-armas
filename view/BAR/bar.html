@@ -20,7 +20,7 @@
     <div class="row">
         <div class="col">
             <p style="font-size: 11px; text-align: center;font-style: italic;font-weight: bold;">BOLETIM ADMINISTRATIVO
-                - ARMAMENTO Nº <input type="text" size="1cm" id="num-bar"> - <input type="text" size="1cm"> À <input
+                - ARMAMENTO Nº <input type="text" size="1cm" id="num-bar" onblur="document.getElementById('num-bar-header').innerHTML = document.getElementById('num-bar').value"> - <input type="text" size="1cm"> À <input
                     type="text" size="1cm"> DE <input type="text" size="7.5cm"> DE
                 <script>document.write(new Date().getFullYear())</script>
             </p>
@@ -41,7 +41,7 @@
                         <strong> POLÍCIA MÍLITAR DO ESTADO DO PARÁ <br> COMANDO GERAL - DIRETORIA DE APOIO LOGÍSTICO
                             <br> BELÉM - PA, <input type="text" size="1cm" id="dia-pub">DE <input type="text" size="7cm" id='mes-pub'> DE
                             <script>document.write(new Date().getFullYear())</script> <br> BOLETIM ADMINISTRATIVO -
-                            ARMAMENTO N° <input type="text" size="5cm">
+                            ARMAMENTO N° <span id="num-bar-header"></span>
                         </strong>
                     </td>
                     <td>
