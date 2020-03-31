@@ -12,7 +12,7 @@ const getDadosGerais = () => {
     console.log(qtdProcessos)
     if (ind.length > 0) {
         let armasIndustria = document.getElementById('armas-da-industria')
-        armasIndustria.innerHTML += `01. AUTORIZAÇÃO PARA CADASTRO E REGISTRO DE ARMA DE FOGO DE USO PERMITIDO, SENDO  ${ind}, ADQUIRIDAS ATRAVÉS DO FABRICANTE.`;
+        armasIndustria.innerHTML += `01. AUTORIZAÇÃO PARA CADASTRO E REGISTRO DE ARMA DE FOGO DE USO PERMITIDO, ${ind}, ADQUIRIDAS ATRAVÉS DO FABRICANTE.`;
         temProcessosIndustria = true;
     } else {
         document.getElementById('industria').remove();
@@ -22,7 +22,7 @@ const getDadosGerais = () => {
         let num = '01';
         if (ind.length > 0) num = '02';
         let armasComercio = document.getElementById('armas-do-comercio')
-        armasComercio.innerHTML += `${num}. AUTORIZAÇÃO PARA CADASTRO E REGISTRO DE ARMA DE FOGO DE USO PERMITIDO, SENDO  ${com}, ADQUIRIDAS ATRAVÉS DO COMÉRCIO.`;
+        armasComercio.innerHTML += `${num}. AUTORIZAÇÃO PARA CADASTRO E REGISTRO DE ARMA DE FOGO DE USO PERMITIDO, ${com}, ADQUIRIDAS ATRAVÉS DO COMÉRCIO.`;
         temProcessosComercio = true;
     } else {
         document.getElementById('comercio').remove();
@@ -34,14 +34,14 @@ const getDadosGerais = () => {
 const montarForm = () => {
     for (let i = 1; i <= qtdProcessosInd; i++) {
         qtdProcessos++;
-        let nProcesso = ("000" + i).slice(-3);
+        let nProcesso = ("00" + i).slice(-3);
         let form = document.getElementById('lista-industria');
         form.innerHTML += `
     <span class="no-print"><label for="tombamento-${qtdProcessos}">TOMBAMENTO</label> <input type="text" id="tombamento-${qtdProcessos}"></span><br>
     <label for="nome-${qtdProcessos}">${nProcesso}-NOME: </label>
     <input type="text" size="90" id="nome-${qtdProcessos}"><br>
-    <label> FILIAÇÃO: <input type="text" size="30" placeholder="PAI" id="pai-${qtdProcessos}" onblur="paiMae()" oninput="this.size = this.value.length + 6;">
-        <span style="font-weight: normal;" id="e-${qtdProcessos}">e</span> <input type="text" placeholder="MAE" size="30" id="mae-${qtdProcessos}"
+    <label> FILIAÇÃO: <input type="text" size="30" placeholder="PAI" id="pai-${qtdProcessos}" onblur="pai(${qtdProcessos})" oninput="this.size = this.value.length + 6;">
+        <span style="font-weight: normal;" id="e-${qtdProcessos}">e</span> <input type="text" onblur="mae(${qtdProcessos})" placeholder="MAE" size="30" id="mae-${qtdProcessos}"
             oninput="this.size = this.value.length + 6;">
     </label><br>
     <label> DATA E LOCAL DE NASCIMENTO: <input type="date" id="nascimento-${qtdProcessos}"> <span style="padding:10px"></span> <input
@@ -128,21 +128,21 @@ const montarForm = () => {
 
     for (let i = 1; i <= qtdProcessosCom; i++) {
         qtdProcessos++;
-        let nProcesso = ("000" + i).slice(-3);
+        let nProcesso = ("00" + i).slice(-3);
         let form = document.getElementById('lista-comercio');
         form.innerHTML += `
     <span class="no-print"><label for="tombamento-${qtdProcessos}">TOMBAMENTO</label> <input type="text" id="tombamento-${qtdProcessos}"></span><br>
     <label for="nome-${qtdProcessos}">${nProcesso}-NOME: </label>
     <input type="text" size="90" id="nome-${qtdProcessos}"><br>
-    <label> FILIAÇÃO: <input type="text" size="30" id="pai-${qtdProcessos}" onblur="paiMae()" placeholder="PAI" oninput="this.size = this.value.length + 6;">
-        <span style="font-weight: normal;" id="e-${qtdProcessos}">e</span> <input type="text" placeholder="MAE" size="30" id="mae-${qtdProcessos}"
+    <label> FILIAÇÃO: <input type="text" size="30" id="pai-${qtdProcessos}" onblur="pai(${qtdProcessos})" placeholder="PAI" oninput="this.size = this.value.length + 6;">
+        <span style="font-weight: normal;" id="e-${qtdProcessos}">e</span> <input type="text" onblur="mae(${qtdProcessos})" placeholder="MAE" size="30" id="mae-${qtdProcessos}"
             oninput="this.size = this.value.length + 6;">
     </label><br>
     <label> DATA E LOCAL DE NASCIMENTO: <input type="date" id="nascimento-${qtdProcessos}"> <span style="padding:10px"></span> <input
             type="text">
     </label><br>
     <label> END.RESID: <input type="text" size="30" id="residencia-${qtdProcessos}" oninput="this.size = this.value.length + 6;"> <span
-            style="padding:10px"></span> <select id="cidade-${qtdProcessos}"></select>
+            style="padding:10px"></span> <input type="text" id="cidade-${qtdProcessos}">
     </label><br>
     <label> END. TRABALHO: <input type="text" size="30" oninput="this.size = this.value.length + 6;">
     </label> <br>
@@ -203,8 +203,8 @@ const montarForm = () => {
     <label for="n-raias-${qtdProcessos}">NUMERO DE RAIAS: </label><input type="number" id="n-raias-${qtdProcessos}">
     <label for="sentido-raias-${qtdProcessos}">SENTIDO DAS RAIAS: </label>
     <select id="sentido-raias-${qtdProcessos}">
-        <option>À Direita</option>
-        <option>À Esquerda</option>
+        <option value="D">À Direita</option>
+        <option value="E">À Esquerda</option>
     </select> <br>
     <label for="acabamento-${qtdProcessos}">ACABAMENTO: </label><input type="text" id="acabamento-${qtdProcessos}"> <br>
     <label for="pais-${qtdProcessos}">PAÍS DE FABRICAÇÃO: </label>
@@ -220,10 +220,19 @@ const montarForm = () => {
     }
 }
 
-const paiMae = () => {
-    if(!this.value) {
-        document.getElementById('pai-1').remove()
-        document.getElementById('e').remove()
+const pai = (processo) => {
+    let input_pai = document.getElementById(`pai-${processo}`);
+    if (!input_pai.value) {
+        input_pai.remove()
+        document.getElementById(`e-${processo}`).remove()
+    }
+}
+
+const mae = (processo) => {
+    let input_mae = document.getElementById(`mae-${processo}`);
+    if (!input_mae.value) {
+        input_mae.remove()
+        document.getElementById(`e-${processo}`).remove()
     }
 }
 
@@ -271,41 +280,68 @@ const pegarDataPub = () => {
 }
 
 const montarLinhaAEL = processo => {
-    const orgao = '900000528';
-    const tombamento = pegar('tombamento', processo).replace('/', '');
-    const nSerie = pegar('serie', processo).replace(' ', '');
-    const marca = pegar('marca', processo);
-    const especie = pegar('especie', processo);
-    const modelo = pegar('modelo', processo);
-    const calibre = pegar('calibre', processo);
-    const grupo_calibre = '';
-    const funcionamento = pegar('funcionamento', processo);
-    const canos = pegar('canos', processo);
-    const comprimentoCano = pegar('tam-cano', processo);
-    const uniMedidade = pegar('uni-medida', processo);
-    const alma = pegar('alma', processo);
-    const pais = pegar('pais', processo);
-    const tipoPubli = 1;
-    const numBar = document.getElementById('num-bar').value + new Date().getFullYear();
-    const dataPublic = pegarDataPub();
-    const cpf = pegarCPF(processo);
-    const nome = pegar('nome', processo);
-    const nascimento = pegarData('nascimento', processo);
-    const rg = pegar('rg', processo)
-    const dataExpedicaoRG = pegarData('emissao', processo);
-    const orgaoexpedidor = pegar('expedidor', processo);
-    const pai = pegar('pai', processo) ? pegar('pai', processo) : 'NAO CONSTA';
-    const mae = pegar('mae', processo) ? pegar('mae', processo) : 'NAO CONSTA';
-    const cidade = pegar('cidade', processo).slice('-')[0]
-    console.log(tombamento, nSerie, marca, especie, modelo, calibre, funcionamento, canos, comprimentoCano,
-        uniMedidade, alma, pais, tipoPubli, numBar, dataPublic, cpf, nome, nascimento, rg, dataExpedicaoRG, orgaoexpedidor, pai, mae, cidade);
+    let Arma = {
+        tombamento: pegar('tombamento', processo).replace('/', ''),
+        numSerie: pegar('serie', processo).replace(' ', ''),
+        marca: pegar('marca', processo),
+        especie: pegar('especie', processo),
+        modelo: pegar('modelo', processo).replace(' ', ''),
+        calibre: pegar('calibre', processo),
+        grupo_calibre: '27',
+        municao: pegar('muni', processo),
+        funcionamento: pegar('funcionamento', processo),
+        canos: pegar('canos', processo),
+        comprimentoCano: pegar('tam-cano', processo),
+        uniMedidade: pegar('uni-medida', processo),
+        alma: pegar('alma', processo),
+        raias: pegar('n-raias', processo).length > 0 ? pegar('n-raias', processo) : '',
+        sentidoRaias: pegar('sentido-raias', processo),
+        acabamento: pegar('acabamento', processo),
+        pais: pegar('pais', processo)
+    }
+
+    let BAR = {
+        tipoPubli: 1,
+        numBar: document.getElementById('num-bar').value + new Date().getFullYear(),
+        dataPublic: pegarDataPub(),
+        orgao: '900000528'
+    }
+
+    let Policial = {
+        cpf: pegarCPF(processo),
+        nome: pegar('nome', processo),
+        nascimento: pegarData('nascimento', processo),
+        rg: pegar('rg', processo),
+        dataExpedicaoRG: pegarData('emissao', processo),
+        orgaoEmissor: pegar('expedidor', processo),
+        pai: pegar('pai', processo) ? pegar('pai', processo) : 'NAO CONSTA',
+        mae: pegar('mae', processo) ? pegar('mae', processo) : 'NAO CONSTA',
+        cidade: pegar('cidade', processo).split('-')[0]
+    }
+
+
+    let linha = `[${BAR.orgao}]`;
+    for (const dado in Arma) {
+        linha += `[${Arma[dado]}]`;
+    }
+
+    for (const dado in BAR) {
+        linha += `[${BAR[dado]}]`
+    }
+
+    for(const dado in Policial) {
+        if(dado !== 'mae') {
+            linha += `[${Policial[dado]}]`
+        } else {
+            linha += `[${Policial[dado]}][][][][][][]`
+        }
+    }
+
+    return linha;
 
 }
 
 const salvar = () => {
-    for (let i = 1; i <= qtdProcessos; i++) {
-        montarLinhaAEL(i)
-    }
     let mes = new Date().getMonth() + 1
     if (mes < 10) mes = '0' + mes;
     const data = new Date().getDate() + '/' + mes + '/' + new Date().getFullYear()
@@ -314,7 +350,10 @@ const salvar = () => {
     const hora_titulo = new Date().getHours() + '' + new Date().getMinutes() + '' + new Date().getSeconds();
     console.log(hora_titulo)
     const titulo = `CARGA-900000528-${data_titulo}-${hora_titulo}.txt`
-
-    let teste = new Blob([`[REMETO][${data} ${hora}][${qtdProcessos}]`], { type: "text/plain;charset=ISO8859-1" });
-    // saveAs(teste, titulo);
+    let linhas = `[REMETO][${data} ${hora}][${qtdProcessos}]`;
+    for (let i = 1; i <= qtdProcessos; i++) {
+       linhas += `\n${montarLinhaAEL(i)}`
+    }
+    let teste = new Blob([linhas], { type: "text/plain;charset=ISO8859-1" });
+    saveAs(teste, titulo);
 }

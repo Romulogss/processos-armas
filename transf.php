@@ -16,7 +16,6 @@
     $tpl->block("BLOCK_INT_2");
     $tpl->block("BLOCK_TRANSF");
     $tpl->TITLE = "Transferência de arma de fogo";
-    $tpl->ADQUIRENTE = "ADQUIRENTE";
     $tpl->FOTO_CEDENTE = '<td style="border-width: 0 1px 0 0;"><input type="text" disabled placeholder="FOTO 3x4" size="15"></td>';
     
     $tpl->show();
