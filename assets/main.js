@@ -52,13 +52,12 @@ const getDadosAssinatura = () => {
 
 const digitador = () => {
     const nomeDigitador = document.getElementById('nome-digitador').value
-    document.getElementById('digitador-1').innerHTML = nomeDigitador
-    document.getElementById('digitador-2').innerHTML = nomeDigitador
+    let digitador = [...document.getElementsByName('digitador')]
+    digitador.forEach(d => d.innerHTML = nomeDigitador)
 }
 
 const tipoTransf = () => {
     const tipo = document.getElementById('tipo-t').value
-    console.log(tipo)
     document.getElementById('tipo-transf').innerHTML = tipo;
 
 }

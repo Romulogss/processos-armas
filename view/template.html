@@ -12,32 +12,31 @@
 </head>
 
 <body class="container align-items-end">
-    <header class="row justify-content-center" style="padding-top: 25px;">
-        {HEADER}
-    </header>
+    <header class="row justify-content-center" style="padding-top: 25px;"> {HEADER} </header>
     <form>
         <main class="wrap">
-            <div id="capa">
-                {CAPA}
-            </div>
-            <footer style="text-align: center;">
-                {FOOTER}
-            </footer>
+            <div id="capa"> {CAPA} </div>
+            <footer style="text-align: center;"> {FOOTER} </footer>
             <span class="no-print page-brak" style="padding-top: 10px;display: block;width: 100%;"></span>
-            <header class="row justify-content-center" style="padding-top: 25px;">
-                {HEADER}
-            </header>
-            <section id="certidao">
-                {CERTIDAO}
-            </section>
+            <header class="row justify-content-center" style="padding-top: 25px;"> {HEADER} </header>
+            <section id="certidao"> {CERTIDAO} </section>
         </main>
-        <footer style="text-align: center;">
-            {FOOTER}
-        </footer>
+        <footer style="text-align: center;"> {FOOTER} </footer>
         <div class="row no-print" style="text-align: center;">
             <button type="reset" class="btn btn-danger">LIMPAR</button>
         </div>
     </form>
+    <script>
+        let allInputs = document.getElementsByTagName('input')
+        allInputs = [...allInputs];
+        allInputs.forEach(input => {
+            if (input.id !== "tipo-calibre" && input.id !== "nome-digitador") {
+                input.onblur = () => {
+                    input.size = input.value.length > 10 ? input.value.length + 4 : input.value.length - 2;
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

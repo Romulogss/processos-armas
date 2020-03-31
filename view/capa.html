@@ -3,20 +3,21 @@
         <thead>
             <tr>
                 <th scope="row" colspan="3">{PROCESSO}</th>
-                <th scope="col" style="border-width: 1px 1px 0 0;"><input type="text" disabled placeholder="FOTO 3x4">
-                </th>
+                <th scope="col" style="border-width: 1px 1px 0 0;"><input type="text" disabled placeholder="FOTO 3x4"
+                        size="15"> {FOTO_CEDENTE} </th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td><strong>Nº <input type="text" size="8px" {DISABLE}></strong></td>
-                <td><strong>DATA DE ENTRADA</strong></td>
-                <td><strong>OBJETO</strong></td>
-                <td style="border-width: 0 1px 0 0;"><input type="text" disabled placeholder="FOTO 3x4"></td>
+                <td>Nº <input type="text" size="8px" {DISABLE}></td>
+                <td>DATA DE ENTRADA</td>
+                <td>OBJETO</td>
+                <td style="border-width: 0 1px 0 0;"><input type="text" disabled placeholder="FOTO 3x4" size="15"></td>
+                {FOTO_CEDENTE}
             </tr>
             <tr>
-                <td><input type="text" placeholder="TIPO E CALIBRE"></td>
-                <td style="font-weight: bold;">
+                <td><input type="text" placeholder="TIPO E CALIBRE" id="tipo-calibre"></td>
+                <td>
                     <!-- BEGIN BLOCK_INT -->
                     <input type="text" placeholder="dd/mm/aaaa"></td>
                 <!-- END BLOCK_INT -->
@@ -25,7 +26,7 @@
                     document.write(dia + '/' + mesNum + '/' + ano)
                 </script>
                 <!-- END BLOCK_PUB -->
-                <td style="font-weight: bold;">
+                <td>
                     <!-- BEGIN BLOCK_COMPRA_INT --> AQUISIÇÃO <input type="text" placeholder="COMÉRCIO/INDÚSTRIA">
                     <!-- END BLOCK_COMPRA_INT -->
                     <!-- BEGIN BLOCK_COMPRA_PUB -->
@@ -53,8 +54,19 @@
                     </select>
                     <!-- END BLOCK_TRANSF_PUB -->
                 </td>
-                <td style="border-width: 0 1px 1px 0;"><input type="text" disabled placeholder="FOTO 3x4"></td>
+                <td style="border-width: 0 1px 1px 0;"><input type="text" disabled placeholder="FOTO 3x4" size="15"
+                        value="{ADQUIRENTE}">
+                </td> {FOTO_CEDENTE}
             </tr>
+            <!-- BEGIN BLOCK_TRANSF -->
+            <tr style="border-width: 0">
+                <td style="border-width: 0"></td>
+                <td style="border-width: 0"></td>
+                <td style="border-width: 0"></td>
+                <td>CESSINÁRIO</td>
+                <td>CEDENTE</td>
+            </tr>
+            <!-- END BLOCK_TRANSF -->
         </tbody>
     </table>
 </div>
@@ -63,7 +75,8 @@
 <br>
 <!-- BEGIN BLOCK_AUTORIZACAO -->
 <div class="row justify-content-center">
-    <strong>AUTORIZAÇÃO <input type="text" placeholder="999/9999" size="8px" {DISABLE}></strong>
+    <strong>AUTORIZAÇÃO</strong> <input style="font-weight: bold;" type="text" placeholder="999/9999" size="8px"
+        {DISABLE}>
 </div>
 <!-- END BLOCK_AUTORIZACAO -->
 <!-- BEGIN BLOCK_DEMAIS -->
@@ -88,10 +101,13 @@
         </thead>
         <tbody>
             <tr>
-                <td><textarea cols="30" rows="3"
-                        placeholder="GRAD/POSTO - RG - NOME COMPLETO - CPC/CPR/ETC... DO ADQUIRENTE"></textarea></td>
-                <td><strong>SEÇÃO DE MATERIAL BÉLICO</strong></td>
-                <td style="font-weight: bold;">
+                <td>
+                    <textarea cols="30" rows="3"
+                        placeholder="GRAD/POSTO - RG - NOME COMPLETO - DO ADQUIRENTE"></textarea>
+                    {INPUT_COINT}
+                </td>
+                <td>SEÇÃO DE MATERIAL BÉLICO</td>
+                <td>
                     <!-- BEGIN BLOCK_INT_2 -->
                     <input type="text" placeholder="dd/mm/aaaa"></td>
                 <!-- END BLOCK_INT_2 -->
@@ -101,7 +117,7 @@
                 </script>
                 <!-- END BLOCK_PUB_2 -->
                 </td>
-                <td><strong>TOMBADO</strong></td>
+                <td>TOMBADO</td>
             </tr>
             <tr>
                 <td><input type="text" id="nome-digitador" onblur="digitador()" {DISABLE}></td>

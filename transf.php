@@ -7,14 +7,18 @@
     $tpl->addFile("HEADER", "view/header.html");
     $tpl->addFile("FOOTER", "view/footer.html");
     $tpl->addFile("CAPA", "view/capa.html");
+    $tpl->TIME = time();
     $tpl->addFile("CERTIDAO", "view/certidao-transf.html");
     $tpl->PROCESSO = "PROCESSO PARA TRANSFERÊNCIA E REGISTRO DE ARMA DE FOGO";
-    $tpl->TITLE = "Transferência de arma de fogo";
     $tpl->block("BLOCK_DEMAIS");
     $tpl->block("BLOCK_TRANSF_INT");
     $tpl->block("BLOCK_INT");
     $tpl->block("BLOCK_INT_2");
-    $tpl->TIME = time();
+    $tpl->block("BLOCK_TRANSF");
+    $tpl->TITLE = "Transferência de arma de fogo";
+    $tpl->ADQUIRENTE = "ADQUIRENTE";
+    $tpl->FOTO_CEDENTE = '<td style="border-width: 0 1px 0 0;"><input type="text" disabled placeholder="FOTO 3x4" size="15"></td>';
+    
     $tpl->show();
 
 ?>

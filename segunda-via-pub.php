@@ -17,6 +17,7 @@
     $tpl->block("BLOCK_PUB_2");
     $tpl->TIME = time();
     $tpl->DISABLE = "disabled";
+    $tpl->INPUT_COINT = '<input type="text" placeholder="COINT/OPM">';
     $tpl->show();
 
 ?>
