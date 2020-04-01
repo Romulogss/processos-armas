@@ -204,6 +204,12 @@ const popularCidades = processo => {
     { id: '5206', nome: 'Santa Cruz do Arari' },
     { id: '5217', nome: 'Santo Antônio do Tauá' }]
     let select = document.getElementById('cidade-' + processo)
+    cidades.forEach(cidade => {
+        let option = document.createElement('option')
+        option.setAttribute('value', cidade.id);
+        option.textContent = cidade.nome
+        select.appendChild(option);
+    })
 }
 
 const montarForm = () => {
@@ -223,7 +229,7 @@ const montarForm = () => {
             type="text">
     </label><br>
     <label> END.RESID: <input type="text" size="30" id="residencia-${qtdProcessos}" oninput="this.size = this.value.length + 6;"> <span
-            style="padding:10px"></span> <select id="cidade-${qtdProcessos}"></select>
+            style="padding:10px"></span> <select id="cidade-${qtdProcessos}" style="height: 30px"></select>
             oninput="this.size = this.value.length + 6;" placeholder="cidade">
     </label><br>
     <label> END. TRABALHO: <input type="text" size="30" oninput="this.size = this.value.length + 6;">
@@ -299,6 +305,7 @@ const montarForm = () => {
     <br>
     <br>
     `
+        popularCidades(qtdProcessos)
     }
 
     for (let i = 1; i <= qtdProcessosCom; i++) {
@@ -317,7 +324,7 @@ const montarForm = () => {
             type="text">
     </label><br>
     <label> END.RESID: <input type="text" size="30" id="residencia-${qtdProcessos}" oninput="this.size = this.value.length + 6;"> <span
-            style="padding:10px"></span> <select id="cidade-${qtdProcessos}"></select>
+            style="padding:10px"></span> <select id="cidade-${qtdProcessos}" style="height: 15px"></select>
     </label><br>
     <label> END. TRABALHO: <input type="text" size="30" oninput="this.size = this.value.length + 6;">
     </label> <br>
@@ -392,6 +399,7 @@ const montarForm = () => {
     <br>
     <br>
     `
+        popularCidades(qtdProcessos)
     }
 
 
@@ -413,7 +421,14 @@ const mae = (processo) => {
     }
 }
 
-const pegar = (id, processo) => document.getElementById(id + '-' + processo).value;
+const pegar = (id, processo) => {
+    try {
+        return document.getElementById(id + '-' + processo).value;
+    }
+    catch {
+        return ''
+    }
+}
 
 const pegarCPF = (processo) => {
     let cpf = pegar('cpf', processo)
@@ -492,9 +507,9 @@ const montarLinhaAEL = processo => {
         dataExpedicaoRG: pegarData('emissao', processo),
         orgaoEmissor: pegar('expedidor', processo),
         uf: '14',
-        pai: pegar('pai', processo) ? pegar('pai', processo) : 'NAO CONSTA',
-        mae: pegar('mae', processo) ? pegar('mae', processo) : 'NAO CONSTA',
-        cidade: pegar('cidade', processo).split('-')[0]
+        pai: pegar('pai', processo).length > 0 ? pegar('pai', processo) : 'NAO CONSTA',
+        mae: pegar('mae', processo).length > 0 ? pegar('mae', processo) : 'NAO CONSTA',
+        cidade: pegar('cidade', processo)
     }
 
 
@@ -530,7 +545,7 @@ const salvar = () => {
     const titulo = `CARGA-900000528-${data_titulo}-${hora_titulo}.txt`
     let linhas = `[REMETO][${data} ${hora}][${qtdProcessos}]`;
     for (let i = 1; i <= qtdProcessos; i++) {
-        linhas += `\n${montarLinhaAEL(i)}`
+        linhas += `\n${montarLinhaAEL(i)}[7]`
     }
     let teste = new Blob([linhas], { type: "text/plain;charset=ISO8859-1" });
     saveAs(teste, titulo);
