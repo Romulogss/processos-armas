@@ -534,14 +534,13 @@ const montarLinhaAEL = processo => {
 
 }
 
-const salvar = () => {
+const salvar = (qtdProcessos) => {
     let mes = new Date().getMonth() + 1
     if (mes < 10) mes = '0' + mes;
     const data = new Date().getDate() + '/' + mes + '/' + new Date().getFullYear()
     const data_titulo = new Date().getDate() + '' + mes + '' + new Date().getFullYear()
     const hora = new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds();
     const hora_titulo = new Date().getHours() + '' + new Date().getMinutes() + '' + new Date().getSeconds();
-    console.log(hora_titulo)
     const titulo = `CARGA-900000528-${data_titulo}-${hora_titulo}.txt`
     let linhas = `[REMETO][${data} ${hora}][${qtdProcessos}]`;
     for (let i = 1; i <= qtdProcessos; i++) {
