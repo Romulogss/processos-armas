@@ -40,24 +40,24 @@ class Arma
         $acabamento,
         $pais
     ) {
-        $this->$id = $id;
-        $this->$tombamento = $tombamento;
-        $this->$numSerie = $numSerie;
-        $this->$marca = $marca;
-        $this->$especie = $especie;
-        $this->$modelo = $modelo;
-        $this->$calibre = $calibre;
-        $this->$grupoCalibre = $grupoCalibre;
-        $this->$municao = $municao;
-        $this->$funcionamento = $funcionamento;
-        $this->$canos = $canos;
-        $this->$comprimento = $comprimento;
-        $this->$uniMedida = $uniMedida;
-        $this->$alma = $alma;
-        $this->$raias = $raias;
-        $this->$sentidoRaias = $sentidoRaias;
-        $this->$acabamento = $acabamento;
-        $this->$pais = $pais;
+        $this->id = $id;
+        $this->tombamento = $tombamento;
+        $this->numSerie = $numSerie;
+        $this->marca = $marca;
+        $this->especie = $especie;
+        $this->modelo = $modelo;
+        $this->calibre = $calibre;
+        $this->grupoCalibre = $grupoCalibre;
+        $this->municao = $municao;
+        $this->funcionamento = $funcionamento;
+        $this->canos = $canos;
+        $this->comprimento = $comprimento;
+        $this->uniMedida = $uniMedida;
+        $this->alma = $alma;
+        $this->raias = $raias;
+        $this->sentidoRaias = $sentidoRaias;
+        $this->acabamento = $acabamento;
+        $this->pais = $pais;
     }
 }
 
@@ -80,22 +80,22 @@ class Policial
         $nome,
         $nascimento,
         $rg,
-        $,
+        $dataExpedicaoRg,
         $orgaoEmissor,
         $pai,
         $mae,
         $cidade
     ) {
-        $this->$id = $id;
-        $this->$cpf = $cpf;
-        $this->$nome = $nome;
-        $this->$nascimento = $nascimento;
-        $this->$rg = $rg;
-        $this->$ = $;
-        $this->$orgaoEmissor = $orgaoEmissor;
-        $this->$pai = $pai;
-        $this->$mae = $mae;
-        $this->$cidade = $cidade;
+        $this->id = $id;
+        $this->cpf = $cpf;
+        $this->nome = $nome;
+        $this->nascimento = $nascimento;
+        $this->rg = $rg;
+        $this->dataExpedicaoRg = $dataExpedicaoRg;
+        $this->orgaoEmissor = $orgaoEmissor;
+        $this->pai = $pai;
+        $this->mae = $mae;
+        $this->cidade = $cidade;
     }
 }
 
@@ -110,14 +110,14 @@ class DadosGerais
     function __construct(
         $textInd,
         $textCom,
-        $qtdCom,
+        $qtdProcessos,
         $qtdInd,
-        $qtdProcessos
+        $qtdCom
     ) {
-        $this->$textInd = $textInd;
-        $this->$textCom = $textCom;
-        $this->$qtdCom = $qtdCom;
-        $this->$qtdInd = $qtdInd;
-        $this->$qtdProcessos = $qtdProcessos;
+        $this->textInd = $textInd;
+        $this->textCom = $textCom;
+        $this->qtdCom = $qtdCom;
+        $this->qtdInd = $qtdInd;
+        $this->qtdProcessos = $qtdProcessos;
     }
 }

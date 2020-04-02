@@ -22,6 +22,10 @@ function fecharBandoDeDados($banco)
     }
 }
 
+function salvarPolicial() {
+    $banco = abriBancoDeDados();
+}
+
 function getAllArms()
 {
     $banco = abriBancoDeDados();
@@ -30,27 +34,8 @@ function getAllArms()
         $sql = "SELECT * FROM arma";
         $resultado = $banco->query($sql);
         if ($resultado->num_rows > 0) {
-            while ($armas = $resultado->fetch_all(MYSQLI_ASSOC)) {
-                $armas[] = new Arma(
-                    $armas['id'],
-                    $armas['tombamento'],
-                    $armas['num_serie'],
-                    $armas['marca'],
-                    $armas['especie'],
-                    $armas['modelo'],
-                    $armas['calibre'],
-                    $armas['grupo_calibre'],
-                    $armas['municao'],
-                    $armas['funcionamento'],
-                    $armas['canos'],
-                    $armas['comprimentoCano'],
-                    $armas['uniMedida'],
-                    $armas['alma'],
-                    $armas['raias'],
-                    $armas['sentidoRaias'],
-                    $armas['acabamento'],
-                    $armas['pais']
-                );
+            while ($row = $resultado->fetch_array(MYSQLI_ASSOC)) {
+                $armas[] = $row;
             }
         }
     } catch (Exception $e) {
@@ -70,19 +55,8 @@ function getAllPolices()
         $sql = "SELECT * FROM policial";
         $resultado = $banco->query($sql);
         if ($resultado->num_rows > 0) {
-            while ($policiais = $resultado->fetch_all(MYSQLI_ASSOC)) {
-                $policiais[] = new Policial(
-                    $policiais['id'],
-                    $policiais['cpf'],
-                    $policiais['nome'],
-                    $policiais['nascimento'],
-                    $policiais['rg'],
-                    $policiais['data_expedicao_rg'],
-                    $policiais['orgao_emissor'],
-                    $policiais['pai'],
-                    $policiais['mae'],
-                    $policiais['cidade']
-                );
+            while ($row = $resultado->fetch_array(MYSQLI_ASSOC)) {
+                $policiais[] = $row;
             }
         }
     } catch (Exception $e) {
@@ -92,4 +66,45 @@ function getAllPolices()
 
     fecharBandoDeDados($banco);
     return $policiais;
+}
+
+function obterDadosGerais()
+{
+    $banco = abriBancoDeDados();
+    $resultado = null;
+    try {
+        $sql = "SELECT * FROM dados_gerais";
+        $resultado = $banco->query($sql);
+        if($resultado->num_rows > 0) {
+            $resultado = $resultado->fetch_assoc();
+        } else {
+            return false;
+        }
+    } catch (Exception $e) {
+        $_SESSION['message'] = $e->getMessage();
+        $_SESSION['type'] = 'danger';
+    }
+
+    fecharBandoDeDados($banco);
+    return $resultado;
+}
+obterDadosGerais();
+
+function salvarDadosGerais($total = null, $ind = null, $com = null, $textCom = null, $textInd = null)
+{
+    $banco = abriBancoDeDados();
+    try {
+        $stmt = $banco->prepare("INSERT INTO dados_gerais VALUES (?,?,?,?,?)");
+        $stmt->bind_param("sssss", $textInd, $textCom, $total, $ind, $com);
+        if ($stmt->execute() == TRUE) {
+            fecharBandoDeDados($banco);
+            return true;
+        } else {
+            fecharBandoDeDados($banco);
+            return false;
+        }
+    } catch (Exception $e) {
+        $_SESSION['message'] = $e->getMessage();
+        $_SESSION['type'] = 'danger';
+    }
 }

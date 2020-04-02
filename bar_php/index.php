@@ -2,6 +2,8 @@
 require_once('config.php');
 require_once('controllers.php');
 getNumProcessos();
+carregarDadosGerais();
+salvarForm(1);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +19,7 @@ getNumProcessos();
 </head>
 
 <body class="container">
-    <?php if ($qtdProcesso <= 0) : ?>
+    <?php if ($dadosGerais->qtdProcessos <= 0) : ?>
         <?php include(QTD_ARMAS); ?>
     <?php else : ?>
         <div class="row">
