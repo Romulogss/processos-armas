@@ -13,7 +13,8 @@
     <title>BAR</title>
 </head>
 
-<body class="container">
+<body class="container" id="body">
+    <div id="corpo">
     <!--DADOS DE QUANTIDADE DE ARMAS INCIO--> {QUANTIDADE_ARMAS}
     <!--DADOS DE QUANTIDADE DE ARMAS FIM-->
     <div class="row">
@@ -88,12 +89,15 @@
                         os Policiais Militares solicitam aquisição, cadastro e registro de arma de fogo de uso
                         permitido, adquiridas através do fabricante, dou o seguinte despacho: <br> <br> Deferido para:
                     </i></p>
-                <div id="lista-comercio">
-                </div>
+                <form id="lista-comercio">
+                </form>
             </div>
         </section>
+        <button class="btn btn-primary" onclick="salvarStatus()">TERMINAR DEPOIS</button>
     </main>
-    <button onclick="salvar()" class="btn btn-danger no-print">SALVAR</button>
+    <button onclick="salvar()" class="btn btn-danger no-print">GERAR AEL E IMPRIMIR</button>
+</div>
+<script>carregarStatus()</script>
 </body>
 
 </html>
