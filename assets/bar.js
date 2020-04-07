@@ -209,6 +209,7 @@ const carregarDadosGerais = () => {
         if (ind <= 0) document.getElementById('industria').remove();
         if (com <= 0) document.getElementById('comercio').remove();
         if (transf <= 0) document.getElementById('transferencia').remove();
+        if (paf <= 0) document.getElementById('paf').remove();
     }
 }
 
@@ -1083,6 +1084,7 @@ const montarAEL = () => {
         for (let i = 1; i <= qtdProcessos; i++) {
             if (pegar('profissao-cedente', i).toLowerCase().trim() !== 'policial militar') {
                 linhas += `\n${montarLinhaAEL(i)}[7]`
+                console.log(`\n${montarLinhaAEL(i)}[7]`)
             }
         }
         let teste = new Blob([linhas], { type: "text/plain;charset=ISO8859-1" });
