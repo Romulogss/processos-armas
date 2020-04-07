@@ -1,11 +1,7 @@
 <div id="informações-bar">
     <div class="form-group">
-        <label for="qtd-armas-com">Quantas Armas foram adquiridas no comércio</label>
+        <label for="qtd-armas-com">Quantas armas foram adquiridas no comércio</label>
         <input type="number" id="qtd-armas-com" class="form-control">
-    </div>
-    <div class="form-group">
-        <label for="qtd-armas-ind">Quantas Armas foram adquiridas na indústria</label>
-        <input type="number" id="qtd-armas-ind" class="form-control">
     </div>
     <div class="form-group">
         <label for="text-aux-com">Informe a quantidade de armas, de cada espécie e especificas quantas são de cada
@@ -14,9 +10,33 @@
             placeholder="EX: 17(DEZESSETE) PISTOLAS, SENDO  09(NOVE)Cal. .40S&W E 12(DOZE) Cal. 9mm 01(UMA)Cal. .380, E 02(DOIS) REVÓLVERES Cal..38 E RIFLES,CARABINAS 01(UMA)Cal,.22 E 01(UMA)ESPINGARDA Cal. 20"></textarea>
     </div>
     <div class="form-group">
+        <label for="qtd-armas-ind">Quantas armas foram adquiridas na indústria</label>
+        <input type="number" id="qtd-armas-ind" class="form-control">
+    </div>
+    <div class="form-group">
         <label for="text-aux-ind">Informe a quantidade de armas, de cada espécie e especificas quantas são de cada
             calibre, aquiridas na indústria</label>
         <textarea id="text-aux-ind" cols="50" rows="4" class="form-control"
+            placeholder="EX: 17(DEZESSETE) PISTOLAS, SENDO  09(NOVE)Cal. .40S&W E 12(DOZE) Cal. 9mm 01(UMA)Cal. .380, E 02(DOIS) REVÓLVERES Cal..38 E RIFLES,CARABINAS 01(UMA)Cal,.22 E 01(UMA)ESPINGARDA Cal. 20"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="qtd-armas-transf">Quantas armas foram adquiridas por transferência</label>
+        <input type="number" id="qtd-armas-transf" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="text-aux-transf">Informe a quantidade de armas, de cada espécie e especificas quantas são de cada
+            calibre, adquiridas por transferência</label>
+        <textarea id="text-aux-transf" cols="50" rows="4" class="form-control"
+            placeholder="EX: 17(DEZESSETE) PISTOLAS, SENDO  09(NOVE)Cal. .40S&W E 12(DOZE) Cal. 9mm 01(UMA)Cal. .380, E 02(DOIS) REVÓLVERES Cal..38 E RIFLES,CARABINAS 01(UMA)Cal,.22 E 01(UMA)ESPINGARDA Cal. 20"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="qtd-armas-paf">Quantos PAF's serão emitidos:</label>
+        <input type="number" id="qtd-armas-paf" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="text-aux-paf">Informe a quantidade de armas, de cada espécie e especificas quantas são de cada
+            calibre, para emissão de PAF</label>
+        <textarea id="text-aux-paf" cols="50" rows="4" class="form-control"
             placeholder="EX: 17(DEZESSETE) PISTOLAS, SENDO  09(NOVE)Cal. .40S&W E 12(DOZE) Cal. 9mm 01(UMA)Cal. .380, E 02(DOIS) REVÓLVERES Cal..38 E RIFLES,CARABINAS 01(UMA)Cal,.22 E 01(UMA)ESPINGARDA Cal. 20"></textarea>
     </div>
     <button class="btn btn-primary" onclick="getDadosGerais();montarForm()"> Dados Ok</button>

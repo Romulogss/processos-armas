@@ -13,91 +13,217 @@
     <title>BAR</title>
 </head>
 
-<body class="container" id="body">
+<body class="container">
     <div id="corpo">
-    <!--DADOS DE QUANTIDADE DE ARMAS INCIO--> {QUANTIDADE_ARMAS}
-    <!--DADOS DE QUANTIDADE DE ARMAS FIM-->
-    <div class="row">
-        <div class="col">
-            <p style="font-size: 11px; text-align: center;font-style: italic;font-weight: bold;">BOLETIM ADMINISTRATIVO
-                - ARMAMENTO Nº <input type="text" size="1cm" id="num-bar" onblur="document.getElementById('num-bar-header').innerHTML = document.getElementById('num-bar').value"> - <input type="text" size="1cm"> À <input
-                    type="text" size="1cm"> DE <input type="text" size="7.5cm"> DE
-                <script>document.write(new Date().getFullYear())</script>
-            </p>
+        <!--DADOS DE QUANTIDADE DE ARMAS INCIO--> {QUANTIDADE_ARMAS}
+        <!--DADOS DE QUANTIDADE DE ARMAS FIM-->
+        <div class="row">
+            <div class="col">
+                <p style="font-size: 11px !important; text-align: center;font-style: italic;font-weight: bold;">BOLETIM
+                    ADMINISTRATIVO - ARMAMENTO Nº <input style="font-size: 11px !important" type="text" size="1cm"
+                        id="num-bar"
+                        onblur="document.getElementById('num-bar-header').innerHTML = document.getElementById('num-bar').value">
+                    - <input type="text" size="1cm" style="font-size: 11px !important"> À <input type="text" size="1cm"
+                        style="font-size: 11px !important"> DE <input type="text" size="7.5cm"
+                        style="font-size: 11px !important"> DE
+                    <script>document.write(new Date().getFullYear())</script>
+                </p>
+            </div>
         </div>
+        <br>
+        <br>
+        <br>
+        <header style="font-size: 15px;font-weight: bold;max-width: 100%;" class="row">
+            <div class="col">
+                <table class="table" border="3" style="text-align: center;">
+                    <tr>
+                        <td>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Bras%C3%A3o_do_Par%C3%A1.svg/1200px-Bras%C3%A3o_do_Par%C3%A1.svg.png"
+                                alt="BRASÃO DO ESTADO DO PARÁ" height="auto" style="max-width: 100%;height: 110px;">
+                        </td>
+                        <td>
+                            <strong> POLÍCIA MÍLITAR DO ESTADO DO PARÁ <br> COMANDO GERAL - DIRETORIA DE APOIO LOGÍSTICO
+                                <br> BELÉM - PA, <input type="text" size="1cm" id="dia-pub">DE <input type="text"
+                                    size="7cm" id='mes-pub'> DE
+                                <script>document.write(new Date().getFullYear())</script> <br> BOLETIM ADMINISTRATIVO -
+                                ARMAMENTO N° <span id="num-bar-header"></span>
+                            </strong>
+                        </td>
+                        <td>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Bras%C3%A3o_PMPA.PNG"
+                                alt="BRASÃO DA POLÍCIA MÍLITAR" height="110px" style="max-width: 100%;">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </header>
+        <main>
+            <section style="font-weight: bold;">
+                <p style="text-align: center;"> Para Conhecimento da PMPA e devida execução, pubico o seguinte: <br> 1ª
+                    PARTE - Serviços Diários <br><br> Sem alteração <br><br> 2ª PARTE - Instrução <br><br> Sem alteração
+                    <br><br> 3ª PARTE - Assuntos Gerais e Administrativos: </p>
+                <span style="text-decoration: underline;text-align: justify;">I. REGISTRO DE ARMAS DE FOGO DA POLÍCIA
+                    MILITAR DO ESTADO DO PARÁ - Autorização - Transcrição:</span>
+            </section>
+            <section>
+                <p style="text-align: justify;"> De acordo com a Lei Nr 10.826, de 22 DEZ 2003, que dispõe sobre
+                    registro, posse e comercialização de armas de fogo e munição, sobre o Sistema Nacional de Armas -
+                    SINARM, define crimes e dá outras providências; o Decreto Nr 5.123, de 1º JUL 2004, que regulamenta
+                    a Lei Nº 10.826, de 22 DEZ 2003; a Portaria Nº 069/2019 aditada ao BG Nº 078 de 24 ABR 2019 –
+                    GABCMDO GERAL PMPa; e a Portaria Nº 136 – COLOG - EB, de 08 de NOV 2019, que estabelece normas para
+                    a aquisição, o registro, o cadastro e a transferência de propriedade de armas de fogo de uso
+                    restrito por policial rodoviário federal, policial ferroviário, federal, policial civil, policial
+                    militar e bombeiro militar dos estados e do Distrito Federal, e dá outras providências,<strong>
+                        publico, para fins de cadastro no SIGMA</strong>, o que se segue: </p>
+            </section>
+            <hr style="border-style: dashed;border-width: 1px;">
+            <section>
+                <div id="industria">
+                    <p style="font-style: italic;text-decoration: underline;"><strong id="armas-da-industria">
+                        </strong></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>Nos requerimentos em
+                            que os Policiais Militares solicitam aquisição, cadastro e registro de arma de fogo de uso
+                            permitido, adquiridas através do fabricante, dou o seguinte despacho: <br> <br> <span
+                                style="text-decoration: underline">Deferido para:</span>
+                        </i></p>
+                    <form id="lista-industria">
+                    </form>
+                </div>
+                <div id="comercio">
+                    <p style="font-style: italic;text-decoration: underline;"><strong id="armas-do-comercio">
+                        </strong></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>Nos requerimentos em
+                            que os Policiais Militares solicitam aquisição, cadastro e registro de arma de fogo de uso
+                            permitido, adquiridas através do fabricante, dou o seguinte despacho: <br> <br> <span
+                                style="text-decoration: underline">Deferido para:</span>
+                        </i></p>
+                    <form id="lista-comercio">
+                    </form>
+                </div>
+                <div id="transferencia">
+                    <p style="font-style: italic;text-decoration: underline;"><strong id="armas-por-transferencia">
+                        </strong></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>Nos requerimentos em
+                            que os Policiais Militares solicitam transferência de cadastro e registro de arma de fogo de
+                            uso restrito e permitido, dou o seguinte despacho: <br> <br> <span
+                                style="text-decoration: underline">Deferido para:</span>
+                        </i></p>
+                    <form id="lista-transferencia">
+                    </form>
+                </div>
+                <div id="paf">
+                    <p style="font-style: italic;text-decoration: underline;"><strong id="armas-paf">
+                        </strong></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>Nos requerimentos em
+                            que os policiais militares, da reserva remunerada, solicitam a expedição PAF (Porte de Arma
+                            de Fogo) de arma de calibre restrito e permitido, dou o seguinte despacho: <br> <br> <span
+                                style="text-decoration: underline">Deferido para:</span>
+                        </i></p>
+                    <form id="lista-paf">
+                        1 - <input type="text" size="70" name="nome-paf" placeholder="NOME - POST/GRAD RG"> - 
+                        <label for="cpf-paf">CPF:</label> <input id="cpf-paf" type="text" size="11">
+                        <table border="1">
+                            <thead>
+                                <tr>
+                                    <th>BAR</th>
+                                    <th>ESPÉCIE</th>
+                                    <th>FUNC.</th>
+                                    <th>ACAB.</th>
+                                    <th>MARCA</th>
+                                    <th>CAL.</th>
+                                    <th>MOD.</th>
+                                    <th>CAPAC.</th>
+                                    <th>CANO</th>
+                                    <th>PAÍS</th>
+                                    <th>N° SÉRIE</th>
+                                    <th>SGIMA</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" onblur="this.size = this.value.length" name="bar-paf"></td>
+                                    <td><input type="text" onblur="this.size = this.value.length + 1" name="esp-paf"></td>
+                                    <td><input type="text" onblur="this.size = this.value.length + 3" name="fun-paf"></td>
+                                    <td><input type="text" onblur="this.size = this.value.length" name="acab-paf"></td>
+                                    <td><input type="text" onblur="this.size = this.value.length" name="marca-paf"></td>
+                                    <td><input type="text" onblur="this.size = this.value.length" name="cal-paf"></td>
+                                    <td><input type="text" onblur="this.size = this.value.length" name="mod-paf"></td>
+                                    <td><input type="text" onblur="this.size = this.value.length" name="capac-paf"></td>
+                                    <td><input type="text" onblur="this.size = this.value.length" name="cano-paf"></td>
+                                    <td><input type="text" onblur="this.size = this.value.length" name="pais-paf"></td>
+                                    <td><input type="text" onblur="this.size = this.value.length" name="n-serie-paf"></td>
+                                    <td><input type="text" onblur="this.size = this.value.length" name="sigma-paf"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </section>
+            <button class="btn btn-primary no-print" onclick="salvarStatus()">TERMINAR DEPOIS</button>
+            <section style="text-align: center; page-break-before: always;">
+                <br>
+                <br>
+                <br>
+                <br>
+                <p style="font-weight: bold;text-align: center;">4ª PARTE - JUSTIÇA E DISCIPLINA</p>
+                <br>
+                <br>
+                <br>
+                <br>
+                <span style="font-weight: bold;">Sem Alteração</span>
+                <br>
+                <br>
+                <p style="font-weight: normal;">Confere com o original:</p>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <span style="text-align: center;font-weight: normal;"><strong>SIDNEY PROFETA</strong> DA SILVA - CEL
+                    QOPM RG 21183</span>
+                <p style="text-align: center;">Diretor de Apoio Logístico da PMPA</p>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="row justify-content-center">
+                    <div class="col-3">
+                        <img src="./assets/carimbo.png" alt="carimbo da pmpa" height="auto" style="max-width: 70%;">
+                    </div>
+                    <div class="col-9 align-items-center"
+                        style="font-family: Arial, Helvetica, sans-serif;font-size: 1.2em;">
+                        <p style="font-family: Arial, Helvetica, sans-serif;"><strong
+                                style="font-family: Arial, Helvetica, sans-serif;">PAULO RENATO</strong> BORGES DA
+                            PAIXÃO – MAJ QOPM RG 31148 <br>
+                            <span style="font-family: Arial, Helvetica, sans-serif">Chefe da Subseção de Intendência e
+                                Subsistência</span></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <button onclick="montarAEL()" class="btn btn-danger no-print">GERAR AEL E IMPRIMIR</button>
     </div>
-    <br>
-    <br>
-    <br>
-    <header style="font-size: 15px;font-weight: bold;max-width: 100%;" class="row">
-        <div class="col">
-            <table class="table" border="3" style="text-align: center;">
-                <tr>
-                    <td>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Bras%C3%A3o_do_Par%C3%A1.svg/1200px-Bras%C3%A3o_do_Par%C3%A1.svg.png"
-                            alt="BRASÃO DO ESTADO DO PARÁ" height="auto" style="max-width: 100%;height: 110px;">
-                    </td>
-                    <td>
-                        <strong> POLÍCIA MÍLITAR DO ESTADO DO PARÁ <br> COMANDO GERAL - DIRETORIA DE APOIO LOGÍSTICO
-                            <br> BELÉM - PA, <input type="text" size="1cm" id="dia-pub">DE <input type="text" size="7cm" id='mes-pub'> DE
-                            <script>document.write(new Date().getFullYear())</script> <br> BOLETIM ADMINISTRATIVO -
-                            ARMAMENTO N° <span id="num-bar-header"></span>
-                        </strong>
-                    </td>
-                    <td>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Bras%C3%A3o_PMPA.PNG"
-                            alt="BRASÃO DA POLÍCIA MÍLITAR" height="110px" style="max-width: 100%;">
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </header>
-    <main>
-        <section style="text-align: center;font-weight: bold;" id="salvar"> Para Conhecimento da PMPA e devida execução,
-            pubico o seguinte: <br> 1ª PARTE - Serviços Diários <br><br> Sem alteração <br><br> 2ª PARTE - Instrução
-            <br><br> Sem alteração <br><br> 3ª PARTE - Assuntos Gerais e Administrativos: <br>
-            <span style="text-decoration: underline;">I. REGISTRO DE ARMAS DE FOGO DA POLÍCIA MILITAR DO ESTADO DO PARÁ
-                - Autorização - Transcrição:</span>
-        </section>
-        <section>
-            <p style="text-align: justify;"> De acordo com a Lei Nr 10.826, de 22 DEZ 2003, que dispõe sobre registro,
-                posse e comercialização de armas de fogo e munição, sobre o Sistema Nacional de Armas - SINARM, define
-                crimes e dá outras providências; o Decreto Nr 5.123, de 1º JUL 2004, que regulamenta a Lei Nº 10.826, de
-                22 DEZ 2003; a Portaria Nº 069/2019 aditada ao BG Nº 078 de 24 ABR 2019 – GABCMDO GERAL PMPa; e a
-                Portaria Nº 136 – COLOG - EB, de 08 de NOV 2019, que estabelece normas para a aquisição, o registro, o
-                cadastro e a transferência de propriedade de armas de fogo de uso restrito por policial rodoviário
-                federal, policial ferroviário, federal, policial civil, policial militar e bombeiro militar dos estados
-                e do Distrito Federal, e dá outras providências,<strong> publico, para fins de cadastro no
-                    SIGMA</strong>, o que se segue: </p>
-        </section>
-        <hr style="border-style: dashed;border-width: 1px;">
-        <section>
-            <div id="industria">
-                <p style="font-style: italic;text-decoration: underline;"><strong id="armas-da-industria">
-                    </strong></p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>Nos requerimentos em que
-                        os Policiais Militares solicitam aquisição, cadastro e registro de arma de fogo de uso
-                        permitido, adquiridas através do fabricante, dou o seguinte despacho: <br> <br> Deferido para:
-                    </i></p>
-                <form id="lista-industria">
-                </form>
-            </div>
-            <div id="comercio">
-                <p style="font-style: italic;text-decoration: underline;"><strong id="armas-do-comercio">
-                    </strong></p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>Nos requerimentos em que
-                        os Policiais Militares solicitam aquisição, cadastro e registro de arma de fogo de uso
-                        permitido, adquiridas através do fabricante, dou o seguinte despacho: <br> <br> Deferido para:
-                    </i></p>
-                <form id="lista-comercio">
-                </form>
-            </div>
-        </section>
-        <button class="btn btn-primary" onclick="salvarStatus()">TERMINAR DEPOIS</button>
-    </main>
-    <button onclick="salvar()" class="btn btn-danger no-print">GERAR AEL E IMPRIMIR</button>
-</div>
-<script>carregarStatus()</script>
+    <script>carregarStatus()</script>
 </body>
 
 </html>

@@ -1,8 +1,8 @@
 let qtdProcessos = 0;
 let qtdProcessosCom = 0;
 let qtdProcessosInd = 0;
-let temProcessosIndustria;
-let temProcessosComercio;
+let qtdProcessosTransf = 0;
+let qtdProcessosPAF = 0;
 const cidades = [
     { id: '119278', nome: 'Ipixuna do Pará' },
     { id: '119291', nome: 'Jacareacanga' },
@@ -180,6 +180,7 @@ const cidades = [
 const carregarDadosGerais = () => {
     const ind = localStorage.qtdInd;
     const com = localStorage.qtdCom;
+    const transf = localStorage.qtdTransf;
     if (com) {
         let armasComercio = document.getElementById('armas-do-comercio')
         armasComercio.innerHTML += localStorage.texCom;
@@ -190,51 +191,66 @@ const carregarDadosGerais = () => {
         armasIndustria.innerHTML += localStorage.texInd;
         qtdProcessosInd = ind;
     }
-    if (ind || com) {
+
+    if (transf) {
+        let armasTransf = document.getElementById('armas-por-transferencia')
+        armasTransf.innerHTML += localStorage.texTransf
+        qtdProcessosTransf = transf;
+    }
+    if (ind || com || transf) {
         montarForm()
         document.getElementById('informações-bar').remove()
-        if(ind <= 0) document.getElementById('industria').remove();
-        if( com <= 0) document.getElementById('comercio').remove();
+        if (ind <= 0) document.getElementById('industria').remove();
+        if (com <= 0) document.getElementById('comercio').remove();
+        if (transf <= 0) document.getElementById('transferencia').remove();
     }
-    console.log(qtdProcessosInd, qtdProcessosCom, localStorage.texCom, localStorage.texInd)
 }
 
 const getDadosGerais = () => {
     const ind = document.getElementById('text-aux-ind').value
     const com = document.getElementById('text-aux-com').value
+    const transf = document.getElementById('text-aux-transf').value
     qtdProcessosInd = document.getElementById('qtd-armas-ind').value;
     qtdProcessosCom = document.getElementById('qtd-armas-com').value;
+    qtdProcessosTransf = document.getElementById('qtd-armas-transf').value;
     let textCom;
     let textInd;
-    console.log(qtdProcessos)
+    let textTransf;
+    let n = 0;
     if (ind.length > 0) {
+        n++;
         let armasIndustria = document.getElementById('armas-da-industria')
-        textInd = `01. AUTORIZAÇÃO PARA CADASTRO E REGISTRO DE ARMA DE FOGO DE USO PERMITIDO, ${ind}, ADQUIRIDAS ATRAVÉS DO FABRICANTE.`;
+        textInd = `${("0" + n).slice(-2)}. AUTORIZAÇÃO PARA CADASTRO E REGISTRO DE ARMA DE FOGO DE USO PERMITIDO, ${ind}, ADQUIRIDAS ATRAVÉS DO FABRICANTE.`;
         armasIndustria.innerHTML += textInd;
-        temProcessosIndustria = true;
     } else {
         document.getElementById('industria').remove();
-        temProcessosIndustria = false;
     }
     if (com.length > 0) {
-        let num = '01';
-        if (ind.length > 0) num = '02';
+        n++;
         let armasComercio = document.getElementById('armas-do-comercio')
-        textCom = `${num}. AUTORIZAÇÃO PARA CADASTRO E REGISTRO DE ARMA DE FOGO DE USO PERMITIDO, ${com}, ADQUIRIDAS ATRAVÉS DO COMÉRCIO.`;
+        textCom = `${("0" + n).slice(-2)}. AUTORIZAÇÃO PARA CADASTRO E REGISTRO DE ARMA DE FOGO DE USO PERMITIDO, ${com}, ADQUIRIDAS ATRAVÉS DO COMÉRCIO.`;
         armasComercio.innerHTML += textCom;
-        temProcessosComercio = true;
     } else {
         document.getElementById('comercio').remove();
-        temProcessosComercio = false;
+    }
+
+    if (transf.length > 0) {
+        n++;
+        let armasTransferencia = document.getElementById('armas-por-transferencia')
+        textTransf = `${("0" + n).slice(-2)}. AUTORIZAÇÃO PARA TRANSFERÊNCIA DE ARMA DE FOGO DE USO PERMITIDO, ${com}.`;
+        armasTransferencia.innerHTML += textTransf;
+    } else {
+        document.getElementById('transferencia').remove();
     }
 
     localStorage.setItem('qtdInd', qtdProcessosInd.toString())
     localStorage.setItem('qtdCom', qtdProcessosCom.toString())
+    localStorage.setItem('qtdTransf', qtdProcessosTransf.toString())
     localStorage.setItem('texCom', textCom);
     localStorage.setItem('texInd', textInd);
+    localStorage.setItem('texTransf', textTransf);
     document.getElementById('informações-bar').remove()
 }
-
 
 const popularCidades = processo => {
     let select = document.getElementById('cidade-' + processo)
@@ -249,22 +265,33 @@ const popularCidades = processo => {
 const completarEndRes = processo => {
     let endereco = document.getElementById('residencia-' + processo)
     let cidade = document.getElementById('cidade-' + processo).value
-    cidades.forEach(city => {
-        cidade = city.id === cidade ? city.nome : cidade;
-    })
-    document.getElementById('cidade-' + processo).hidden = '1'
-    endereco.value += ', ' + cidade + '-PA'
-    endereco.size = '100'
+    if (endereco.value.length > 0) {
+        if (endereco.value.split('-')[1] === 'PA') {
+            document.getElementById('cidade-' + processo).hidden = '1'
+            return
+        }
+        cidades.forEach(city => {
+            cidade = city.id === cidade ? city.nome : cidade;
+        })
+        document.getElementById('cidade-' + processo).hidden = '1'
+        endereco.value += ', ' + cidade + '-PA'
+        endereco.size = '100'
+    }
 }
 
 const unidadeDeMedida = processo => {
     let comprimento = document.getElementById('tam-cano-' + processo)
     let uniMedida = document.getElementById('uni-medida-' + processo)
-    comprimento.type = 'text'
-    comprimento.size = '5'
-    uniMedida.hidden = '1'
-    comprimento.value += String(uniMedida.value).toLocaleLowerCase()
-    console.log(comprimento.value)
+    if (comprimento.value.length > 0 && comprimento.value[comprimento.value.length - 1] !== uniMedida.value[uniMedida.value.length - 1].toLowerCase()) {
+        comprimento.type = 'text'
+        uniMedida.hidden = '1'
+        comprimento.value += String(uniMedida.value).toLocaleLowerCase()
+    }
+
+    if (comprimento.value[comprimento.value.length - 1] === uniMedida.value[uniMedida.value.length - 1].toLowerCase()) {
+        uniMedida.hidden = '1'
+    }
+
 }
 
 const montarForm = () => {
@@ -279,16 +306,15 @@ const montarForm = () => {
         <label> FILIAÇÃO: <input type="text" size="30" name="pai-${qtdProcessos}" id="pai-${qtdProcessos}" onblur="this.size = this.value.length + 6;pai(${qtdProcessos})" placeholder="PAI">
             <span style="font-weight: normal;" id="e-${qtdProcessos}">e</span> <input type="text" onblur="this.size = this.value.length + 6;mae(${qtdProcessos});" placeholder="MAE" size="30" name="mae-${qtdProcessos}" id="mae-${qtdProcessos}">
         </label><br>
-        <label> DATA E LOCAL DE NASCIMENTO: <input type="date" name="nascimento-${qtdProcessos}" id="nascimento-${qtdProcessos}"> <span style="padding:10px"></span> <input
+        <label> DATA E LOCAL DE NASCIMENTO: <input type="date" name="nascimento-${qtdProcessos}" id="nascimento-${qtdProcessos}"> <span style="padding-left:10px"></span> <input
                 type="text" name="local-nascimento-${qtdProcessos}">
         </label><br>
-        <label> END.RESID: <input type="text" size="70" name="residencia-${qtdProcessos}" id="residencia-${qtdProcessos}" onblur="this.size = this.value.length + 6;"> <span
-                style="padding:10px"></span> <select name="cidade-${qtdProcessos}" id="cidade-${qtdProcessos}" style="height: 30px"></select>
+        <label> END.RESID: <input type="text" size="70" name="residencia-${qtdProcessos}" id="residencia-${qtdProcessos}" onblur="this.size = this.value.length + 6;"> <select name="cidade-${qtdProcessos}" id="cidade-${qtdProcessos}" style="height: 30px"></select>
         </label><br>
         <label> END. TRABALHO: <i>Rdv. Augusto Montenegro, KM 09, 8401, Parque Guajará, CEP: 66821-000, Belém-PA</i>
         </label> <br>
         <label> PROFISSÃO: </label> <i>Policial Militar</i> <br>
-        <label for="rg-${qtdProcessos}"> NÚMERO DA CÉDULA DE IDENTIDADE: </label> <input type="number" name="rg-${qtdProcessos}" id="rg-${qtdProcessos}">
+        <label for="rg-${qtdProcessos}"> NÚMERO DA CÉDULA DE IDENTIDADE: </label> <input type="number" name="rg-${qtdProcessos}" onfocus="completarEndRes(${qtdProcessos})" id="rg-${qtdProcessos}">
         <br>
         <label for="emissao-${qtdProcessos}">
         DATA DA EMISSÃO: </label> <input type="date" name="emissao-${qtdProcessos}" id="emissao-${qtdProcessos}"> <br>
@@ -301,9 +327,9 @@ const montarForm = () => {
             <option value="1">TAURUS S/A</option>
             <option value="4">CBC</option>
         </select> <br>
-        <label for="fornecedor-${qtdProcessos}">IDENTIFICAÇÃO DO FORNECEDOR: </label><input type="text" size="50" name="fornecedor-${qtdProcessos}" id="fornecedor-${qtdProcessos}"> <br>
+        <label for="fornecedor-${qtdProcessos}">IDENTIFICAÇÃO DO VENDEDOR: </label><input type="text" size="80" name="fornecedor-${qtdProcessos}" id="fornecedor-${qtdProcessos}"> <br>
         <label for="end-fornecedor-${qtdProcessos}">ENDEREÇO: </label><input type="text" name="end-fornecedor-${qtdProcessos}" id="end-fornecedor-${qtdProcessos}"
-            onblur="this.size = this.value.length + 6;" size="80"> <br>
+            size="80"> <br>
         <label for="cnpj-${qtdProcessos}">CNPJ: </label> <input type="text" size="17" name="cnpj-${qtdProcessos}" id="cnpj-${qtdProcessos}"> <br>
         <label>NÚMERO DA NOTA FISCAL: <input name="n-nf-${qtdProcessos}" type="number"> <span style="padding: 10px;"></span> EMISSÃO:<input
                 type="date" name="emissao-dt-${qtdProcessos}" id="emissao-dt-${qtdProcessos}"></label> <br>
@@ -332,7 +358,7 @@ const montarForm = () => {
             <option value="4">Tiro simples</option>
         </select> <br>
         <label for="canos-${qtdProcessos}">QUANTIDADE DE CANOS: </label><input type="number" name="canos-${qtdProcessos}" id="canos-${qtdProcessos}"> <br>
-        <label> COMPRIMENTO DO CANO: <input type="number" name="tam-cano-${qtdProcessos}" id="tam-cano-${qtdProcessos}" size="3"> <select name="uni-medida-${qtdProcessos}" id="uni-medida-${qtdProcessos}">
+        <label> COMPRIMENTO DO CANO: <input type="text" name="tam-cano-${qtdProcessos}" id="tam-cano-${qtdProcessos}" size="5"> <select name="uni-medida-${qtdProcessos}" id="uni-medida-${qtdProcessos}">
                 <option value="MM">mm</option>
                 <option value="CM">cm</option>
                 <option value="POL">pol</option>
@@ -374,16 +400,15 @@ const montarForm = () => {
     <label> FILIAÇÃO: <input type="text" size="30" name="pai-${qtdProcessos}" id="pai-${qtdProcessos}" onblur="this.size = this.value.length + 6;pai(${qtdProcessos})" placeholder="PAI">
         <span style="font-weight: normal;" id="e-${qtdProcessos}">e</span> <input type="text" onblur="this.size = this.value.length + 6;mae(${qtdProcessos});" placeholder="MAE" size="30" name="mae-${qtdProcessos}" id="mae-${qtdProcessos}">
     </label><br>
-    <label> DATA E LOCAL DE NASCIMENTO: <input type="date" name="nascimento-${qtdProcessos}" id="nascimento-${qtdProcessos}"> <span style="padding:10px"></span> <input
+    <label> DATA E LOCAL DE NASCIMENTO: <input type="date" name="nascimento-${qtdProcessos}" id="nascimento-${qtdProcessos}"> <span style="padding-left:10px"></span> <input
             type="text" name="local-nascimento-${qtdProcessos}">
     </label><br>
-    <label> END.RESID: <input type="text" size="70" name="residencia-${qtdProcessos}" id="residencia-${qtdProcessos}" onblur="this.size = this.value.length + 6;"> <span
-            style="padding:10px"></span> <select name="cidade-${qtdProcessos}" id="cidade-${qtdProcessos}" style="height: 30px"></select>
+    <label> END.RESID: <input type="text" size="70" name="residencia-${qtdProcessos}" id="residencia-${qtdProcessos}" onblur="this.size = this.value.length + 6;"> <select name="cidade-${qtdProcessos}" id="cidade-${qtdProcessos}" style="height: 30px"></select>
     </label><br>
     <label> END. TRABALHO:
     </label> <i>Rdv. Augusto Montenegro, KM 09, 8401, Parque Guajará, CEP: 66821-000, Belém-PA</i> <br>
     <label> PROFISSÃO: </label> <i>Policial Militar</i> <br>
-    <label for="rg-${qtdProcessos}"> NÚMERO DA CÉDULA DE IDENTIDADE: </label> <input type="number" name="rg-${qtdProcessos}" id="rg-${qtdProcessos}">
+    <label for="rg-${qtdProcessos}"> NÚMERO DA CÉDULA DE IDENTIDADE: </label> <input type="number" name="rg-${qtdProcessos}" onfocus="completarEndRes(${qtdProcessos})" id="rg-${qtdProcessos}">
     <br> 
     <label for="emissao-${qtdProcessos}">
     DATA DA EMISSÃO: </label> <input type="date" name="emissao-${qtdProcessos}" id="emissao-${qtdProcessos}"> <br>
@@ -396,9 +421,9 @@ const montarForm = () => {
         <option value="1">TAURUS S/A</option>
         <option value="4">CBC</option>
     </select> <br>
-    <label for="fornecedor-${qtdProcessos}">IDENTIFICAÇÃO DO FORNECEDOR: </label><input type="text" size="50" name="fornecedor-${qtdProcessos}" id="fornecedor-${qtdProcessos}"> <br>
+    <label for="fornecedor-${qtdProcessos}">IDENTIFICAÇÃO DO VENDEDOR: </label><input type="text" size="80" name="fornecedor-${qtdProcessos}" id="fornecedor-${qtdProcessos}"> <br>
     <label for="end-fornecedor-${qtdProcessos}">ENDEREÇO: </label><input type="text" name="end-fornecedor-${qtdProcessos}" id="end-fornecedor-${qtdProcessos}"
-        onblur="this.size = this.value.length + 6;" size="80"> <br>
+         size="80"> <br>
     <label for="cnpj-${qtdProcessos}">CNPJ: </label> <input type="text" size="17" name="cnpj-${qtdProcessos}" id="cnpj-${qtdProcessos}"> <br>
     <label>NÚMERO DA NOTA FISCAL: <input name="n-nf-${qtdProcessos}" type="number"> <span style="padding: 10px;"></span> EMISSÃO:<input
             type="date" name="emissao-dt-${qtdProcessos}" id="emissao-dt-${qtdProcessos}"></label> <br>
@@ -427,7 +452,7 @@ const montarForm = () => {
         <option value="4">Tiro simples</option>
     </select> <br>
     <label for="canos-${qtdProcessos}">QUANTIDADE DE CANOS: </label><input type="number" name="canos-${qtdProcessos}" id="canos-${qtdProcessos}"> <br>
-    <label> COMPRIMENTO DO CANO: <input type="number" name="tam-cano-${qtdProcessos}" id="tam-cano-${qtdProcessos}" width="3px" size="1"> <select name="uni-medida-${qtdProcessos}" id="uni-medida-${qtdProcessos}">
+    <label> COMPRIMENTO DO CANO: <input type="text" name="tam-cano-${qtdProcessos}" id="tam-cano-${qtdProcessos}" size="5"> <select name="uni-medida-${qtdProcessos}" id="uni-medida-${qtdProcessos}">
             <option value="MM">mm</option>
             <option value="CM">cm</option>
             <option value="POL">pol</option>
@@ -458,11 +483,147 @@ const montarForm = () => {
         popularCidades(qtdProcessos)
     }
 
-
+    for (let i = 1; i <= qtdProcessosTransf; i++) {
+        qtdProcessos++;
+        const nProcesso = ("00" + i).slice(-3)
+        let form = document.getElementById('lista-transferencia');
+        form.innerHTML += `
+        <span class="no-print"><label for="tombamento-${qtdProcessos}">TOMBAMENTO</label> <input
+                type="text" name="tombamento-${qtdProcessos}"
+                id="tombamento-${qtdProcessos}"></span><br>
+        <label for="cedente-${qtdProcessos}">${nProcesso}-DE: </label> <input type="text"
+            name="cedente-${qtdProcessos}" id="cedente-${qtdProcessos}" size="80"> <br>
+        <label for="profissao-cedente-${qtdProcessos}">PROFISSÃO: </label><input type="text"
+            name="profissao-cedente-${qtdProcessos}" id="profissao-cedente-${qtdProcessos}" size="30">
+        <br>
+        <label for="cpf-cedente-${qtdProcessos}">CPF: </label> <input type="text"
+            name="cpf-cedente-${qtdProcessos}" id="cpf-cedente-${qtdProcessos}" size="11">
+        <label for="rg-cedente-${qtdProcessos}">RG: </label> <input type="text" size="10"
+            name="rg-cedente-${qtdProcessos}" id="rg-cedente-${qtdProcessos}">
+        <label for="data-exp-cedente-${qtdProcessos}">Data de Exp.: </label> <input type="date"
+            name="data-exp-cedente-${qtdProcessos}" id="data-exp-cedente-${qtdProcessos}"
+            width="10px   ">
+        <label for="emissor-cedente-${qtdProcessos}">Org. Emissor: </label> <input type="text"
+            name="emissor-cedente-${qtdProcessos}" id="emissor-cedente-${qtdProcessos}"><br>
+            <strong style="padding: 0; margin: 0"><i>DADOS DO INTERESSADO</i></strong> <br>
+        <label for="nome-${qtdProcessos}">NOME: </label>
+        <input type="text" size="90" name="nome=${qtdProcessos}" id="nome-${qtdProcessos}"><br>
+        <label> FILIAÇÃO: <input type="text" size="30" name="pai-${qtdProcessos}"
+                id="pai-${qtdProcessos}" onblur="this.size = this.value.length + 6;pai(${qtdProcessos})"
+                placeholder="PAI">
+            <span style="font-weight: normal;" id="e-${qtdProcessos}">e</span> <input type="text"
+                onblur="this.size = this.value.length + 6;mae(${qtdProcessos});" placeholder="MAE"
+                size="30" name="mae-${qtdProcessos}" id="mae-${qtdProcessos}">
+        </label><br>
+        <label> DATA E LOCAL DE NASCIMENTO: <input type="date" name="nascimento-${qtdProcessos}"
+                id="nascimento-${qtdProcessos}"> <span style="padding-left:10px"></span> <input type="text"
+                name="local-nascimento-${qtdProcessos}">
+        </label><br>
+        <label> END.RESID: <input type="text" size="70" name="residencia-${qtdProcessos}"
+                id="residencia-${qtdProcessos}" onblur="this.size = this.value.length + 6;"> <select name="cidade-${qtdProcessos}"
+                id="cidade-${qtdProcessos}" style="height: 30px"></select>
+        </label><br>
+        <label> END. TRABALHO: <i>Rdv. Augusto Montenegro, KM 09, 8401, Parque Guajará, CEP: 66821-000,
+                Belém-PA</i>
+        </label> <br>
+        <label> PROFISSÃO: </label> <i>Policial Militar</i> <br>
+        <label for="rg-${qtdProcessos}"> NÚMERO DA CÉDULA DE IDENTIDADE: </label> <input type="number"
+            name="rg-${qtdProcessos}" onfocus="completarEndRes(${qtdProcessos})"
+            id="rg-${qtdProcessos}">
+        <br>
+        <label for="emissao-${qtdProcessos}"> DATA DA EMISSÃO: </label> <input type="date"
+            name="emissao-${qtdProcessos}" id="emissao-${qtdProcessos}"> <br>
+        <label for="expedidor-${qtdProcessos}">ORGÃO EXPEDIDOR/UF: </label> <span
+            id="expedidor-${qtdProcessos}"><i>PMPA</i></span> <br>
+        <label for="cpf-${qtdProcessos}">CPF: </label><input type="text" name="cpf-${qtdProcessos}"
+            id="cpf-${qtdProcessos}"><br>
+        <strong><i>DADOS DA ARMA</i></strong> <br>
+        <label for="sigma-${qtdProcessos}">Nº SGIMA: </label> <input type="number"
+            name="sigma-${qtdProcessos}" id="sigma-${qtdProcessos}"> <br>
+        <label for="fabricante-${qtdProcessos}">IDENTIFICAÇÃO DO FABRICANTE: </label>
+        <select name="fabricante-${qtdProcessos}" id="fabricante-${qtdProcessos}">
+            <option value="24">GLOCK</option>
+            <option value="1">TAURUS S/A</option>
+            <option value="4">CBC</option>
+        </select> <br>
+        <label for="fornecedor-${qtdProcessos}">IDENTIFICAÇÃO DO VENDEDOR: </label><input type="text"
+            size="80" name="fornecedor-${qtdProcessos}" id="fornecedor-${qtdProcessos}"> <br>
+        <label for="end-fornecedor-${qtdProcessos}">ENDEREÇO: </label><input type="text"
+            name="end-fornecedor-${qtdProcessos}" id="end-fornecedor-${qtdProcessos}" size="80"> <br>
+        <label for="cnpj-${qtdProcessos}">CNPJ: </label> <input type="text" size="17"
+            name="cnpj-${qtdProcessos}" id="cnpj-${qtdProcessos}"> <br>
+        <label>NÚMERO DA NOTA FISCAL: <input name="n-nf-${qtdProcessos}" type="number"> <span
+                style="padding: 10px;"></span> EMISSÃO:<input type="date"
+                name="emissao-dt-${qtdProcessos}" id="emissao-dt-${qtdProcessos}"></label> <br>
+        <label for="especie-${qtdProcessos}">ESPÉCIE: </label>
+        <select name="especie-${qtdProcessos}" id="especie-${qtdProcessos}">
+            <option value="2">PISTOLA</option>
+            <option value="1">ESPINGARDA</option>
+            <option value="3">REVÓLVER</option>
+            <option value="4">CARABINA</option>
+        </select> <br>
+        <label for="marca-${qtdProcessos}">MARCA: </label>
+        <select name="marca-${qtdProcessos}" id="marca-${qtdProcessos}">
+            <option value="24">GLOCK</option>
+            <option value="1">TAURUS S/A</option>
+            <option value="4">CBC</option>
+        </select> <br>
+        <label for="modelo-${qtdProcessos}">MODELO: </label> <input type="text"
+            name="modelo-${qtdProcessos}" id="modelo-${qtdProcessos}"> <br>
+        <label for="serie-${qtdProcessos}">NÚMERO DE SÉRIE: </label><input type="text"
+            name="serie-${qtdProcessos}" id="serie-${qtdProcessos}"> <br>
+        <label for="calibre-${qtdProcessos}">CALIBRE: </label> <input type="text"
+            name="calibre-${qtdProcessos}" id="calibre-${qtdProcessos}"> <br>
+        <label for="muni-${qtdProcessos}">CAPACIDADE DE MUNIÇÃO: </label><input type="number"
+            name="muni-${qtdProcessos}" id="muni-${qtdProcessos}"> <br>
+        <label for="funcionamento-${qtdProcessos}">TIPO DE FUNCIONAMENTO: </label>
+        <select name="funcionamento-${qtdProcessos}" id="funcionamento-${qtdProcessos}">
+            <option value="2">Semi-automático</option>
+            <option value="1">Automático</option>
+            <option value="3">Repetição</option>
+            <option value="4">Tiro simples</option>
+        </select> <br>
+        <label for="canos-${qtdProcessos}">QUANTIDADE DE CANOS: </label><input type="number"
+            name="canos-${qtdProcessos}" id="canos-${qtdProcessos}"> <br>
+        <label> COMPRIMENTO DO CANO: <input type="text" name="tam-cano-${qtdProcessos}"
+                id="tam-cano-${qtdProcessos}" size="5"> <select name="uni-medida-${qtdProcessos}"
+                id="uni-medida-${qtdProcessos}">
+                <option value="MM">mm</option>
+                <option value="CM">cm</option>
+                <option value="POL">pol</option>
+            </select>
+        </label><br>
+        <label for="alma-${qtdProcessos}">TIPO DE ALMA: </label>
+        <select name="alma-${qtdProcessos}" id="alma-${qtdProcessos}">
+            <option value="R">Raiada</option>
+            <option value="L">Lisa</option>
+        </select>
+        <label for="n-raias-${qtdProcessos}">NUMERO DE RAIAS: </label><input type="number"
+            name="n-raias-${qtdProcessos}" id="n-raias-${qtdProcessos}"
+            onfocus="unidadeDeMedida(${qtdProcessos})">
+        <label for="sentido-raias-${qtdProcessos}">SENTIDO DAS RAIAS: </label>
+        <select name="sentido-raias-${qtdProcessos}" id="sentido-raias-${qtdProcessos}">
+            <option value="D">À Direita</option>
+            <option value="E">À Esquerda</option>
+        </select> <br>
+        <label for="acabamento-${qtdProcessos}">ACABAMENTO: </label><input type="text"
+            name="acabamento-${qtdProcessos}" id="acabamento-${qtdProcessos}"> <br>
+        <label for="pais-${qtdProcessos}">PAÍS DE FABRICAÇÃO: </label>
+        <select name="pais-${qtdProcessos}" id="pais-${qtdProcessos}">
+            <option value="1">Brasil</option>
+            <option value="20">EUA</option>
+        </select>
+        <p style="font-weight: bold;text-decoration: underline">LEGISLAÇÃO UTILIZADA: LEI 10.826 de
+            22/12/2003, DECRETO 5.123 de 01/07/2004 e PORTARIA 069 GabCmdo Geral PMPa de 24/04/2019.</p>
+        <br>
+        <br>
+        `
+        popularCidades(qtdProcessos);
+    }
 
 }
 
-const pai = (processo) => {
+const pai = processo => {
     let input_pai = document.getElementById(`pai-${processo}`);
     if (!input_pai.value) {
         input_pai.remove()
@@ -470,7 +631,7 @@ const pai = (processo) => {
     }
 }
 
-const mae = (processo) => {
+const mae = processo => {
     let input_mae = document.getElementById(`mae-${processo}`);
     if (!input_mae.value) {
         input_mae.remove()
@@ -480,14 +641,14 @@ const mae = (processo) => {
 
 const pegar = (id, processo) => {
     try {
-        return document.getElementById(id + '-' + processo).value;
+        return document.getElementById(id + '-' + processo).value.trim();
     }
     catch {
         return ''
     }
 }
 
-const pegarCPF = (processo) => {
+const pegarCPF = processo => {
     let cpf = pegar('cpf', processo)
     cpf = cpf.split('.')
     cpf_modificado = cpf[0] + cpf[1]
@@ -582,18 +743,18 @@ const montarLinhaAEL = processo => {
 
     let BAR = {
         tipoPubli: 1,
-        numBar: document.getElementById('num-bar').value + new Date().getFullYear(),
+        numBar: document.getElementById('num-bar').value.replace('0', '') + new Date().getFullYear(),
         dataPublic: pegarDataPub(),
         orgao: '900000528'
     }
 
     let Policial = {
         cpf: pegarCPF(processo),
-        nome: pegar('nome', processo).split('-')[0],
+        nome: pegar('nome', processo).split('-')[0].trim(),
         nascimento: pegarData('nascimento', processo),
         rg: pegar('rg', processo),
         dataExpedicaoRG: pegarData('emissao', processo),
-        orgaoEmissor: pegar('expedidor', processo),
+        orgaoEmissor: 'PMPA',
         uf: '14',
         pai: pegar('pai', processo).length > 0 ? pegar('pai', processo) : 'NAO CONSTA',
         mae: pegar('mae', processo).length > 0 ? pegar('mae', processo) : 'NAO CONSTA',
@@ -619,7 +780,6 @@ const montarLinhaAEL = processo => {
     }
 
     return linha;
-
 }
 
 const salvarStatus = () => {
@@ -629,8 +789,6 @@ const salvarStatus = () => {
         let json = {}; // objeto que irá guardar os dados
 
         for (let dados of form) {
-            console.log(dados)
-
             let typ = document.body.querySelector("[name='" + dados.name + "']").type,
                 val = dados.value;
             if (typ == "select-multiple") {
@@ -676,6 +834,32 @@ const salvarStatus = () => {
         localStorage.setItem("formulario-ind", JSON.stringify(json));
     }
 
+    if (qtdProcessosTransf > 0) {
+        form = document.body.querySelector("#lista-transferencia");
+        data = new FormData(form);
+        json = {}; // objeto que irá guardar os dados
+
+        for (let dados of form) {
+
+            let typ = document.body.querySelector("[name='" + dados.name + "']").type,
+                val = dados.value;
+            if (typ == "select-multiple") {
+                let mul = [],
+                    els = document.body.querySelector("[name='" + dados.name + "']").options;
+                for (let x = 0; x < els.length; x++) {
+                    if (els[x].selected) {
+                        mul.push(els[x].value);
+                    }
+                }
+                val = mul;
+            }
+
+            json[dados.name] = val;
+        }
+
+        localStorage.setItem("formulario-transf", JSON.stringify(json));
+    }
+    alert('Dados  Salvos Localmente!')
 }
 
 const carregarStatus = () => {
@@ -751,28 +935,75 @@ const carregarStatus = () => {
             }
 
         }
+
+        formulario = localStorage.getItem("formulario-transf");
+        if (formulario) { // verifico se o localStorage existe
+
+            let form = document.body.querySelector("#lista-transferencia");
+
+            formulario = JSON.parse(formulario);
+
+            for (let dados in formulario) {
+
+                let tag = document.body.querySelector("[name='" + dados + "']").tagName,
+                    typ = document.body.querySelector("[name='" + dados + "']").type;
+
+                if (tag.match(/INPUT|SELECT|TEXTAREA/) && !typ.match(/radio|checkbox|select-multiple/)) {
+
+                    document.body.querySelector("[name='" + dados + "']").value = formulario[dados];
+
+                } else if (typ == "checkbox") {
+
+                    document.body.querySelector("[name='" + dados + "']").checked = formulario[dados];
+
+                } else if (typ == "select-multiple") {
+                    let mul = formulario[dados];
+
+                    for (let item of mul) {
+                        document.body.querySelector("[name='" + dados + "'] option[value='" + item + "']").selected = true;
+                    }
+
+                } else if (typ == "radio") {
+                    document.body.querySelector("[name='" + dados + "'][value='" + formulario[dados] + "']").checked = true;
+                }
+
+            }
+
+        }
+        for (let i = 1; i <= qtdProcessos; i++) {
+            completarEndRes(i);
+            unidadeDeMedida(i);
+        }
     })
 }
 
-const salvar = () => {
+const montarAEL = () => {
     try {
+        numeroDeLinhas = 0;
+        for (let i = 1; i <= qtdProcessos; i++) {
+            if (pegar('profissao-cedente', i).toLowerCase().trim() !== 'policial militar') {
+                numeroDeLinhas++;
+            }
+        }
         let mes = new Date().getMonth() + 1
         if (mes < 10) mes = '0' + mes;
-        const data = new Date().getDate() + '/' + mes + '/' + new Date().getFullYear()
-        const data_titulo = new Date().getDate() + '' + mes + '' + new Date().getFullYear()
-        const hora = new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds();
-        const hora_titulo = new Date().getHours() + '' + new Date().getMinutes() + '' + new Date().getSeconds();
-        console.log(hora_titulo)
+        const data = ("0" + new Date().getDate()).slice(-2) + '/' + mes + '/' + new Date().getFullYear()
+        const data_titulo = ("0" + new Date().getDate()).slice(-2) + '' + mes + '' + new Date().getFullYear()
+        const hora = ("0" + new Date().getHours()).slice(-2) + ':' + ("0" + new Date().getMinutes()).slice(-2) + ':' +  ("0" + new Date().getSeconds()).slice(-2);
+        const hora_titulo = ("0" + new Date().getHours()).slice(-2) + '' + ("0" + new Date().getMinutes()).slice(-2) + '' + ("0" + new Date().getSeconds()).slice(-2);
         const titulo = `CARGA-900000528-${data_titulo}-${hora_titulo}.txt`
-        let linhas = `[REMETO][${data} ${hora}][${qtdProcessos}]`;
+        let linhas = `[REMETO][${data} ${hora}][${numeroDeLinhas}]`;
 
         for (let i = 1; i <= qtdProcessos; i++) {
-            linhas += `\n${montarLinhaAEL(i)}[7]`
+            if (pegar('profissao-cedente', i).toLowerCase().trim() !== 'policial militar') {
+                linhas += `\n${montarLinhaAEL(i)}[7]`
+            }
         }
         let teste = new Blob([linhas], { type: "text/plain;charset=ISO8859-1" });
         saveAs(teste, titulo);
     } catch (Excepiton) {
         alert('VOCÊ ESQUECEU DE ALGUMA INFORMAÇÃO IMPORTANTE!')
+        console.log(Excepiton)
     }
     window.print()
 }
