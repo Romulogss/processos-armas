@@ -181,6 +181,7 @@ const carregarDadosGerais = () => {
     const ind = localStorage.qtdInd;
     const com = localStorage.qtdCom;
     const transf = localStorage.qtdTransf;
+    const paf = localStorage.qtdPaf;
     if (com) {
         let armasComercio = document.getElementById('armas-do-comercio')
         armasComercio.innerHTML += localStorage.texCom;
@@ -197,7 +198,12 @@ const carregarDadosGerais = () => {
         armasTransf.innerHTML += localStorage.texTransf
         qtdProcessosTransf = transf;
     }
-    if (ind || com || transf) {
+    if (paf) {
+        let armasPAF = document.getElementById('armas-paf')
+        armasPAF.innerHTML += localStorage.texPaf
+        qtdProcessosPAF = paf;
+    }
+    if (ind || com || transf || paf) {
         montarForm()
         document.getElementById('informações-bar').remove()
         if (ind <= 0) document.getElementById('industria').remove();
@@ -210,12 +216,15 @@ const getDadosGerais = () => {
     const ind = document.getElementById('text-aux-ind').value
     const com = document.getElementById('text-aux-com').value
     const transf = document.getElementById('text-aux-transf').value
+    const paf = document.getElementById('text-aux-paf').value
     qtdProcessosInd = document.getElementById('qtd-armas-ind').value;
     qtdProcessosCom = document.getElementById('qtd-armas-com').value;
     qtdProcessosTransf = document.getElementById('qtd-armas-transf').value;
+    qtdProcessosPAF = document.getElementById('qtd-armas-paf').value;
     let textCom;
     let textInd;
     let textTransf;
+    let textPAF;
     let n = 0;
     if (ind.length > 0) {
         n++;
@@ -243,12 +252,23 @@ const getDadosGerais = () => {
         document.getElementById('transferencia').remove();
     }
 
+    if (paf.length > 0) {
+        n++;
+        let armasPAF = document.getElementById('armas-paf')
+        textPAF = `${("0" + n).slice(-2)}. SOLICITAÇÃO PARA EXPEDIÇÃO DE PAF (PORTE DE ARMA DE FOGO) PARA POLICIAL MILITAR DA RESERVA REMUNERADA, DE CALIBRE PERMITIDO, ${paf}.`;
+        armasPAF.innerHTML += textTransf;
+    } else {
+        document.getElementById('paf').remove();
+    }
+
     localStorage.setItem('qtdInd', qtdProcessosInd.toString())
     localStorage.setItem('qtdCom', qtdProcessosCom.toString())
     localStorage.setItem('qtdTransf', qtdProcessosTransf.toString())
+    localStorage.setItem('qtdPaf', qtdProcessosPAF.toString())
     localStorage.setItem('texCom', textCom);
     localStorage.setItem('texInd', textInd);
     localStorage.setItem('texTransf', textTransf);
+    localStorage.setItem('texPaf', textPAF);
     document.getElementById('informações-bar').remove()
 }
 
@@ -1038,6 +1058,7 @@ const carregarStatus = () => {
         for (let i = 1; i <= qtdProcessos; i++) {
             completarEndRes(i);
             unidadeDeMedida(i);
+            tipoAlma(i);
         }
     })
 }
