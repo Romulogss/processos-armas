@@ -780,7 +780,7 @@ const pegarGrupoCalibre = processo => {
     if (calibre[calibre.length - 1].toLocaleLowerCase() === 'm') return 4;
     else if (!calibre.startsWith('.')) {
         calibre = calibre[1] + calibre[2]
-        parseFloat(calibre)
+        calibre = parseInt(calibre)
         if (calibre === 16) return 28;
         else if (calibre === 12) return 29;
         else if (calibre === 20) return 30;
@@ -791,7 +791,7 @@ const pegarGrupoCalibre = processo => {
         else if (calibre < 36) return 46;
     } else {
         calibre = calibre[1] + calibre[2]
-        parseInt(calibre)
+        calibre = parseInt(calibre)
         if (calibre <= 22) return 15;
         if (calibre > 22 && calibre <= 25) return 7;
         if (calibre > 25 && calibre <= 27) return 5;
