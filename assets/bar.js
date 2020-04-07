@@ -365,16 +365,21 @@ const montarForm = () => {
             </select>
         </label><br>
         <label for="alma-${qtdProcessos}">TIPO DE ALMA: </label>
-        <select name="alma-${qtdProcessos}" id="alma-${qtdProcessos}">
+        <select name="alma-${qtdProcessos}" onblur="tipoAlma(${qtdProcessos})" id="alma-${qtdProcessos}">
             <option value="R">Raiada</option>
             <option value="L">Lisa</option>
         </select>
-        <label for="n-raias-${qtdProcessos}">NUMERO DE RAIAS: </label><input type="number" name="n-raias-${qtdProcessos}" id="n-raias-${qtdProcessos}" onfocus="unidadeDeMedida(${qtdProcessos})">
+        <span id="dados-raias-${qtdProcessos}">
+        <label for="n-raias-${qtdProcessos}">NUMERO DE RAIAS: </label><input type="number"
+            name="n-raias-${qtdProcessos}" id="n-raias-${qtdProcessos}"
+            onfocus="unidadeDeMedida(${qtdProcessos})">
         <label for="sentido-raias-${qtdProcessos}">SENTIDO DAS RAIAS: </label>
         <select name="sentido-raias-${qtdProcessos}" id="sentido-raias-${qtdProcessos}">
+            <option value="N"></option>
             <option value="D">À Direita</option>
             <option value="E">À Esquerda</option>
-        </select> <br>
+        </select>
+        </span> <br>
         <label for="acabamento-${qtdProcessos}">ACABAMENTO: </label><input type="text" name="acabamento-${qtdProcessos}" id="acabamento-${qtdProcessos}"> <br>
         <label for="pais-${qtdProcessos}">PAÍS DE FABRICAÇÃO: </label>
         <select name="pais-${qtdProcessos}" id="pais-${qtdProcessos}">
@@ -459,16 +464,21 @@ const montarForm = () => {
         </select>
     </label><br>
     <label for="alma-${qtdProcessos}">TIPO DE ALMA: </label>
-    <select name="alma-${qtdProcessos}" id="alma-${qtdProcessos}">
+    <select name="alma-${qtdProcessos}" onblur="tipoAlma(${qtdProcessos})" id="alma-${qtdProcessos}">
         <option value="R">Raiada</option>
         <option value="L">Lisa</option>
     </select>
-    <label for="n-raias-${qtdProcessos}">NUMERO DE RAIAS: </label><input type="number" name="n-raias-${qtdProcessos}" id="n-raias-${qtdProcessos}" onfocus="unidadeDeMedida(${qtdProcessos})">
-    <label for="sentido-raias-${qtdProcessos}">SENTIDO DAS RAIAS: </label>
-    <select name="sentido-raias-${qtdProcessos}" id="sentido-raias-${qtdProcessos}">
-        <option value="D">À Direita</option>
-        <option value="E">À Esquerda</option>
-    </select> <br>
+    <span id="dados-raias-${qtdProcessos}">
+        <label for="n-raias-${qtdProcessos}">NUMERO DE RAIAS: </label><input type="number"
+            name="n-raias-${qtdProcessos}" id="n-raias-${qtdProcessos}"
+            onfocus="unidadeDeMedida(${qtdProcessos})">
+        <label for="sentido-raias-${qtdProcessos}">SENTIDO DAS RAIAS: </label>
+        <select name="sentido-raias-${qtdProcessos}" id="sentido-raias-${qtdProcessos}">
+            <option value="N"></option>
+            <option value="D">À Direita</option>
+            <option value="E">À Esquerda</option>
+        </select>
+        </span> <br>
     <label for="acabamento-${qtdProcessos}">ACABAMENTO: </label><input type="text" name="acabamento-${qtdProcessos}" id="acabamento-${qtdProcessos}"> <br>
     <label for="pais-${qtdProcessos}">PAÍS DE FABRICAÇÃO: </label>
     <select name="pais-${qtdProcessos}" id="pais-${qtdProcessos}">
@@ -594,18 +604,22 @@ const montarForm = () => {
             </select>
         </label><br>
         <label for="alma-${qtdProcessos}">TIPO DE ALMA: </label>
-        <select name="alma-${qtdProcessos}" id="alma-${qtdProcessos}">
+        <select name="alma-${qtdProcessos}" onblur="tipoAlma(${qtdProcessos})" id="alma-${qtdProcessos}">
             <option value="R">Raiada</option>
             <option value="L">Lisa</option>
         </select>
+        <span id="dados-raias-${qtdProcessos}">
         <label for="n-raias-${qtdProcessos}">NUMERO DE RAIAS: </label><input type="number"
             name="n-raias-${qtdProcessos}" id="n-raias-${qtdProcessos}"
             onfocus="unidadeDeMedida(${qtdProcessos})">
         <label for="sentido-raias-${qtdProcessos}">SENTIDO DAS RAIAS: </label>
         <select name="sentido-raias-${qtdProcessos}" id="sentido-raias-${qtdProcessos}">
+            <option value="N"></option>
             <option value="D">À Direita</option>
             <option value="E">À Esquerda</option>
-        </select> <br>
+        </select>
+        </span>
+         <br>
         <label for="acabamento-${qtdProcessos}">ACABAMENTO: </label><input type="text"
             name="acabamento-${qtdProcessos}" id="acabamento-${qtdProcessos}"> <br>
         <label for="pais-${qtdProcessos}">PAÍS DE FABRICAÇÃO: </label>
@@ -621,6 +635,50 @@ const montarForm = () => {
         popularCidades(qtdProcessos);
     }
 
+    for (let i = 1; i <= qtdProcessosPAF; i++) {
+        qtdProcessos++;
+        let form = document.getElementById('lista-paf');
+        form.innerHTML +=
+            `
+        ${i} - <input type="text" size="70" name="nome-paf-${qtdProcessos}" placeholder="NOME - POST/GRAD RG"> - 
+                        <label for="cpf-paf-${qtdProcessos}">CPF:</label> <input id="cpf-paf-${qtdProcessos}" type="text" size="11">
+                        <table border="1">
+                            <thead>
+                                <tr>
+                                    <th>BAR</th>
+                                    <th>ESPÉCIE</th>
+                                    <th>FUNC.</th>
+                                    <th>ACAB.</th>
+                                    <th>MARCA</th>
+                                    <th>CAL.</th>
+                                    <th>MOD.</th>
+                                    <th>CAPAC.</th>
+                                    <th>CANO</th>
+                                    <th>PAÍS</th>
+                                    <th>N° SÉRIE</th>
+                                    <th>SGIMA</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" onblur="this.size = this.value.length" name="bar-paf-${qtdProcessos}"></td>
+                                    <td><input type="text" onblur="this.size = this.value.length + 1" name="esp-paf-${qtdProcessos}"></td>
+                                    <td><input type="text" onblur="this.size = this.value.length + 3" name="fun-paf-${qtdProcessos}"></td>
+                                    <td><input type="text" onblur="this.size = this.value.length" name="acab-paf-${qtdProcessos}"></td>
+                                    <td><input type="text" onblur="this.size = this.value.length" name="marca-paf-${qtdProcessos}"></td>
+                                    <td><input type="text" onblur="this.size = this.value.length" name="cal-paf-${qtdProcessos}"></td>
+                                    <td><input type="text" onblur="this.size = this.value.length" name="mod-paf-${qtdProcessos}"></td>
+                                    <td><input type="text" onblur="this.size = this.value.length" name="capac-paf-${qtdProcessos}"></td>
+                                    <td><input type="text" onblur="this.size = this.value.length" name="cano-paf-${qtdProcessos}"></td>
+                                    <td><input type="text" onblur="this.size = this.value.length" name="pais-paf-${qtdProcessos}"></td>
+                                    <td><input type="text" onblur="this.size = this.value.length" name="n-serie-paf-${qtdProcessos}"></td>
+                                    <td><input type="text" onblur="this.size = this.value.length" name="sigma-paf-${qtdProcessos}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+        `
+        popularCidades(qtdProcessos);
+    }
 }
 
 const pai = processo => {
@@ -636,6 +694,13 @@ const mae = processo => {
     if (!input_mae.value) {
         input_mae.remove()
         document.getElementById(`e-${processo}`).remove()
+    }
+}
+
+const tipoAlma = processo => {
+    const alma = pegar('alma', processo);
+    if (alma === 'L') {
+        document.getElementById('dados-raias-' + processo).hidden = '1'
     }
 }
 
@@ -736,7 +801,7 @@ const montarLinhaAEL = processo => {
         uniMedida: pegar('uni-medida', processo),
         alma: pegar('alma', processo),
         raias: pegar('n-raias', processo).length > 0 ? pegar('n-raias', processo) : '',
-        sentidoRaias: pegar('sentido-raias', processo),
+        sentidoRaias: pegar('sentido-raias', processo) !== 'N' ? pegar('sentido-raias', processo) : '',
         acabamento: pegar('acabamento', processo),
         pais: pegar('pais', processo)
     }
@@ -989,7 +1054,7 @@ const montarAEL = () => {
         if (mes < 10) mes = '0' + mes;
         const data = ("0" + new Date().getDate()).slice(-2) + '/' + mes + '/' + new Date().getFullYear()
         const data_titulo = ("0" + new Date().getDate()).slice(-2) + '' + mes + '' + new Date().getFullYear()
-        const hora = ("0" + new Date().getHours()).slice(-2) + ':' + ("0" + new Date().getMinutes()).slice(-2) + ':' +  ("0" + new Date().getSeconds()).slice(-2);
+        const hora = ("0" + new Date().getHours()).slice(-2) + ':' + ("0" + new Date().getMinutes()).slice(-2) + ':' + ("0" + new Date().getSeconds()).slice(-2);
         const hora_titulo = ("0" + new Date().getHours()).slice(-2) + '' + ("0" + new Date().getMinutes()).slice(-2) + '' + ("0" + new Date().getSeconds()).slice(-2);
         const titulo = `CARGA-900000528-${data_titulo}-${hora_titulo}.txt`
         let linhas = `[REMETO][${data} ${hora}][${numeroDeLinhas}]`;
