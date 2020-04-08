@@ -39,5 +39,19 @@
         <textarea id="text-aux-paf" cols="50" rows="4" class="form-control"
             placeholder="EX: 17(DEZESSETE) PISTOLAS, SENDO  09(NOVE)Cal. .40S&W E 12(DOZE) Cal. 9mm 01(UMA)Cal. .380, E 02(DOIS) REVÓLVERES Cal..38 E RIFLES,CARABINAS 01(UMA)Cal,.22 E 01(UMA)ESPINGARDA Cal. 20"></textarea>
     </div>
-    <button class="btn btn-primary" onclick="getDadosGerais();montarForm()"> Dados Ok</button>
+    <div class="form-group">
+        <label for="qtd-armas-status">Quantos mudanças de status serão feitas:</label>
+        <input type="number" id="qtd-armas-status" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="text-aux-status">Informe a quantidade de armas, de cada espécie e especificas quantas são de cada
+            calibre, para mudança de status</label>
+        <textarea id="text-aux-status" cols="50" rows="4" class="form-control"
+            placeholder="EX: 17(DEZESSETE) PISTOLAS, SENDO  09(NOVE)Cal. .40S&W E 12(DOZE) Cal. 9mm 01(UMA)Cal. .380, E 02(DOIS) REVÓLVERES Cal..38 E RIFLES,CARABINAS 01(UMA)Cal,.22 E 01(UMA)ESPINGARDA Cal. 20"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="qtd-armas-manu">Quantos manutenções no SIGMA serão feitas:</label>
+        <input type="number" id="qtd-armas-manu" class="form-control">
+    </div>
+    <button class="btn btn-primary" style="position: relative;" onclick="getDadosGerais();"> Dados Ok</button>
 </div>

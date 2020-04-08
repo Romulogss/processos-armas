@@ -4,6 +4,7 @@ use raelgc\view\Template;
 
 $bar = new Template("./view/BAR/bar.html");
 $bar->addFile("QUANTIDADE_ARMAS", "./view/BAR/quantidade-armas.html");
+$bar->addFile("MODAL", "./view/BAR/modal.html");
 $bar->TIME = time();
 $bar->show();
 ?>

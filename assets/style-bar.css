@@ -3,7 +3,8 @@
     font-size: 20px !important;
 }
 
-td, table {
+header table,
+header table td {
     border-width: 5px;
 }
 
@@ -38,6 +39,12 @@ input[id^="pai"] {
 input[id^="mae"] {
     text-transform: capitalize;
 }
+
+input[id='dia-pub'],
+input[id='mes-pub'] {
+    font-size: 20px !important;
+}
+
 main {
     font-size: 16px;
 }
@@ -49,9 +56,36 @@ P {
 table, table th, table tr, table td, table input {
     text-align: center;
     font-size: 12px !important;
-    border-width: 1px !important;
+    border-width: 1px;
     border-color: #000 !important;
     padding: 3px;
+}
+.table * {
+    font-size: 15px !important;
+}
+
+#btnLimpar {
+    top: 90px;
+    position: fixed;
+    right: 5px;
+    font-size: 15px  !important;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#btnSalvar {
+    top: 10px;
+    position: fixed;
+    right: 5px;
+    font-size: 15px  !important;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#btnAEL {
+    top: 50px;
+    position: fixed;
+    right: 5px;
+    font-size: 15px  !important;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 @media print {

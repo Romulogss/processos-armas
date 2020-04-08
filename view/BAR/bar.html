@@ -10,6 +10,9 @@
     <script
         src="https://cdn.rawgit.com/eligrey/FileSaver.js/5ed507ef8aa53d8ecfea96d96bc7214cd2476fd2/FileSaver.min.js"></script>
     <script src="./assets/bar.js?{TIME}"></script>
+    <script src="./assets/cidades.js?{TIME}"></script>
+    <script src="./assets/forms.js?{TIME}"></script>
+    <script src="./assets/dadosTopBar.js?{TIME}"></script>
     <title>BAR</title>
 </head>
 
@@ -21,11 +24,10 @@
             <div class="col">
                 <p style="font-size: 11px !important; text-align: center;font-style: italic;font-weight: bold;">BOLETIM
                     ADMINISTRATIVO - ARMAMENTO Nº <input style="font-size: 11px !important" type="text" size="1cm"
-                        id="num-bar"
-                        onblur="document.getElementById('num-bar-header').innerHTML = document.getElementById('num-bar').value">
-                    - <input type="text" size="1cm" style="font-size: 11px !important"> À <input type="text" size="1cm"
-                        style="font-size: 11px !important"> DE <input type="text" size="7.5cm"
-                        style="font-size: 11px !important"> DE
+                        id="num-bar" onblur="numBar()"> - <input type="text" size="1cm"
+                        style="font-size: 11px !important" id="inicio"> À <input type="text" size="1cm"
+                        style="font-size: 11px !important" id="fim"> DE <input type="text" size="7.5cm"
+                        style="font-size: 11px !important" id="mes"> DE
                     <script>document.write(new Date().getFullYear())</script>
                 </p>
             </div>
@@ -44,11 +46,12 @@
                         <td>
                             <strong> POLÍCIA MÍLITAR DO ESTADO DO PARÁ <br> COMANDO GERAL - DIRETORIA DE APOIO LOGÍSTICO
                                 <br> BELÉM - PA, <input type="text" size="1cm" id="dia-pub">DE <input type="text"
-                                    size="7cm" id='mes-pub'> DE
+                                    size="7cm" id='mes-pub' onblur="salvarDados()"> DE
                                 <script>document.write(new Date().getFullYear())</script> <br> BOLETIM ADMINISTRATIVO -
                                 ARMAMENTO N° <span id="num-bar-header"></span>
                             </strong>
                         </td>
+                        <script>carregarDados()</script>
                         <td>
                             <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Bras%C3%A3o_PMPA.PNG"
                                 alt="BRASÃO DA POLÍCIA MÍLITAR" height="110px" style="max-width: 100%;">
@@ -78,6 +81,17 @@
             </section>
             <hr style="border-style: dashed;border-width: 1px;">
             <section>
+                <div id="comercio">
+                    <p style="font-style: italic;text-decoration: underline;"><strong id="armas-do-comercio">
+                        </strong></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>Nos requerimentos em
+                            que os Policiais Militares solicitam aquisição, cadastro e registro de arma de fogo de uso
+                            permitido, adquiridas através do comércio, dou o seguinte despacho: <br> <br> <span
+                                style="text-decoration: underline">Deferido para:</span>
+                        </i></p>
+                    <form id="lista-comercio">
+                    </form>
+                </div>
                 <div id="industria">
                     <p style="font-style: italic;text-decoration: underline;"><strong id="armas-da-industria">
                         </strong></p>
@@ -87,17 +101,6 @@
                                 style="text-decoration: underline">Deferido para:</span>
                         </i></p>
                     <form id="lista-industria">
-                    </form>
-                </div>
-                <div id="comercio">
-                    <p style="font-style: italic;text-decoration: underline;"><strong id="armas-do-comercio">
-                        </strong></p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>Nos requerimentos em
-                            que os Policiais Militares solicitam aquisição, cadastro e registro de arma de fogo de uso
-                            permitido, adquiridas através do fabricante, dou o seguinte despacho: <br> <br> <span
-                                style="text-decoration: underline">Deferido para:</span>
-                        </i></p>
-                    <form id="lista-comercio">
                     </form>
                 </div>
                 <div id="transferencia">
@@ -122,8 +125,26 @@
                     <form id="lista-paf">
                     </form>
                 </div>
+                <div id="status">
+                    <p style="font-style: italic;text-decoration: underline;"><strong id="armas-status">
+                        </strong></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>No requerimento em
+                            que o policial militar solicita mudança de Status de arma de fogo de calibre restrito e
+                            permitido, no Sistema de Gerenciamento Militar de Arma (SIGMA), de propriedade particular,
+                            por ter sido extraviada, conforme informações abaixo, dou o seguinte despacho: <br> <br>
+                            <span style="text-decoration: underline">Deferido para:</span>
+                        </i></p>
+                    <form id="lista-status">
+                    </form>
+                </div>
+                <div id="manutencao">
+                    <p style="font-style: italic;text-decoration: underline;"><strong id="armas-manutencao">
+                        </strong></p>
+                    <form id="lista-manutencao">
+                    </form>
+                </div>
             </section>
-            <button class="btn btn-primary no-print" onclick="salvarStatus()">TERMINAR DEPOIS</button>
+            <button class="btn btn-warning no-print" id="btnSalvar" onclick="salvarStatus()">TERMINAR DEPOIS</button>
             <section style="text-align: center; page-break-before: always;">
                 <br>
                 <br>
@@ -185,9 +206,22 @@
                 </div>
             </section>
         </main>
-        <button onclick="montarAEL()" class="btn btn-danger no-print">GERAR AEL E IMPRIMIR</button>
+        <button onclick="montarAEL()" id="btnAEL" class="btn btn-success no-print">GERAR AEL E IMPRIMIR</button>
     </div>
     <script>carregarStatus()</script>
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+    <!--MODAL PARA LIMPAR AEL INÍCIO--> {MODAL}
+    <!--MODAL PARA LIMPAR AEL FIM-->
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" id="btnLimpar">Limpar BAR</button>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
