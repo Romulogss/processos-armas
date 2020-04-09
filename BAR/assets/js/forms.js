@@ -6,7 +6,7 @@ const formAquicisao = (qtd, tipo) => {
         form.innerHTML += `
         <span class="no-print"><label for="tombamento-${qtdProcessos}">TOMBAMENTO</label> <input type="text" name="tombamento-${qtdProcessos}" id="tombamento-${qtdProcessos}"></span><br>
         <label for="nome-${qtdProcessos}">${nProcesso}-NOME: </label>
-        <input type="text" size="90" name="nome=${qtdProcessos}" id="nome-${qtdProcessos}"><br>
+        <input type="text" size="90" name="nome-${qtdProcessos}" id="nome-${qtdProcessos}"><br>
         <label> FILIAÇÃO: <input type="text" size="30" name="pai-${qtdProcessos}" id="pai-${qtdProcessos}" onblur="this.size = this.value.length + 6;" placeholder="PAI">
             <span style="font-weight: normal;" id="e-${qtdProcessos}">e</span> <input type="text" onblur="this.size = this.value.length + 6;" placeholder="MAE" size="30" name="mae-${qtdProcessos}" id="mae-${qtdProcessos}">
         </label><br>
@@ -126,7 +126,7 @@ const formTransf = () => {
             name="emissor-cedente-${qtdProcessos}" id="emissor-cedente-${qtdProcessos}"><br>
             <strong style="padding: 0; margin: 0"><i>DADOS DO INTERESSADO</i></strong> <br>
         <label for="nome-${qtdProcessos}">NOME: </label>
-        <input type="text" size="90" name="nome=${qtdProcessos}" id="nome-${qtdProcessos}"><br>
+        <input type="text" size="90" name="nome-${qtdProcessos}" id="nome-${qtdProcessos}"><br>
         <label> FILIAÇÃO: <input type="text" size="30" name="pai-${qtdProcessos}"
                 id="pai-${qtdProcessos}" onblur="this.size = this.value.length + 6;"
                 placeholder="PAI">

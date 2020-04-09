@@ -213,7 +213,7 @@ const pegar = (id, processo) => {
         return document.getElementById(id + '-' + processo).value.trim();
     }
     catch {
-        return 'N'
+        return ''
     }
 }
 
@@ -324,7 +324,7 @@ const montarLinhaAEL = processo => {
 
     let Policial = {
         cpf: pegarCPF(processo),
-        nome: pegar('nome', processo).split('-')[0].trim(),
+        nome: pegar('nome', processo).split(/-|–/)[0].trim(),
         nascimento: pegarData('nascimento', processo),
         rg: pegar('rg', processo),
         dataExpedicaoRG: pegarData('emissao', processo),
@@ -384,7 +384,9 @@ const carregarForm = nomeForm => {
     if (formulario) { // verifico se o localStorage existe
         formulario = JSON.parse(formulario);
         for (let dados in formulario) {
+            console.log(document.body.querySelector("[name='" + dados + "']").value)
             document.body.querySelector("[name='" + dados + "']").value = formulario[dados];
+            console.log(document.body.querySelector("[name='" + dados + "']").value)
         }
     }
 }
@@ -409,7 +411,7 @@ const carregarStatus = () => {
 
 const montarAEL = () => {
     try {
-        numeroDeLinhas = qtdProcessosCom + qtdProcessosInd;
+        numeroDeLinhas = parseInt(qtdProcessosCom) + parseInt(qtdProcessosInd);
         let mes = new Date().getMonth() + 1
         if (mes < 10) mes = '0' + mes;
         const data = ("0" + new Date().getDate()).slice(-2) + '/' + mes + '/' + new Date().getFullYear()
