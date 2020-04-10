@@ -50,7 +50,7 @@
                     <label for="rg">RG</label>
                     <input type="text" id="rg" onblur="getDadosAssinatura()" oninput="this.size = this.value.length;+6">
                     <label>CPF</label>
-                    <input type="text" onblur="getDadosAssinatura()">
+                    <input type="text" onblur="getDadosAssinatura()" id="cpf">
                     <p style="display: inline;"><br> Venho perantet V.Sª. expor-me ao final de requerer o seguinte:</p>
                 </form>
             </div>
@@ -170,8 +170,10 @@
             let allInputs = document.getElementsByTagName('input')
             allInputs = [...allInputs];
             allInputs.forEach(input => {
+                if (input.id !== "nome" && input.id !== 'rg' && input.id !== "graduacao" && input.id !== 'cpf') {
                     input.onblur = () => {
                         input.size = input.value.length;
+                    }
                 }
             });
         } catch (error) {

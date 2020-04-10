@@ -43,7 +43,8 @@
             <div class="col">
                 <form>
                     <label for="nome">Eu,</label>
-                    <input type="text" id="nome" onblur="getDadosAssinatura();this.size = this.value.length+6;">
+                    <input type="text" id="nome" onblur="getDadosAssinatura();this.size = this.value.length+6;"
+                        size="90">
                     <label for="garduacao">Posto/Graduação</label>
                     <input type="text" id="graduacao" onblur="getDadosAssinatura()"
                         oninput="this.size = this.value.length;+6"><br>
@@ -162,8 +163,10 @@
             let allInputs = document.getElementsByTagName('input')
             allInputs = [...allInputs];
             allInputs.forEach(input => {
+                if (input.id !== "nome" && input.id !== 'rg' && input.id !== "graduacao" && input.id !== 'cpf') {
                     input.onblur = () => {
                         input.size = input.value.length;
+                    }
                 }
             });
         } catch (error) {

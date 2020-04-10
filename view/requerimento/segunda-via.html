@@ -162,8 +162,10 @@
             let allInputs = document.getElementsByTagName('input')
             allInputs = [...allInputs];
             allInputs.forEach(input => {
+                if (input.id !== "nome" && input.id !== 'rg' && input.id !== "graduacao" && input.id !== 'cpf') {
                     input.onblur = () => {
                         input.size = input.value.length;
+                    }
                 }
             });
         } catch (error) {
