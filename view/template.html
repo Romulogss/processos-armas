@@ -32,7 +32,7 @@
         allInputs.forEach(input => {
             if (input.id !== "tipo-calibre" && input.id !== "nome-digitador") {
                 input.onblur = () => {
-                    input.size = input.value.length > 10 ? input.value.length + 4 : input.value.length - 2;
+                    input.size = input.value.length > 10 ? input.value.length + 4 : input.value.length;
                 }
             }
         });
