@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script
+        src="https://cdn.rawgit.com/eligrey/FileSaver.js/5ed507ef8aa53d8ecfea96d96bc7214cd2476fd2/FileSaver.min.js"></script>
+    <script src="./assets/js/bar.js?{TIME}"></script>
+    <script src="./assets/js/cidades.js?{TIME}"></script>
+    <script src="./assets/js/forms.js?{TIME}"></script>
+    <script src="../assets/main.js?{TIME}"></script>
+    <link rel="stylesheet" href="../assets/style-of.css?{TIME}">
+    <title>Of Remessa</title>
+</head>
+
+<body class="container">
+    <header>
+        <div class="row justify-content-center"> {HEADER} </div>
+    </header>
+    <main>
+        <div class="row">
+            <div class="col">
+                <p>Ofício de remessa nº <input type="text" size="20"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p style="text-align: right;">Belém/PA -
+                    <script>document.write(dia + ' de ' + mesNome + ' de ' + ano)</script>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>Ao Exm Sr. ANÍSIO DAVID DE OLIVEIRA JÚNIOR. <br> Comandante da 8ª RM </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>
+                    <strong>Assunto:</strong> Envio de Arquivo Eletrônico em Lote (AEL). <br>
+                    <strong>Anexo:</strong> AEL e 01(um) arquivo digital com <input type="text" size="15"> páginas
+                    (formato PDF). </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Senhor Comandante,</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Informo que foi recebida e conferida toda a
+                    documentação referente à aquisição de armas de <input type="text"> militares deste órgão conforme
+                    tabela abaixo, com a respectiva publicação em documento oficial permanente.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th id="nome">Nome Adquirente</th>
+                            <th id="cpf">CPF</th>
+                            <th id="rg">Idt</th>
+                            <th id="arma" colspan="3"> Arma de Fogo
+                                <hr>
+                                <span>Nº de Série</span>
+                                <span class="linha-vertical"></span>
+                                <span>Calibre</span>
+                                <span class="linha-vertical"></span>
+                                <span>Fabricante</span>
+                            </th>
+                            <th id="bar">Documento Oficial / Data</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dados-adquirentes">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <p> 2. Dessa forma, solicito que seja realizado o cadastramento das armas citadas no Sistema de
+                    Gerenciamento Militar de Armas (SIGMA). </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>Respeitosamente,</p>
+            </div>
+        </div>
+        <br>
+        <div class="row justify-content-center">
+            <div class="col-2">
+                <img src="./assets/carimbo.png" alt="carimbo da pmpa" height="auto" style="max-width: 100%;">
+            </div>
+            <div class="col-auto align-items-center" style="text-align: center;font-size: 1.2em;">
+                <p><strong>SIDNEY PROFETA</strong> DA SILVA – CEL QOPM RG 21183 <br>
+                    <span style="text-align: center;">Diretor de Apoio Logístico</span></p>
+            </div>
+        </div>
+    </main>
+    <footer class="row justify-content-center">
+        <div class="col">
+            {FOOTER}
+        </div>
+    </footer>
+    <script>montarOf()</script>
+</body>
+
+</html>

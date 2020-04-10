@@ -15,15 +15,20 @@ const carregarDadosGerais = () => {
     const status = parseInt(localStorage.qtdStatus);
     const manutencao = parseInt(localStorage.qtdManu);
     if (com) {
-        let armasComercio = document.getElementById('armas-do-comercio')
-        armasComercio.innerHTML += localStorage.texCom;
         qtdProcessosCom = com;
-        formAquicisao(qtdProcessosCom, 'comercio');
+        try {
+            let armasComercio = document.getElementById('armas-do-comercio')
+            armasComercio.innerHTML += localStorage.texCom;
+            formAquicisao(qtdProcessosCom, 'comercio');
+        } catch (Exeception) {
+            console.log(Exeception)
+        }
+
     }
     if (ind) {
+        qtdProcessosInd = ind;
         let armasIndustria = document.getElementById('armas-da-industria')
         armasIndustria.innerHTML += localStorage.texInd;
-        qtdProcessosInd = ind;
         formAquicisao(qtdProcessosInd, 'industria');
     }
     if (transf) {
@@ -49,14 +54,18 @@ const carregarDadosGerais = () => {
         qtdProcessosMan = manutencao
         formManutencao()
     }
-    if (ind || com || transf || paf || status || manutencao) {
-        document.getElementById('informações-bar').remove()
-        if (qtdProcessosInd <= 0) document.getElementById('industria').remove();
-        if (qtdProcessosCom <= 0) document.getElementById('comercio').remove();
-        if (qtdProcessosTransf <= 0) document.getElementById('transferencia').remove();
-        if (qtdProcessosPAF <= 0) document.getElementById('paf').remove();
-        if (qtdProcessosStatus <= 0) document.getElementById('status').remove();
-        if (qtdProcessosMan <= 0) document.getElementById('manutencao').remove();
+    try {
+        if (ind || com || transf || paf || status || manutencao) {
+            document.getElementById('informações-bar').remove()
+            if (qtdProcessosInd <= 0) document.getElementById('industria').remove();
+            if (qtdProcessosCom <= 0) document.getElementById('comercio').remove();
+            if (qtdProcessosTransf <= 0) document.getElementById('transferencia').remove();
+            if (qtdProcessosPAF <= 0) document.getElementById('paf').remove();
+            if (qtdProcessosStatus <= 0) document.getElementById('status').remove();
+            if (qtdProcessosMan <= 0) document.getElementById('manutencao').remove();
+        }
+    } catch (error) {
+        console.log(error)
     }
 }
 
@@ -72,7 +81,6 @@ const getDadosGerais = () => {
     qtdProcessosPAF = document.getElementById('qtd-armas-paf').value;
     qtdProcessosStatus = document.getElementById('qtd-armas-status').value;
     qtdProcessosMan = document.getElementById('qtd-armas-manu').value;
-    console.log(qtdProcessosMan)
     let textCom;
     let textInd;
     let textTransf;
@@ -185,6 +193,13 @@ const unidadeDeMedida = processo => {
 
 }
 
+const pegarRg = processo => {
+    const nome = pegar('nome', processo).trim()
+    rg = nome.split(/ /g)
+    rg = rg[rg.length - 1]
+    document.getElementById('rg-' + processo).value = rg
+}
+
 const pai = processo => {
     let input_pai = document.getElementById(`pai-${processo}`);
     if (!input_pai.value) {
@@ -206,6 +221,7 @@ const tipoAlma = processo => {
     if (alma === 'L') {
         document.getElementById('dados-raias-' + processo).hidden = '1'
     }
+    document.getElementById('sentido-raias-' + processo).value = ''
 }
 
 const pegar = (id, processo) => {
@@ -295,7 +311,7 @@ const pegarGrupoCalibre = processo => {
 }
 
 const montarLinhaAEL = processo => {
-    let Arma = {
+    const Arma = {
         tombamento: pegar('tombamento', processo).replace('/', ''),
         numSerie: pegar('serie', processo).replace(/ /g, ''),
         marca: pegar('marca', processo),
@@ -310,19 +326,19 @@ const montarLinhaAEL = processo => {
         uniMedida: pegar('uni-medida', processo),
         alma: pegar('alma', processo),
         raias: pegar('n-raias', processo).length > 0 ? pegar('n-raias', processo) : '',
-        sentidoRaias: pegar('sentido-raias', processo) !== 'N' ? pegar('sentido-raias', processo) : '',
+        sentidoRaias: pegar('sentido-raias', processo),
         acabamento: pegar('acabamento', processo),
         pais: pegar('pais', processo)
     }
 
-    let BAR = {
+    const BAR = {
         tipoPubli: 1,
         numBar: document.getElementById('num-bar').value.replace(/0/g, '') + new Date().getFullYear(),
         dataPublic: pegarDataPub(),
         orgao: '900000528'
     }
 
-    let Policial = {
+    const Policial = {
         cpf: pegarCPF(processo),
         nome: pegar('nome', processo).split(/-|–/)[0].trim(),
         nascimento: pegarData('nascimento', processo),
@@ -356,6 +372,32 @@ const montarLinhaAEL = processo => {
     return linha;
 }
 
+const montarDadosOf = processo => {
+    const bar = document.getElementById('num-bar').value + '/' + new Date().getFullYear()
+    const dataBar = pegarDataPub()
+    const documentoOf = `${bar} - ${dataBar}`
+    const DadosOf = {
+        nome: pegar('nome', processo).split(/-|–/)[0].trim(),
+        cpf: pegarCPF(processo),
+        rg: pegar('rg', processo),
+        numSerie: pegar('serie', processo).replace(/ /g, ''),
+        calibre: pegar('calibre', processo),
+        fabricante: pegar('fabricante', processo),
+        bar: `BAR ${documentoOf}`
+    }
+    return DadosOf
+}
+
+const salvarDadosOf = linhas => {
+    let listaProcessos = [];
+    for (i = 1; i <= linhas; i++) {
+        listaProcessos.push(montarDadosOf(i))
+    }
+
+    localStorage.setItem('listaProcessos', JSON.stringify(listaProcessos))
+
+}
+
 const salvarForm = nomeForm => {
     let form = document.body.querySelector("#lista-" + nomeForm);
     let json = {}; // objeto que irá guardar os dados
@@ -384,9 +426,9 @@ const carregarForm = nomeForm => {
     if (formulario) { // verifico se o localStorage existe
         formulario = JSON.parse(formulario);
         for (let dados in formulario) {
-            console.log(document.body.querySelector("[name='" + dados + "']").value)
+
             document.body.querySelector("[name='" + dados + "']").value = formulario[dados];
-            console.log(document.body.querySelector("[name='" + dados + "']").value)
+
         }
     }
 }
@@ -409,6 +451,7 @@ const carregarStatus = () => {
     })
 }
 
+
 const montarAEL = () => {
     try {
         numeroDeLinhas = parseInt(qtdProcessosCom) + parseInt(qtdProcessosInd);
@@ -426,6 +469,7 @@ const montarAEL = () => {
         }
         let teste = new Blob([linhas], { type: "text/plain;charset=ISO-8859-1" });
         saveAs(teste, titulo);
+        salvarDadosOf(numeroDeLinhas);
     } catch (Excepiton) {
         alert('VOCÊ ESQUECEU DE ALGUMA INFORMAÇÃO IMPORTANTE!')
     }
@@ -435,4 +479,10 @@ const montarAEL = () => {
 const limparDados = () => {
     localStorage.clear();
     document.location.reload(true);
+}
+
+const montarOf = () => {
+    document.addEventListener("DOMContentLoaded", () => {
+        formOf()
+    })
 }

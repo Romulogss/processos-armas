@@ -1,0 +1,41 @@
+table {
+    width: 100%;
+    border-width: 1px;
+    text-align: center;
+}
+
+th hr {
+    border: black solid 1px;
+    margin: 0;
+    padding: 0;
+}
+
+span {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0;
+}
+#arma * {
+    text-align: center !important;
+}
+
+#nome {
+    width: 25%;
+}
+
+#cpf {
+    width: 15%;
+}
+
+#rg {
+    width: 10%;
+}
+
+#arma {
+    width: 30%;
+}
+
+.linha-vertical {
+    height: 20px;
+    border-left: black solid 1px;
+}

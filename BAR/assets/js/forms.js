@@ -4,14 +4,14 @@ const formAquicisao = (qtd, tipo) => {
         let nProcesso = ("00" + i).slice(-3);
         let form = document.getElementById('lista-' + tipo);
         form.innerHTML += `
-        <span class="no-print"><label for="tombamento-${qtdProcessos}">TOMBAMENTO</label> <input type="text" name="tombamento-${qtdProcessos}" id="tombamento-${qtdProcessos}"></span><br>
+        <span class="no-print"><label for="tombamento-${qtdProcessos}">TOMBAMENTO</label> <input type="text" placeholder="999/9999" name="tombamento-${qtdProcessos}" id="tombamento-${qtdProcessos}"></span><br>
         <label for="nome-${qtdProcessos}">${nProcesso}-NOME: </label>
-        <input type="text" size="90" name="nome-${qtdProcessos}" id="nome-${qtdProcessos}"><br>
-        <label> FILIAÇÃO: <input type="text" size="30" name="pai-${qtdProcessos}" id="pai-${qtdProcessos}" onblur="this.size = this.value.length + 6;" placeholder="PAI">
+        <input type="text" size="90" onblur="pegarRg(${qtdProcessos})" name="nome-${qtdProcessos}" id="nome-${qtdProcessos}"><br>
+        <label> FILIAÇÃO: <input type="text" size="30" name="pai-${qtdProcessos}" id="pai-${qtdProcessos}" onblur="this.size = this.value.length;" placeholder="PAI">
             <span style="font-weight: normal;" id="e-${qtdProcessos}">e</span> <input type="text" onblur="this.size = this.value.length + 6;" placeholder="MAE" size="30" name="mae-${qtdProcessos}" id="mae-${qtdProcessos}">
         </label><br>
-        <label> DATA E LOCAL DE NASCIMENTO: <input type="date" name="nascimento-${qtdProcessos}" id="nascimento-${qtdProcessos}"> <span style="padding-left:10px"></span> <input
-                type="text" name="local-nascimento-${qtdProcessos}">
+        <label> DATA E LOCAL DE NASCIMENTO: <input type="date" onfocus="pai(${qtdProcessos});mae(${qtdProcessos})" name="nascimento-${qtdProcessos}" id="nascimento-${qtdProcessos}"> <span style="padding-left:10px"></span> <input
+                type="text" name="local-nascimento-${qtdProcessos}" placeholder="CIDADE NASCIMENTO">
         </label><br>
         <label> END.RESID: <input type="text" size="70" name="residencia-${qtdProcessos}" id="residencia-${qtdProcessos}" onblur="this.size = this.value.length + 6;"> <select name="cidade-${qtdProcessos}" id="cidade-${qtdProcessos}" style="height: 30px"></select>
         </label><br>
@@ -27,10 +27,10 @@ const formAquicisao = (qtd, tipo) => {
         <strong><i>DADOS DA ARMA</i></strong> <br>
         <label for="fabricante-${qtdProcessos}">IDENTIFICAÇÃO DO FABRICANTE: </label>
         <select name="fabricante-${qtdProcessos}" id="fabricante-${qtdProcessos}">
-            <option value="24">GLOCK</option>
-            <option value="1">TAURUS S/A</option>
-            <option value="4">CBC</option>
-            <option value="3">IMBEL</option>
+            <option value="GLOCK">GLOCK</option>
+            <option value="TAURUS S/A">TAURUS S/A</option>
+            <option value="CBC">CBC</option>
+            <option value="IMBEL">IMBEL</option>
         </select> <br>
         <label for="fornecedor-${qtdProcessos}">IDENTIFICAÇÃO DO VENDEDOR: </label><input type="text" size="80" name="fornecedor-${qtdProcessos}" id="fornecedor-${qtdProcessos}"> <br>
         <label for="end-fornecedor-${qtdProcessos}">ENDEREÇO: </label><input type="text" name="end-fornecedor-${qtdProcessos}" id="end-fornecedor-${qtdProcessos}"
@@ -81,7 +81,6 @@ const formAquicisao = (qtd, tipo) => {
             onfocus="unidadeDeMedida(${qtdProcessos})">
         <label for="sentido-raias-${qtdProcessos}">SENTIDO DAS RAIAS: </label>
         <select name="sentido-raias-${qtdProcessos}" id="sentido-raias-${qtdProcessos}">
-            <option value="N"></option>
             <option value="D">À Direita</option>
             <option value="E">À Esquerda</option>
         </select>
@@ -108,7 +107,7 @@ const formTransf = () => {
         let form = document.getElementById('lista-transferencia');
         form.innerHTML += `
         <span class="no-print"><label for="tombamento-${qtdProcessos}">TOMBAMENTO</label> <input
-                type="text" name="tombamento-${qtdProcessos}"
+                type="text" placeholder="999/9999" name="tombamento-${qtdProcessos}"
                 id="tombamento-${qtdProcessos}"></span><br>
         <label for="cedente-${qtdProcessos}">${nProcesso}-DE: </label> <input type="text"
             name="cedente-${qtdProcessos}" id="cedente-${qtdProcessos}" size="80"> <br>
@@ -126,15 +125,15 @@ const formTransf = () => {
             name="emissor-cedente-${qtdProcessos}" id="emissor-cedente-${qtdProcessos}"><br>
             <strong style="padding: 0; margin: 0"><i>DADOS DO INTERESSADO</i></strong> <br>
         <label for="nome-${qtdProcessos}">NOME: </label>
-        <input type="text" size="90" name="nome-${qtdProcessos}" id="nome-${qtdProcessos}"><br>
+        <input type="text" size="90" onblur="pegarRg(${qtdProcessos})" name="nome-${qtdProcessos}" id="nome-${qtdProcessos}"><br>
         <label> FILIAÇÃO: <input type="text" size="30" name="pai-${qtdProcessos}"
                 id="pai-${qtdProcessos}" onblur="this.size = this.value.length + 6;"
-                placeholder="PAI">
+   placeholder="PAI">
             <span style="font-weight: normal;" id="e-${qtdProcessos}">e</span> <input type="text"
                 onblur="this.size = this.value.length + 6;" placeholder="MAE"
                 size="30" name="mae-${qtdProcessos}" id="mae-${qtdProcessos}">
         </label><br>
-        <label> DATA E LOCAL DE NASCIMENTO: <input type="date" name="nascimento-${qtdProcessos}"
+        <label> DATA E LOCAL DE NASCIMENTO: <input type="date" onfocus="pai(${qtdProcessos});mae(${qtdProcessos})" name="nascimento-${qtdProcessos}"
                 id="nascimento-${qtdProcessos}"> <span style="padding-left:10px"></span> <input type="text"
                 name="local-nascimento-${qtdProcessos}">
         </label><br>
@@ -225,7 +224,6 @@ const formTransf = () => {
             onfocus="unidadeDeMedida(${qtdProcessos})">
         <label for="sentido-raias-${qtdProcessos}">SENTIDO DAS RAIAS: </label>
         <select name="sentido-raias-${qtdProcessos}" id="sentido-raias-${qtdProcessos}">
-            <option value="N"></option>
             <option value="D">À Direita</option>
             <option value="E">À Esquerda</option>
         </select>
@@ -253,7 +251,7 @@ const formPAF = () => {
         let form = document.getElementById('lista-paf');
         form.innerHTML +=
             `
-        ${i} - <input type="text" size="70" name="nome-paf-${qtdProcessos}" placeholder="NOME - POST/GRAD RG"> - 
+        ${i} - <input type="text" size="70" onblur="pegarRg(${qtdProcessos})" name="nome-paf-${qtdProcessos}" placeholder="NOME - POST/GRAD RG"> - 
             <label for="cpf-paf-${qtdProcessos}">CPF:</label> <input name="cpf-paf-${qtdProcessos}" id="cpf-paf-${qtdProcessos}" type="text" size="11">
             <table border="1">
                 <thead>
@@ -300,7 +298,7 @@ const formStatus = () => {
         let form = document.getElementById('lista-status');
         form.innerHTML +=
             `
-        ${i} - <input type="text" size="70" name="nome-status-${qtdProcessos}" placeholder="NOME - POST/GRAD RG"> - 
+        ${i} - <input type="text" size="70" onblur="pegarRg(${qtdProcessos})" name="nome-status-${qtdProcessos}" placeholder="NOME - POST/GRAD RG"> - 
             <label for="cpf-status-${qtdProcessos}">CPF:</label> <input name="cpf-status-${qtdProcessos}" id="cpf-status-${qtdProcessos}" type="text" size="11">
             <table border="1">
                 <thead>
@@ -347,9 +345,9 @@ const formManutencao = () => {
     for (let i = 1; i <= qtdProcessosMan; i++) {
         qtdProcessos++;
         let form = document.getElementById('lista-manutencao')
-        form.innerHTML += 
-        `
-       <label for="nome-manu">${("0" + i).slice(-2)}-NOME: </label> <input type="text" name="nome-manu-${qtdProcessos}" size="80"> <br>
+        form.innerHTML +=
+            `
+       <label for="nome-manu">${("0" + i).slice(-2)}-NOME: </label> <input type="text" onblur="pegarRg(${qtdProcessos})" name="nome-manu-${qtdProcessos}" size="80"> <br>
             <label for="om-manu">OM: </label> <input type="text" name="om-manu-${qtdProcessos}" size="30"><br>
             <label for="objeto-manu">OBJETO: </label> <input type="text" size="90" name="objeto-manu-${qtdProcessos}"><br>
             DADOS DA ARMA A SER MANUTENINDO.
@@ -375,4 +373,22 @@ const formManutencao = () => {
             </table>
         `
     }
+}
+
+const formOf = () => {
+    let tbody = document.getElementById('dados-adquirentes')
+    const dados = JSON.parse(localStorage.listaProcessos)
+    let linhaTabela = '';
+    dados.forEach(dado => {
+        linhaTabela += `<tr><td style="width: 25%;">${dado.nome}</td>`
+        linhaTabela += `<td style="width: 15%;">${dado.cpf}</td>`
+        linhaTabela += `<td style="width: 10%;">${dado.rg}</td>`
+        linhaTabela += `<td style="width: 10%;">${dado.numSerie}</td>`
+        linhaTabela += `<td style="width: 10%;">${dado.calibre}</td>`
+        linhaTabela += `<td style="width: 10%;">${dado.fabricante}</td>`
+        linhaTabela += `<td style="width: 20%;">${dado.bar}</td></tr>`
+    })
+
+    tbody.innerHTML += linhaTabela
+    
 }

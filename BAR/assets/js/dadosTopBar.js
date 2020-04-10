@@ -30,5 +30,6 @@ const carregarDados = () => {
         document.getElementById('num-bar').value = bar.numBar
         document.getElementById('dia-pub').value = bar.diaPub
         document.getElementById('mes-pub').value = bar.mesPub
+        numBar()
     }
 }

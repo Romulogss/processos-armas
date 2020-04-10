@@ -2,6 +2,9 @@
     font-family: 'Times New Roman';
     font-size: 20px !important;
 }
+#header * {
+    font-size: 20px !important;
+}
 
 header table,
 header table td {
@@ -31,13 +34,6 @@ form input, form select, form p {
     text-align: justify;
     font-weight: normal;
     font-style: italic !important;
-}
-input[id^="pai"] {
-    text-transform: capitalize;
-}
-
-input[id^="mae"] {
-    text-transform: capitalize;
 }
 
 input[id='dia-pub'],
