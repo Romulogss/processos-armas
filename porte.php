@@ -4,7 +4,7 @@
     use raelgc\view\Template;
 
     $tpl = new Template("./view/template.html");
-    $tpl->addFile("CERTIDAO", "view/certidao-paf.html");
+    $tpl->addFile("CERTIDAO", "view/certidoes/certidao-paf.html");
     $tpl->addFile("HEADER", "view/header.html");
     $tpl->addFile("FOOTER", "view/footer.html");
     $tpl->addFile("CAPA", "view/capa.html");

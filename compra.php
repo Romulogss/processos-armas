@@ -7,7 +7,7 @@
     $tpl->addFile("HEADER", "view/header.html");
     $tpl->addFile("FOOTER", "view/footer.html");
     $tpl->addFile("CAPA", "view/capa.html");
-    $tpl->addFile("CERTIDAO", "view/certidao-compra.html");
+    $tpl->addFile("CERTIDAO", "view/certidoes/certidao-compra.html");
     $tpl->PROCESSO = "PROCESSO PARA AQUISIÇÃO E REGISTRO DE ARMA DE FOGO";
     $tpl->TITLE = "Aquisição de arma de fogo";
     $tpl->block("BLOCK_AUTORIZACAO");
