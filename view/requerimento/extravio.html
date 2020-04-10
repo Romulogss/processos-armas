@@ -64,8 +64,8 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-8">
-                <table class="" border="1">
+            <div class="col-auto">
+                <table class="" border="1" style="max-width: 100%;width: 100%;">
                     <tbody>
                         <tr>
                             <th>Espécie</th>
@@ -96,19 +96,19 @@
                                 <input type="radio" name="alma" id="raiada">
                                 <label for="raiada">Raiada</label>
                             </td>
-                            <td> Acabamento <br><input type="radio" name="alma" id="oxidada">
+                            <td> Acabamento <br><input type="radio" name="acabamento" id="oxidada">
                                 <label for="oxidada">Oxidada</label><br>
-                                <input type="radio" name="alma" id="acoinox">
+                                <input type="radio" name="acabamento" id="acoinox">
                                 <label for="acoinox">Aço Inox</label><br>
-                                <input type="radio" name="alma" id="Niquelada">
+                                <input type="radio" name="acabamento" id="Niquelada">
                                 <label for="Niquelada">Niquelada</label>
                             </td>
                             <td> Funcionamento <br>
-                                <input type="radio" name="alma" id="Repetição">
+                                <input type="radio" name="fun" id="Repetição">
                                 <label for="Repetição">Repetição</label><br>
-                                <input type="radio" name="alma" id="Semi-Automática">
+                                <input type="radio" name="fun" id="Semi-Automática">
                                 <label for="Semi-Automática">Semi-Automática</label><br>
-                                <input type="radio" name="alma" id="Automática">
+                                <input type="radio" name="fun" id="Automática">
                                 <label for="Automática">Automática</label>
                             </td>
                             <td colspan="2"> Motivo do extravio<br>
@@ -165,6 +165,19 @@
             </div>
         </div>
     </main>
+    <script>
+        try {
+            let allInputs = document.getElementsByTagName('input')
+            allInputs = [...allInputs];
+            allInputs.forEach(input => {
+                    input.onblur = () => {
+                        input.size = input.value.length;
+                }
+            });
+        } catch (error) {
+            console.log(error)
+        }
+    </script>
 </body>
 
 </html>
