@@ -15,6 +15,7 @@
     $tpl->block("BLOCK_COMPRA_PUB");
     $tpl->block("BLOCK_PUB");
     $tpl->block("BLOCK_PUB_2");
+    $tpl->block("BLOCK_SCRIPT");
     $tpl->INPUT_COINT = '<input type="text" placeholder="COINT/OPM">';
     $tpl->TIME = time();
     $tpl->show();

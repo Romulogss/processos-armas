@@ -474,6 +474,8 @@ const montarAEL = () => {
         alert('VOCÊ ESQUECEU DE ALGUMA INFORMAÇÃO IMPORTANTE!')
     }
     window.print()
+    window.alert('Você seré redirecionado para a página de ofício!')
+    window.location.href += 'of.php'
 }
 
 const limparDados = () => {

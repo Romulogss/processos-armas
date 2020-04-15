@@ -77,6 +77,10 @@ table textarea {
     border-color: transparent;
 }
 
+#mudança-status textarea {
+    padding: 0;
+    margin: 0;
+}
 @media print {
     .no-print {
         display: none;

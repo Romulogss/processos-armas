@@ -15,6 +15,7 @@
     $tpl->block("BLOCK_PORTE");
     $tpl->block("BLOCK_INT");
     $tpl->block("BLOCK_INT_2");
+    $tpl->block("BLOCK_SCRIPT");
     $tpl->TIME = time();
     $tpl->show();
 

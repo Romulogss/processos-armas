@@ -15,8 +15,10 @@
     $tpl->block("BLOCK_PORTE");
     $tpl->block("BLOCK_PUB");
     $tpl->block("BLOCK_PUB_2");
+    $tpl->block("BLOCK_SCRIPT");
     $tpl->TIME = time();
     $tpl->DISABLE = "disabled";
+    $tpl->COMPLEMENTAR = '';
     $tpl->INPUT_COINT = '<input type="text" placeholder="COINT/OPM">';
     $tpl->show();
 
