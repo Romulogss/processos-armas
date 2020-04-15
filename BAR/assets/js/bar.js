@@ -462,7 +462,7 @@ const montarAEL = () => {
         const hora = ("0" + new Date().getHours()).slice(-2) + ':' + ("0" + new Date().getMinutes()).slice(-2) + ':' + ("0" + new Date().getSeconds()).slice(-2);
         const hora_titulo = ("0" + new Date().getHours()).slice(-2) + '' + ("0" + new Date().getMinutes()).slice(-2) + '' + ("0" + new Date().getSeconds()).slice(-2);
         const titulo = `CARGA-900000528-${data_titulo}-${hora_titulo}.txt`
-        let linhas = `[REMETO][${data} ${hora}][${numeroDeLinhas}]`;
+        let linhas = `[REMOTO][${data} ${hora}][${numeroDeLinhas}]`;
 
         for (let i = 1; i <= numeroDeLinhas; i++) {
             linhas += `\n${montarLinhaAEL(i)}[7]`
