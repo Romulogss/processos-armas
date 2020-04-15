@@ -31,7 +31,7 @@
         let allInputs = document.getElementsByTagName('input')
         allInputs = [...allInputs];
         allInputs.forEach(input => {
-            if (input.id !== "tipo-calibre" && input.id !== "nome-digitador") {
+            if (input.id !== "tipo-calibre" && input.id !== "nome-digitador" && input.id !== 'sigma') {
                 input.onblur = () => {
                     input.size = input.value.length > 10 ? input.value.length + 4 : input.value.length;
                 }
