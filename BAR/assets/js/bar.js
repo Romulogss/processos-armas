@@ -488,3 +488,46 @@ const montarOf = () => {
         formOf()
     })
 }
+
+const pegarPorNome = (nome, nProcesso) => {
+    console.log(document.getElementsByName(nome + '-' + nProcesso)[0].name)
+    return document.getElementsByName(nome + '-' + nProcesso)[0].value
+}
+
+const modeloForm = nProcesso => {
+    const form = {
+        tombamento: pegarPorNome('tombamento', nProcesso),
+        nome: pegarPorNome('nome', nProcesso),
+        pai: pegarPorNome('pai', nProcesso),
+        mae: pegarPorNome('mae', nProcesso),
+        nascimento: pegarPorNome('nascimento', nProcesso),
+        local_nascimento: pegarPorNome('local-nascimento', nProcesso),
+        residencia: pegarPorNome('residencia', nProcesso),
+        cidade: pegarPorNome('cidade', nProcesso),
+        rg: pegarPorNome('rg', nProcesso),
+        emissao: pegarPorNome('emissao', nProcesso),
+        cpf: pegarPorNome('cpf', nProcesso),
+        fabricante: pegarPorNome('fabricante', nProcesso),
+        fornecedor: pegarPorNome('fornecedor', nProcesso),
+        end_fornecedor: pegarPorNome('end-fornecedor', nProcesso),
+        cnpj: pegarPorNome('cnpj', nProcesso),
+        nf: pegarPorNome('n-nf', nProcesso),
+        emissao_nf: pegarPorNome('emissao-dt', nProcesso),
+        especie: pegarPorNome('especie', nProcesso),
+        marca: pegarPorNome('marca', nProcesso),
+        modelo: pegarPorNome('modelo', nProcesso),
+        serie: pegarPorNome('serie', nProcesso),
+        calibre: pegarPorNome('calibre', nProcesso),
+        muni: pegarPorNome('muni', nProcesso),
+        funcionamento: pegarPorNome('funcionamento', nProcesso),
+        canos: pegarPorNome('canos', nProcesso),
+        tam_cano: pegarPorNome('tam-cano', nProcesso),
+        uni_medida: pegarPorNome('uni-medida', nProcesso),
+        alma: pegarPorNome('alma', nProcesso),
+        n_raias: pegarPorNome('n-raias', nProcesso),
+        sentido_raias: pegarPorNome('sentido-raias', nProcesso),
+        acabamento: pegarPorNome('acabamento', nProcesso),
+        pais: pegarPorNome('pais', nProcesso)
+    }
+    return form
+}

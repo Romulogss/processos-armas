@@ -52,7 +52,7 @@ const formAquicisao = (qtd, tipo) => {
             <option value="4">CBC</option>
             <option value="3">IMBEL</option>
         </select> <br>
-        <label for="modelo-${qtdProcessos}">MODELO: </label> <input type="text" name="modelo-${qtdProcessos}" id="modelo-${qtdProcessos}"> <br>
+        <label for="modelo-${qtdProcessos}">MODELO: </label> <input type="text" maxlength="15" name="modelo-${qtdProcessos}" id="modelo-${qtdProcessos}"> <br>
         <label for="serie-${qtdProcessos}">NÚMERO DE SÉRIE: </label><input type="text" name="serie-${qtdProcessos}" id="serie-${qtdProcessos}"> <br>
         <label for="calibre-${qtdProcessos}">CALIBRE: </label> <input type="text" name="calibre-${qtdProcessos}" id="calibre-${qtdProcessos}"> <br>
         <label for="muni-${qtdProcessos}">CAPACIDADE DE MUNIÇÃO: </label><input type="number" name="muni-${qtdProcessos}" id="muni-${qtdProcessos}"> <br>
@@ -388,7 +388,6 @@ const formOf = () => {
         linhaTabela += `<td style="width: 10%;">${dado.fabricante}</td>`
         linhaTabela += `<td style="width: 20%;">${dado.bar}</td></tr>`
     })
-
     tbody.innerHTML += linhaTabela
     
 }
