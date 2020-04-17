@@ -90,6 +90,7 @@ const formAquicisao = (qtd, tipo) => {
         <select name="pais-${qtdProcessos}" id="pais-${qtdProcessos}">
             <option value="1">Brasil</option>
             <option value="20">EUA</option>
+            <option value="175">Turquia</option>
         </select>
         <p style="font-weight: bold;text-decoration: underline">LEGISLAÇÃO UTILIZADA: LEI 10.826 de 22/12/2003, DECRETO
             5.123 de 01/07/2004 e PORTARIA 069 GabCmdo Geral PMPa de 24/04/2019.</p>
