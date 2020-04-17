@@ -220,8 +220,8 @@ const tipoAlma = processo => {
     const alma = pegar('alma', processo);
     if (alma === 'L') {
         document.getElementById('dados-raias-' + processo).hidden = '1'
+        document.getElementById('sentido-raias-' + processo).value = ''
     }
-    document.getElementById('sentido-raias-' + processo).value = ''
 }
 
 const pegar = (id, processo) => {
@@ -277,10 +277,10 @@ const pegarDataPub = () => {
 const pegarGrupoCalibre = processo => {
     try {
         let calibre = String(pegar('calibre', processo));
-        calibre.replace(' ', '')
-        if (calibre[calibre.length - 1].toLocaleLowerCase() === 'm') return 4;
+        calibre.replace(/ /g, '')
+        if (calibre.match(/mm$/i)) return 4;
         else if (!calibre.startsWith('.')) {
-            calibre = calibre[1] + calibre[2]
+            calibre = calibre[0] + calibre[1]
             calibre = parseInt(calibre)
             if (calibre === 16) return 28;
             else if (calibre === 12) return 29;
@@ -322,7 +322,7 @@ const montarLinhaAEL = processo => {
         municao: pegar('muni', processo),
         funcionamento: pegar('funcionamento', processo),
         canos: pegar('canos', processo),
-        comprimentoCano: pegar('tam-cano', processo).replace(/pol|mm|cm/, ''),
+        comprimentoCano: pegar('tam-cano', processo).replace(/pol|mm|cm/i, ''),
         uniMedida: pegar('uni-medida', processo),
         alma: pegar('alma', processo),
         raias: pegar('n-raias', processo).length > 0 ? pegar('n-raias', processo) : '',
@@ -333,7 +333,7 @@ const montarLinhaAEL = processo => {
 
     const BAR = {
         tipoPubli: 1,
-        numBar: document.getElementById('num-bar').value.replace(/0/g, '') + new Date().getFullYear(),
+        numBar: document.getElementById('num-bar').value,
         dataPublic: pegarDataPub(),
         orgao: '900000528'
     }
@@ -373,7 +373,7 @@ const montarLinhaAEL = processo => {
 }
 
 const montarDadosOf = processo => {
-    const bar = document.getElementById('num-bar').value + '/' + new Date().getFullYear()
+    const bar = document.getElementById('num-bar').value
     const dataBar = pegarDataPub()
     const documentoOf = `${bar} - ${dataBar}`
     const DadosOf = {
@@ -399,14 +399,14 @@ const salvarDadosOf = linhas => {
 }
 
 const salvarForm = nomeForm => {
-    let form = document.body.querySelector("#lista-" + nomeForm);
+    let form = document.body.querySelector(`#lista-${nomeForm}`);
     let json = {}; // objeto que irá guardar os dados
     for (let dados of form) {
         const val = dados.value;
         json[dados.name] = val;
     }
 
-    localStorage.setItem("formulario-" + nomeForm, JSON.stringify(json));
+    localStorage.setItem(`formulario-${nomeForm}`, JSON.stringify(json));
 }
 
 const salvarStatus = () => {
@@ -425,11 +425,7 @@ const carregarForm = nomeForm => {
 
     if (formulario) { // verifico se o localStorage existe
         formulario = JSON.parse(formulario);
-        for (let dados in formulario) {
-
-            document.body.querySelector("[name='" + dados + "']").value = formulario[dados];
-
-        }
+        for (let dados in formulario) document.body.querySelector(`[name='${dados}']`).value = formulario[dados];
     }
 }
 
@@ -451,27 +447,24 @@ const carregarStatus = () => {
     })
 }
 
-
 const montarAEL = () => {
     try {
         numeroDeLinhas = parseInt(qtdProcessosCom) + parseInt(qtdProcessosInd);
         let mes = new Date().getMonth() + 1
         if (mes < 10) mes = '0' + mes;
         const data = ("0" + new Date().getDate()).slice(-2) + '/' + mes + '/' + new Date().getFullYear()
-        const data_titulo = ("0" + new Date().getDate()).slice(-2) + '' + mes + '' + new Date().getFullYear()
         const hora = ("0" + new Date().getHours()).slice(-2) + ':' + ("0" + new Date().getMinutes()).slice(-2) + ':' + ("0" + new Date().getSeconds()).slice(-2);
-        const hora_titulo = ("0" + new Date().getHours()).slice(-2) + '' + ("0" + new Date().getMinutes()).slice(-2) + '' + ("0" + new Date().getSeconds()).slice(-2);
-        const titulo = `CARGA-900000528-${data_titulo}-${hora_titulo}.txt`
+        const titulo = `CARGA-900000528-${data}-${hora}.txt`
         let linhas = `[REMOTO][${data} ${hora}][${numeroDeLinhas}]`;
 
         for (let i = 1; i <= numeroDeLinhas; i++) {
             linhas += `\n${montarLinhaAEL(i)}[7]`
         }
-        let teste = new Blob([linhas], { type: "text/plain;charset=ISO-8859-1" });
-        saveAs(teste, titulo);
+        let ael = new Blob([linhas], { type: "text/plain;charset=ISO-8859-1" });
+        saveAs(ael, titulo);
         salvarDadosOf(numeroDeLinhas);
     } catch (Excepiton) {
-        alert('VOCÊ ESQUECEU DE ALGUMA INFORMAÇÃO IMPORTANTE!')
+        alert('VOCÊ ESQUECEU DE ALGUMA INFORMAÇÃO IMPORTANTE!', Exeception)
     }
     window.print()
     window.alert('Você seré redirecionado para a página de ofício!')
@@ -487,47 +480,4 @@ const montarOf = () => {
     document.addEventListener("DOMContentLoaded", () => {
         formOf()
     })
-}
-
-const pegarPorNome = (nome, nProcesso) => {
-    console.log(document.getElementsByName(nome + '-' + nProcesso)[0].name)
-    return document.getElementsByName(nome + '-' + nProcesso)[0].value
-}
-
-const modeloForm = nProcesso => {
-    const form = {
-        tombamento: pegarPorNome('tombamento', nProcesso),
-        nome: pegarPorNome('nome', nProcesso),
-        pai: pegarPorNome('pai', nProcesso),
-        mae: pegarPorNome('mae', nProcesso),
-        nascimento: pegarPorNome('nascimento', nProcesso),
-        local_nascimento: pegarPorNome('local-nascimento', nProcesso),
-        residencia: pegarPorNome('residencia', nProcesso),
-        cidade: pegarPorNome('cidade', nProcesso),
-        rg: pegarPorNome('rg', nProcesso),
-        emissao: pegarPorNome('emissao', nProcesso),
-        cpf: pegarPorNome('cpf', nProcesso),
-        fabricante: pegarPorNome('fabricante', nProcesso),
-        fornecedor: pegarPorNome('fornecedor', nProcesso),
-        end_fornecedor: pegarPorNome('end-fornecedor', nProcesso),
-        cnpj: pegarPorNome('cnpj', nProcesso),
-        nf: pegarPorNome('n-nf', nProcesso),
-        emissao_nf: pegarPorNome('emissao-dt', nProcesso),
-        especie: pegarPorNome('especie', nProcesso),
-        marca: pegarPorNome('marca', nProcesso),
-        modelo: pegarPorNome('modelo', nProcesso),
-        serie: pegarPorNome('serie', nProcesso),
-        calibre: pegarPorNome('calibre', nProcesso),
-        muni: pegarPorNome('muni', nProcesso),
-        funcionamento: pegarPorNome('funcionamento', nProcesso),
-        canos: pegarPorNome('canos', nProcesso),
-        tam_cano: pegarPorNome('tam-cano', nProcesso),
-        uni_medida: pegarPorNome('uni-medida', nProcesso),
-        alma: pegarPorNome('alma', nProcesso),
-        n_raias: pegarPorNome('n-raias', nProcesso),
-        sentido_raias: pegarPorNome('sentido-raias', nProcesso),
-        acabamento: pegarPorNome('acabamento', nProcesso),
-        pais: pegarPorNome('pais', nProcesso)
-    }
-    return form
 }
