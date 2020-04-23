@@ -32,7 +32,7 @@ const formAquicisao = (qtd, tipo) => {
             <option value="CBC">CBC</option>
             <option value="IMBEL">IMBEL</option>
         </select> <br>
-        <label for="fornecedor-${qtdProcessos}">IDENTIFICAÇÃO DO VENDEDOR: </label><input type="text" size="80" name="fornecedor-${qtdProcessos}" id="fornecedor-${qtdProcessos}"> <br>
+        <label for="fornecedor-${qtdProcessos}">IDENTIFICAÇÃO DO VENDEDOR: </label><input type="text" size="65" name="fornecedor-${qtdProcessos}" id="fornecedor-${qtdProcessos}"> <br>
         <label for="end-fornecedor-${qtdProcessos}">ENDEREÇO: </label><input type="text" name="end-fornecedor-${qtdProcessos}" id="end-fornecedor-${qtdProcessos}"
             size="80"> <br>
         <label for="cnpj-${qtdProcessos}">CNPJ: </label> <input type="text" size="17" name="cnpj-${qtdProcessos}" id="cnpj-${qtdProcessos}"> <br>
@@ -78,7 +78,8 @@ const formAquicisao = (qtd, tipo) => {
         <span id="dados-raias-${qtdProcessos}">
         <label for="n-raias-${qtdProcessos}">NUMERO DE RAIAS: </label><input type="number"
             name="n-raias-${qtdProcessos}" id="n-raias-${qtdProcessos}"
-            onfocus="unidadeDeMedida(${qtdProcessos})">
+            onfocus="unidadeDeMedida(${qtdProcessos})"
+            style="width: 70px">
         <label for="sentido-raias-${qtdProcessos}">SENTIDO DAS RAIAS: </label>
         <select name="sentido-raias-${qtdProcessos}" id="sentido-raias-${qtdProcessos}">
             <option value="D">À Direita</option>
@@ -110,7 +111,14 @@ const formTransf = () => {
         <span class="no-print"><label for="tombamento-${qtdProcessos}">TOMBAMENTO</label> <input
                 type="text" placeholder="999/9999" name="tombamento-${qtdProcessos}"
                 id="tombamento-${qtdProcessos}"></span><br>
-        <label for="cedente-${qtdProcessos}">${nProcesso}-DE: </label> <input type="text"
+        <label for="tipo-transf-${qtdProcessos}">${nProcesso}-TIPO DE TRANSFERÊNCIA: </label>
+        <select name="tipo-transf-${qtdProcessos}" id="tipo-transf-${qtdProcessos}">
+            <option value="sigma/sigma">SIGMA/SGIMA</option>
+            <option value="sinarm/sigma">SINARM/SGIMA</option>
+            <option value="sigma/sinarm">SIGMA/SINARM</option>
+        </select>
+        <br>
+        <label for="cedente-${qtdProcessos}">DE: </label> <input type="text"
             name="cedente-${qtdProcessos}" id="cedente-${qtdProcessos}" size="80"> <br>
         <label for="profissao-cedente-${qtdProcessos}">PROFISSÃO: </label><input type="text"
             name="profissao-cedente-${qtdProcessos}" id="profissao-cedente-${qtdProcessos}" size="30">
@@ -389,5 +397,4 @@ const formOf = () => {
         linhaTabela += `<td style="width: 20%;">${dado.bar}</td></tr>`
     })
     tbody.innerHTML += linhaTabela
-    
 }
