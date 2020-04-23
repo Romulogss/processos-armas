@@ -18,10 +18,10 @@ const formAquicisao = (qtd, tipo) => {
         <label> END. TRABALHO: <i>Rdv. Augusto Montenegro, KM 09, 8401, Parque Guajará, CEP: 66821-000, Belém-PA</i>
         </label> <br>
         <label> PROFISSÃO: </label> <i>Policial Militar</i> <br>
-        <label for="rg-${qtdProcessos}"> NÚMERO DA CÉDULA DE IDENTIDADE: </label> <input type="number" name="rg-${qtdProcessos}" onfocus="completarEndRes(${qtdProcessos})" id="rg-${qtdProcessos}">
+        <label for="rg-${qtdProcessos}"> NÚMERO DA CÉDULA DE IDENTIDADE: </label> <input type="number" name="rg-${qtdProcessos}" id="rg-${qtdProcessos}">
         <br>
         <label for="emissao-${qtdProcessos}">
-        DATA DA EMISSÃO: </label> <input type="date" name="emissao-${qtdProcessos}" id="emissao-${qtdProcessos}"> <br>
+        DATA DA EMISSÃO: </label> <input type="date" name="emissao-${qtdProcessos}" id="emissao-${qtdProcessos}" onfocus="completarEndRes(${qtdProcessos})"> <br>
         <label for="expedidor-${qtdProcessos}">ORGÃO EXPEDIDOR/UF: </label> <span id="expedidor-${qtdProcessos}"><i>PMPA</i></span> <br>
         <label for="cpf-${qtdProcessos}">CPF: </label><input type="text" name="cpf-${qtdProcessos}" id="cpf-${qtdProcessos}"><br>
         <strong><i>DADOS DA ARMA</i></strong> <br>
@@ -147,11 +147,10 @@ const formTransf = () => {
         </label> <br>
         <label> PROFISSÃO: </label> <i>Policial Militar</i> <br>
         <label for="rg-${qtdProcessos}"> NÚMERO DA CÉDULA DE IDENTIDADE: </label> <input type="number"
-            name="rg-${qtdProcessos}" onfocus="completarEndRes(${qtdProcessos})"
-            id="rg-${qtdProcessos}">
+            name="rg-${qtdProcessos}" id="rg-${qtdProcessos}">
         <br>
         <label for="emissao-${qtdProcessos}"> DATA DA EMISSÃO: </label> <input type="date"
-            name="emissao-${qtdProcessos}" id="emissao-${qtdProcessos}"> <br>
+            name="emissao-${qtdProcessos}" id="emissao-${qtdProcessos}" onfocus="completarEndRes(${qtdProcessos})"> <br>
         <label for="expedidor-${qtdProcessos}">ORGÃO EXPEDIDOR/UF: </label> <span
             id="expedidor-${qtdProcessos}"><i>PMPA</i></span> <br>
         <label for="cpf-${qtdProcessos}">CPF: </label><input type="text" name="cpf-${qtdProcessos}"
