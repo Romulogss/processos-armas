@@ -11,8 +11,8 @@ th hr {
 }
 
 span {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
     margin: 0;
 }
 #arma * {
@@ -38,4 +38,10 @@ span {
 .linha-vertical {
     height: 20px;
     border-left: black solid 1px;
+}
+
+@media print {
+    input {
+        border-width: 0;
+    }
 }
