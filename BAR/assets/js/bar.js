@@ -418,8 +418,8 @@ const salvarForm = nomeForm => {
 }
 
 const salvarStatus = () => {
-    if (qtdProcessosCom > 0) salvarForm('comercio');
     if (qtdProcessosInd > 0) salvarForm('industria');
+    if (qtdProcessosCom > 0) salvarForm('comercio');
     if (qtdProcessosTransf > 0) salvarForm('transferencia');
     if (qtdProcessosPAF > 0) salvarForm('paf');
     if (qtdProcessosStatus > 0) salvarForm('status');
@@ -441,8 +441,8 @@ const carregarStatus = () => {
     document.addEventListener("DOMContentLoaded", () => {
 
         carregarDadosGerais();
-        if (qtdProcessosCom > 0) carregarForm('comercio');
         if (qtdProcessosInd > 0) carregarForm('industria');
+        if (qtdProcessosCom > 0) carregarForm('comercio');
         if (qtdProcessosTransf > 0) carregarForm('transferencia');
         if (qtdProcessosPAF > 0) carregarForm('paf');
         if (qtdProcessosStatus > 0) carregarForm('status');
