@@ -13,7 +13,7 @@ const formAquicisao = (qtd, tipo) => {
         <label> DATA E LOCAL DE NASCIMENTO: <input type="date" onfocus="pai(${qtdProcessos});mae(${qtdProcessos})" name="nascimento-${qtdProcessos}" id="nascimento-${qtdProcessos}"> <span style="padding-left:10px"></span> <input
                 type="text" name="local-nascimento-${qtdProcessos}" placeholder="CIDADE NASCIMENTO">
         </label><br>
-        <label> END.RESID: <input type="text" size="70" name="residencia-${qtdProcessos}" id="residencia-${qtdProcessos}" onblur="this.size = this.value.length + 6;"> <select name="cidade-${qtdProcessos}" id="cidade-${qtdProcessos}" style="height: 30px"></select>
+        <label> END.RESID: <input type="text" size="50" name="residencia-${qtdProcessos}" id="residencia-${qtdProcessos}" onblur="this.size = this.value.length + 3;"> <select name="cidade-${qtdProcessos}" id="cidade-${qtdProcessos}" style="height: 30px"></select>
         </label><br>
         <label> END. TRABALHO: <i>Rdv. Augusto Montenegro, KM 09, 8401, Parque Guajará, CEP: 66821-000, Belém-PA</i>
         </label> <br>
@@ -146,8 +146,8 @@ const formTransf = () => {
                 id="nascimento-${qtdProcessos}"> <span style="padding-left:10px"></span> <input type="text"
                 name="local-nascimento-${qtdProcessos}">
         </label><br>
-        <label> END.RESID: <input type="text" size="70" name="residencia-${qtdProcessos}"
-                id="residencia-${qtdProcessos}" onblur="this.size = this.value.length + 6;"> <select name="cidade-${qtdProcessos}"
+        <label> END.RESID: <input type="text" size="50" name="residencia-${qtdProcessos}"
+                id="residencia-${qtdProcessos}" onblur="this.size = this.value.length + 3;"> <select name="cidade-${qtdProcessos}"
                 id="cidade-${qtdProcessos}" style="height: 30px"></select>
         </label><br>
         <label> END. TRABALHO: <i>Rdv. Augusto Montenegro, KM 09, 8401, Parque Guajará, CEP: 66821-000,
@@ -179,9 +179,7 @@ const formTransf = () => {
             name="end-fornecedor-${qtdProcessos}" id="end-fornecedor-${qtdProcessos}" size="80"> <br>
         <label for="cnpj-${qtdProcessos}">CNPJ: </label> <input type="text" size="17"
             name="cnpj-${qtdProcessos}" id="cnpj-${qtdProcessos}"> <br>
-        <label>NÚMERO DA NOTA FISCAL: <input name="n-nf-${qtdProcessos}" type="number"> <span
-                style="padding: 10px;"></span> EMISSÃO:<input type="date"
-                name="emissao-dt-${qtdProcessos}" id="emissao-dt-${qtdProcessos}"></label> <br>
+        <label>NÚMERO DA NOTA FISCAL: <input name="n-nf-${qtdProcessos}" type="number"><br>
         <label for="especie-${qtdProcessos}">ESPÉCIE: </label>
         <select name="especie-${qtdProcessos}" id="especie-${qtdProcessos}">
             <option value="2">PISTOLA</option>
