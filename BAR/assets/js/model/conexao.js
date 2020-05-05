@@ -1,5 +1,5 @@
 const Graphql = {
-    endpoint: 'http://localhost:4000/',
+    endpoint: 'https://glacial-lowlands-37327.herokuapp.com/',
     exec: (query, variaveis) => {
         return fetch(Graphql.endpoint, {
             method: 'POST',
