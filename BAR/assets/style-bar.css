@@ -60,6 +60,29 @@ table, table th, table tr, table td, table input {
     font-size: 15px !important;
 }
 
+.list-group[id^="lista-fornecedores"] {
+    width: 610px;
+    margin-left: 315px;
+    position: absolute;
+}
+
+.list-group-item {
+    background-color: #FFF;
+    padding: 5px !important;
+}
+
+.list-group-item:hover {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
+
+.list-group[id^="lista-modelos"] {
+    width: 210px;
+    margin-left: 98px;
+    position: absolute;
+}
+
 #btnLimpar {
     top: 90px;
     position: fixed;
@@ -87,11 +110,15 @@ table, table th, table tr, table td, table input {
 @media print {
     body.container {
         width: 18.6cm;
+        height: 100%;
+        padding-bottom: 0;
+        margin-bottom: 0;
     }
     @page {
         size: 'A4';
         width: 18.6cm;
-        ;
+        height: 100%;
+        margin-bottom: 0;
     }
     input, select {
         border-color: transparent;

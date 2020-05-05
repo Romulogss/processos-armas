@@ -101,7 +101,7 @@
                         </strong></p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>Nos requerimentos em
                             que os Policiais Militares solicitam transferência de cadastro e registro de arma de fogo de
-                            uso restrito e permitido, dou o seguinte despacho: <br> <br> <span
+                            uso permitido, dou o seguinte despacho: <br> <br> <span
                                 style="text-decoration: underline">Deferido para:</span>
                         </i></p>
                     <form id="lista-transferencia">
@@ -112,7 +112,7 @@
                         </strong></p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>Nos requerimentos em
                             que os policiais militares, da reserva remunerada, solicitam a expedição PAF (Porte de Arma
-                            de Fogo) de arma de calibre restrito e permitido, dou o seguinte despacho: <br> <br> <span
+                            de Fogo) de arma de calibre permitido, dou o seguinte despacho: <br> <br> <span
                                 style="text-decoration: underline">Deferido para:</span>
                         </i></p>
                     <form id="lista-paf">
@@ -122,8 +122,8 @@
                     <p style="font-style: italic;text-decoration: underline;"><strong id="armas-status">
                         </strong></p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>No requerimento em
-                            que o policial militar solicita mudança de Status de arma de fogo de calibre restrito e
-                            permitido, no Sistema de Gerenciamento Militar de Arma (SIGMA), de propriedade particular,
+                            que o policial militar solicita mudança de Status de arma de fogo de calibre permitido, no
+                            Sistema de Gerenciamento Militar de Arma (SIGMA), de propriedade particular,
                             por ter sido extraviada, conforme informações abaixo, dou o seguinte despacho: <br> <br>
                             <span style="text-decoration: underline">Deferido para:</span>
                         </i></p>
@@ -190,23 +190,29 @@
                     </div>
                     <div class="col-9 align-items-center"
                         style="font-family: Arial, Helvetica, sans-serif;font-size: 1.2em;">
-                        <p style="font-family: Arial, Helvetica, sans-serif;">PAULO UBIRATAN LOPES
-                            <strong
-                            style="font-family: Arial, Helvetica, sans-serif;">ASSEB</strong> - MAJ QOPM 33450 <br>
-                                <span style="font-family: Arial, Helvetica, sans-serif">Chefe da Subseção de Intendência
-                                    e Subsistência</span></p>
+                        <p style="font-family: Arial, Helvetica, sans-serif;">PAULO UBIRATAN LOPES <strong
+                                style="font-family: Arial, Helvetica, sans-serif;">ASSEB</strong> - MAJ QOPM 33450 <br>
+                            <span style="font-family: Arial, Helvetica, sans-serif">Chefe da Subseção de Intendência e
+                                Subsistência</span></p>
                     </div>
                 </div>
             </section>
         </main>
         <button onclick="montarAEL()" id="btnAEL" class="btn btn-success no-print">GERAR AEL E IMPRIMIR</button>
     </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script
         src="https://cdn.rawgit.com/eligrey/FileSaver.js/5ed507ef8aa53d8ecfea96d96bc7214cd2476fd2/FileSaver.min.js"></script>
-    <script src="./assets/js/bar.js?{TIME}"></script>
-    <script src="./assets/js/cidades.js?{TIME}"></script>
-    <script src="./assets/js/forms.js?{TIME}"></script>
-    <script src="./assets/js/dadosTopBar.js?{TIME}"></script>
+    <script src="./assets/js/controller/utils.js?{TIME}"></script>
+    <script src="./assets/js/model/cidades.js?{TIME}"></script>
+    <script src="./assets/js/template/forms.js?{TIME}"></script>
+    <script src="./assets/js/controller/dadosTopBar.js?{TIME}"></script>
+    <script src="./assets/js/model/conexao.js?{TIME}"></script>
+    <script src="./assets/js/controller/fornecedor.js?{TIME}"></script>
+    <script src="./assets/js/model/fornecedorDAO.js?{TIME}"></script>
+    <script src="./assets/js/model/modeloDAO.js?{TIME}"></script>
+    <script src="./assets/js/controller/modelo.js?{TIME}"></script>
+    <script src="./assets/js/controller/oficio.js?{TIME}"></script>
     <script>carregarStatus()</script>
     <script>carregarDados()</script>
     <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>

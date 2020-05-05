@@ -3,25 +3,19 @@ const numBar = () => {
 }
 
 const salvarDados = () => {
-    const inicio = document.getElementById('inicio').value
-    const fim = document.getElementById('fim').value
-    const mes = document.getElementById('mes').value
-    const numBar = document.getElementById('num-bar').value
-    const diaPub = document.getElementById('dia-pub').value
-    const mesPub = document.getElementById('mes-pub').value
     const BAR = {
-        inicio,
-        fim,
-        mes,
-        numBar,
-        diaPub,
-        mesPub
+        inicio: document.getElementById('inicio').value,
+        fim: document.getElementById('fim').value,
+        mes: document.getElementById('mes').value,
+        numBar: document.getElementById('num-bar').value,
+        diaPub: document.getElementById('dia-pub').value,
+        mesPub: document.getElementById('mes-pub').value
     }
     localStorage.setItem('dadosBAR', JSON.stringify(BAR))
 }
 
 const carregarDados = () => {
-    bar = localStorage.dadosBAR;
+    let bar = localStorage.dadosBAR;
     if (bar) {
         bar = JSON.parse(bar)
         document.getElementById('inicio').value = bar.inicio
