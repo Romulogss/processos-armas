@@ -65,7 +65,11 @@ const pegarGrupoCalibre = processo => {
     }
 
 }
-
+/**
+ * Função irá pegar todos os dados necessários, do processo, para montar um linha do AEL.
+ * @param {number} processo Número contido no final do id do elemento.
+ * @returns Retorna uma linha do AEL no layout pedido pelo EB.
+ */
 const montarLinhaAEL = processo => {
     const Arma = {
         tombamento: pegar('tombamento', processo).replace('/', ''),
@@ -127,16 +131,21 @@ const montarLinhaAEL = processo => {
 
     return linha;
 }
-
+/**
+ * Função irá fazer todas as últimas formatações necessários para a cricação do arquivo AEL
+ * e depois o baixará, irá colocar o BAR para imprimir e por último redirecionar o usuário
+ * para a página de ofício de remessa.
+ */
 const montarAEL = () => {
     try {
-        for (let i = 1; i <= (qtdProcessosCom + qtdProcessosInd + qtdProcessosTransf); i++) {
+        const aquisicoes = DadosGerais.qtdProcessosCom + DadosGerais.qtdProcessosInd + DadosGerais.qtdProcessosTransf
+        for (let i = 1; i <= aquisicoes; i++) {
+            paiMae(i);
             completarEndRes(i);
             unidadeDeMedida(i);
             tipoAlma(i);
-            paiMae(i)
         }
-        numeroDeLinhas = parseInt(qtdProcessosCom) + parseInt(qtdProcessosInd);
+        numeroDeLinhas = aquisicoes - DadosGerais.qtdProcessosTransf;
         let mes = new Date().getMonth() + 1
         if (mes < 10) mes = '0' + mes;
         const data = ("0" + new Date().getDate()).slice(-2) + '/' + mes + '/' + new Date().getFullYear()

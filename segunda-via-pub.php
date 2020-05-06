@@ -20,6 +20,7 @@
     $tpl->DISABLE = "disabled";
     $tpl->COMPLEMENTAR = '';
     $tpl->INPUT_COINT = '<input type="text" placeholder="COINT/OPM">';
+    $tpl->addFile("MAJOR", "view/chefe-da-secao.html");
     $tpl->show();
 
 ?>

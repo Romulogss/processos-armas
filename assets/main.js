@@ -13,17 +13,10 @@ const meses = [
     'Dezembro'
 ]
 const hoje = new Date()
-let dia = hoje.getDate()
-const mes = hoje.getMonth()
-const mesNome = meses[mes]
-let mesNum = hoje.getMonth() + 1
-if (mesNum < 10) {
-    mesNum = '0' + mesNum
-}
+let dia = ("0" + hoje.getDate()).slice(-2)
+const mes = ("0" + (hoje.getMonth() + 1)).slice(-2)
+const mesNome = meses[hoje.getMonth()]
 const ano = hoje.getFullYear()
-if (dia < 10) {
-    dia = '0' + dia
-}
 
 const replicarDadosPorte = () => {
     const dadosPM = document.getElementById('dados-PM').value

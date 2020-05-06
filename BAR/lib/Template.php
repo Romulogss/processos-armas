@@ -1,5 +1,5 @@
 <?php
-namespace raelgc\view {
+namespace Template {
 
 	/**
 	 * Template Management for PHP5

@@ -20,7 +20,7 @@
     $tpl->TITLE = "Transferência de arma de fogo";
     $tpl->FOTO_CEDENTE = '<td style="border-width: 0 1px 0 0;"><input type="text" disabled placeholder="FOTO 3x4" size="15"></td>';
     $tpl->INPUT_COINT = '<input type="text" placeholder="COINT/OPM">';
-    
+    $tpl->addFile("MAJOR", "view/chefe-da-secao.html");
     $tpl->show();
 
 ?>

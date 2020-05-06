@@ -20,6 +20,7 @@
     $tpl->block("BLOCK_SCRIPT");
     $tpl->INPUT_COINT = '<input type="text" placeholder="COINT/OPM">';
     $tpl->TIME = time();
+    $tpl->addFile("MAJOR", "view/chefe-da-secao.html");
     $tpl->show();
 
 ?>
