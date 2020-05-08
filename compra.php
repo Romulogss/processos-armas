@@ -16,6 +16,7 @@
     $tpl->block("BLOCK_INT_2");
     $tpl->block("BLOCK_SCRIPT");
     $tpl->TIME = time();
+    $tpl->addFile("MAJOR", "view/chefe-da-secao.html");
     $tpl->show();
 
 ?>
