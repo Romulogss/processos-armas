@@ -347,20 +347,22 @@ const carregarForm = idForm => {
  * no html
  */
 const carregarStatus = () => {
-    carregarDadosGerais();
-    if (DadosGerais.qtdProcessosInd > 0) carregarForm('industria');
-    if (DadosGerais.qtdProcessosCom > 0) carregarForm('comercio');
-    if (DadosGerais.qtdProcessosTransf > 0) carregarForm('transferencia');
-    if (DadosGerais.qtdProcessosPAF > 0) carregarForm('paf');
-    if (DadosGerais.qtdProcessosStatus > 0) carregarForm('status');
-    if (DadosGerais.qtdProcessosMan > 0) carregarForm('manutencao');
-    const qtdAquisicoes = DadosGerais.qtdProcessosCom + DadosGerais.qtdProcessosInd + DadosGerais.qtdProcessosTransf
-    for (let i = 1; i <= qtdAquisicoes; i++) {
-        completarEndRes(i);
-        unidadeDeMedida(i);
-        tipoAlma(i);
-        paiMae(i)
-    }
+    setTimeout( () => {
+        carregarDadosGerais();
+        if (DadosGerais.qtdProcessosInd) carregarForm('industria');
+        if (DadosGerais.qtdProcessosCom) carregarForm('comercio');
+        if (DadosGerais.qtdProcessosTransf) carregarForm('transferencia');
+        if (DadosGerais.qtdProcessosPAF) carregarForm('paf');
+        if (DadosGerais.qtdProcessosStatus) carregarForm('status');
+        if (DadosGerais.qtdProcessosMan) carregarForm('manutencao');
+        const qtdAquisicoes = DadosGerais.qtdProcessosCom + DadosGerais.qtdProcessosInd + DadosGerais.qtdProcessosTransf
+        for (let i = 1; i <= qtdAquisicoes; i++) {
+            completarEndRes(i);
+            unidadeDeMedida(i);
+            tipoAlma(i);
+            paiMae(i)
+        }
+    },2000)
 }
 /**
  * Limpa todos os dados que estão e localStorage e recarrega a página

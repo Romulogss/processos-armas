@@ -40,8 +40,7 @@
                     <!-- END BLOCK_COMPRA_PUB -->
                     <!-- BEGIN BLOCK_PORTE --> {TIPO_PROCESSO}
                     <!-- END BLOCK_PORTE -->
-                    <!-- BEGIN BLOCK_TRANSF_INT --> TRANFERÊNCIA <input type="text" id="tipo-int"
-                        onblur="tipoTransfInt()">
+                    <!-- BEGIN BLOCK_TRANSF_INT --> TRANFERÊNCIA <input type="text" id="tipo-int">
                     <!-- END BLOCK_TRANSF_INT -->
                     <!-- BEGIN BLOCK_TRANSF_PUB -->
                     <input disabled style="border-color: transparent; color: black " type="text " value="TRANSFERÊNCIA "
@@ -101,7 +100,8 @@
             <tr>
                 <td>
                     <textarea cols="30" rows="3"
-                        placeholder="GRAD/POSTO - RG - NOME COMPLETO - DO ADQUIRENTE"></textarea> {INPUT_COINT} </td>
+                        placeholder="GRAD/POSTO - RG - NOME COMPLETO - DO ADQUIRENTE"
+                        onfocus="tipoTransfInt()"></textarea> {INPUT_COINT} </td>
                 <td>SEÇÃO DE MATERIAL BÉLICO</td>
                 <td>
                     <!-- BEGIN BLOCK_INT_2 -->

@@ -1,21 +1,20 @@
 let FORNECEDORES;
 const buscarFornecedores = (nome, processo) => {
     let fornecedores = ''
-    console.log(FORNECEDORES)
     FORNECEDORES.forEach(fornecedor => {
         if (fornecedor.nome.startsWith(nome.toUpperCase())) {
             fornecedores += `
-            <li class="list-group-item" onclick="preencherInformacoesFornecedor(${processo},'${fornecedor._id}')">${fornecedor.nome}</li>
+            <li class="list-group-item" onclick="preencherInformacoesFornecedor(${processo},'${fornecedor._id}')">${fornecedor.nome} | ${fornecedor.cnpj}</li>
             `
         }
     })
     return fornecedores
 }
 
-const existeFornecedor = fornecedor => {
+const existeFornecedor = cnpj => {
     let result = false;
-    FORNECEDORES.forEach(f => {
-        if (f.nome.toUpperCase() === fornecedor.toUpperCase()) result = true
+    FORNECEDORES.forEach(fornecedor => {
+        if (fornecedor.cnpj === cnpj) result = true
     })
     return result
 }

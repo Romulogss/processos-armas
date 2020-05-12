@@ -19,7 +19,7 @@ const preencherInformacoesModelos = (processo, id) => {
 }
 
 const criarModelo = processo => {
-    const modelo = document.getElementById('modelo-' + processo).value.trim.toUpperCase()
+    const modelo = document.getElementById('modelo-' + processo).value.trim().toUpperCase()
     if (!existeModelo(modelo) && modelo.length) {
         const MODELO = {
             modelo,

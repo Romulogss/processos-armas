@@ -32,7 +32,7 @@ const formAquicisao = (qtd, tipo) => {
             <option value="CBC">CBC</option>
             <option value="IMBEL">IMBEL</option>
         </select> <br>
-        <label for="fornecedor-${qtdProcessos}">IDENTIFICAÇÃO DO VENDEDOR: </label><input onfocus="popularFornecedores()" type="text" size="65" name="fornecedor-${qtdProcessos}" id="fornecedor-${qtdProcessos}" oninput="procurarFornecedor(this.value, ${qtdProcessos})"><br>
+        <label for="fornecedor-${qtdProcessos}">IDENTIFICAÇÃO DO VENDEDOR: </label><input type="text" size="65" name="fornecedor-${qtdProcessos}" id="fornecedor-${qtdProcessos}" oninput="procurarFornecedor(this.value, ${qtdProcessos})"><br>
         <ul class="list-group" id="lista-fornecedores-${qtdProcessos}">
         </ul>
         <label for="end-fornecedor-${qtdProcessos}">ENDEREÇO: </label><input type="text" name="end-fornecedor-${qtdProcessos}" id="end-fornecedor-${qtdProcessos}"
@@ -54,7 +54,7 @@ const formAquicisao = (qtd, tipo) => {
             <option value="4">CBC</option>
             <option value="3">IMBEL</option>
         </select> <br>
-        <label for="modelo-${qtdProcessos}">MODELO: </label> <input onfocus="popularModelos()" oninput="procurarModelos(this.value,${qtdProcessos})" type="text" maxlength="15" name="modelo-${qtdProcessos}" id="modelo-${qtdProcessos}"> <br>
+        <label for="modelo-${qtdProcessos}">MODELO: </label> <input autocomplete="off" oninput="procurarModelos(this.value,${qtdProcessos})" type="text" maxlength="15" name="modelo-${qtdProcessos}" id="modelo-${qtdProcessos}"> <br>
         <ul class="list-group" id="lista-modelos-${qtdProcessos}">
         </ul>
         <label for="serie-${qtdProcessos}">NÚMERO DE SÉRIE: </label><input placeholder="AAA 999999" type="text" name="serie-${qtdProcessos}" id="serie-${qtdProcessos}"> <br>
@@ -103,6 +103,9 @@ const formAquicisao = (qtd, tipo) => {
         <br>
     `
         popularCidades(qtdProcessos)
+        if(tipo === 'industria') {
+            preencherInformacoesFornecedor(qtdProcessos, '5eb048e67645d01fe07a7dc0')
+        }
     }
 }
 
@@ -186,7 +189,7 @@ const formTransf = () => {
                 <option value="4">CBC</option>
                 <option value="3">IMBEL</option>
             </select> <br>
-            <label for="modelo-${qtdProcessos}">MODELO: </label> <input onfocus="popularModelos()" oninput="procurarModelos(this.value,${qtdProcessos})" type="text" maxlength="15" name="modelo-${qtdProcessos}" id="modelo-${qtdProcessos}"> <br>
+            <label for="modelo-${qtdProcessos}">MODELO: </label> <input autocomplete="off" oninput="procurarModelos(this.value,${qtdProcessos})" type="text" maxlength="15" name="modelo-${qtdProcessos}" id="modelo-${qtdProcessos}"> <br>
             <label for="serie-${qtdProcessos}">NÚMERO DE SÉRIE: </label><input placeholder="AAA 999999" type="text" name="serie-${qtdProcessos}" id="serie-${qtdProcessos}"> <br>
             <label for="calibre-${qtdProcessos}">CALIBRE: </label> <input type="text" name="calibre-${qtdProcessos}" id="calibre-${qtdProcessos}"> <br>
             <label for="muni-${qtdProcessos}">CAPACIDADE DE MUNIÇÃO: </label><input type="number" name="muni-${qtdProcessos}" id="muni-${qtdProcessos}"> <br>
