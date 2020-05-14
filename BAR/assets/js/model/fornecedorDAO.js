@@ -11,13 +11,7 @@ const buscarFornecedores = (nome, processo) => {
     return fornecedores
 }
 
-const existeFornecedor = cnpj => {
-    let result = false;
-    FORNECEDORES.forEach(fornecedor => {
-        if (fornecedor.cnpj === cnpj) result = true
-    })
-    return result
-}
+const existeFornecedor = cnpj => FORNECEDORES.find(fornecedor => fornecedor.cnpj === cnpj) ? true : false
 
 const getFornecedores = () => {
     const query = `

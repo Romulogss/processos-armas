@@ -4,6 +4,7 @@ const formAquicisao = (qtd, tipo) => {
         qtdProcessos++;
         let nProcesso = ("00" + i).slice(-3);
         let form = document.getElementById('lista-' + tipo);
+        console.log(tipo, qtdProcessos)
         form.innerHTML += `
         <span class="no-print"><label for="tombamento-${qtdProcessos}">TOMBAMENTO</label> <input type="text" placeholder="999/9999" name="tombamento-${qtdProcessos}" id="tombamento-${qtdProcessos}"></span><br>
         <label for="nome-${qtdProcessos}">${nProcesso}-NOME: </label>
@@ -90,7 +91,9 @@ const formAquicisao = (qtd, tipo) => {
             <option value="E">À Esquerda</option>
         </select>
         </span> <br>
-        <label for="acabamento-${qtdProcessos}">ACABAMENTO: </label><input onblur="criarModelo(${qtdProcessos})" type="text" name="acabamento-${qtdProcessos}" id="acabamento-${qtdProcessos}"> <br>
+        <label for="acabamento-${qtdProcessos}">ACABAMENTO: </label><input oninput="procurarAcabamento(this.value, ${qtdProcessos})" onblur="criarModelo(${qtdProcessos})" type="text" name="acabamento-${qtdProcessos}" id="acabamento-${qtdProcessos}"> <br>
+        <ul class="list-group" id="lista-acabamento-${qtdProcessos}">
+        </ul>
         <label for="pais-${qtdProcessos}">PAÍS DE FABRICAÇÃO: </label>
         <select name="pais-${qtdProcessos}" id="pais-${qtdProcessos}">
             <option value="1">Brasil</option>
@@ -104,7 +107,11 @@ const formAquicisao = (qtd, tipo) => {
     `
         popularCidades(qtdProcessos)
         if(tipo === 'industria') {
-            preencherInformacoesFornecedor(qtdProcessos, '5eb048e67645d01fe07a7dc0')
+            getFornecedores().then(() => {
+                for (let i = 1; i <= DadosGerais.qtdProcessosInd; i++) {
+                    preencherInformacoesFornecedor(i, '5eb048e67645d01fe07a7dc0')
+                }
+            })
         }
     }
 }

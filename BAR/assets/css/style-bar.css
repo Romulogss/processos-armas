@@ -66,6 +66,18 @@ table, table th, table tr, table td, table input {
     position: absolute;
 }
 
+.list-group[id^="lista-modelos"] {
+    width: 210px;
+    margin-left: 98px;
+    position: absolute;
+}
+
+.list-group[id^="lista-acabamento"] {
+    width: 212px;
+    margin-left: 145px;
+    position: absolute;
+}
+
 .list-group-item {
     background-color: #FFF;
     padding: 5px !important;
@@ -75,12 +87,6 @@ table, table th, table tr, table td, table input {
     text-decoration: underline;
     color: blue;
     cursor: pointer;
-}
-
-.list-group[id^="lista-modelos"] {
-    width: 210px;
-    margin-left: 98px;
-    position: absolute;
 }
 
 #btnLimpar {
