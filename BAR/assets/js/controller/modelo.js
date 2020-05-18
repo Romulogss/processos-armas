@@ -16,6 +16,8 @@ const preencherInformacoesModelos = (processo, id) => {
     document.getElementById('tam-cano-' + processo).value = MODELO.comprimentoCano
     document.getElementById('n-raias-' + processo).value = MODELO.raias
     document.getElementById('acabamento-' + processo).value = MODELO.acabamento
+    document.getElementById('especie-' + processo).value = MODELO.especie
+    document.getElementById('funcionamento-' + processo).value = MODELO.funcionamento
 }
 
 const criarModelo = processo => {

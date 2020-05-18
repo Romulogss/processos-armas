@@ -167,7 +167,7 @@ const formTransf = () => {
             <label for="cpf-${qtdProcessos}">CPF: </label><input maxlength="14" oninput="mascaraCPF(this.id)" placeholder="SOMENTE NÚMEROS" type="text" name="cpf-${qtdProcessos}" id="cpf-${qtdProcessos}"><br>
             <strong><i>DADOS DA ARMA</i></strong> <br>
             <label for="identificador-${qtdProcessos}" id="identificador-${qtdProcessos}-label">Nº SGIMA: </label>
-            <input type="number" name="identificador-${qtdProcessos}" id="identificador-${qtdProcessos}"><br>
+            <input type="number" name="identificador-${qtdProcessos}" id="identificador-${qtdProcessos}" style="width:280px"><br>
             <label for="fabricante-${qtdProcessos}">IDENTIFICAÇÃO DO FABRICANTE: </label>
             <select name="fabricante-${qtdProcessos}" id="fabricante-${qtdProcessos}">
                 <option value="TAURUS S/A">TAURUS S/A</option>    
@@ -180,8 +180,8 @@ const formTransf = () => {
             </ul>
             <label for="end-fornecedor-${qtdProcessos}">ENDEREÇO: </label><input type="text" name="end-fornecedor-${qtdProcessos}" id="end-fornecedor-${qtdProcessos}"
                 size="80"> <br>
-            <label for="cnpj-${qtdProcessos}">CNPJ: </label> <input oninput="mascaraCNPJ(this.id)" placeholder="SOMENTE NÚMEROS" type="text" size="17" name="cnpj-${qtdProcessos}" id="cnpj-${qtdProcessos}"> <br>
-            <label>NÚMERO DA NOTA FISCAL: <input placeholder="somente os números" name="n-nf-${qtdProcessos}" type="number"></label> <br>
+            <label for="cnpj-${qtdProcessos}">CNPJ: </label> <input onblur="criarFornecedor(${qtdProcessos})" placeholder="SOMENTE NÚMEROS" type="text" size="17" name="cnpj-${qtdProcessos}" id="cnpj-${qtdProcessos}"> <br>
+            <label>NÚMERO DA NOTA FISCAL: <input placeholder="somente os números" name="n-nf-${qtdProcessos}" type="text"></label> <br>
             <label for="especie-${qtdProcessos}">ESPÉCIE: </label>
             <select name="especie-${qtdProcessos}" id="especie-${qtdProcessos}">
                 <option value="2">PISTOLA</option>
@@ -197,6 +197,8 @@ const formTransf = () => {
                 <option value="3">IMBEL</option>
             </select> <br>
             <label for="modelo-${qtdProcessos}">MODELO: </label> <input autocomplete="off" oninput="procurarModelos(this.value,${qtdProcessos})" type="text" maxlength="15" name="modelo-${qtdProcessos}" id="modelo-${qtdProcessos}"> <br>
+            <ul class="list-group" id="lista-modelos-${qtdProcessos}">
+            </ul>
             <label for="serie-${qtdProcessos}">NÚMERO DE SÉRIE: </label><input placeholder="AAA 999999" type="text" name="serie-${qtdProcessos}" id="serie-${qtdProcessos}"> <br>
             <label for="calibre-${qtdProcessos}">CALIBRE: </label> <input type="text" name="calibre-${qtdProcessos}" id="calibre-${qtdProcessos}"> <br>
             <label for="muni-${qtdProcessos}">CAPACIDADE DE MUNIÇÃO: </label><input type="number" name="muni-${qtdProcessos}" id="muni-${qtdProcessos}"> <br>
@@ -231,6 +233,8 @@ const formTransf = () => {
             </select>
             </span> <br>
             <label for="acabamento-${qtdProcessos}">ACABAMENTO: </label><input onblur="criarModelo(${qtdProcessos})" type="text" name="acabamento-${qtdProcessos}" id="acabamento-${qtdProcessos}"> <br>
+            <ul class="list-group" id="lista-acabamento-${qtdProcessos}">
+            </ul>
             <label for="pais-${qtdProcessos}">PAÍS DE FABRICAÇÃO: </label>
             <select name="pais-${qtdProcessos}" id="pais-${qtdProcessos}">
                 <option value="1">Brasil</option>

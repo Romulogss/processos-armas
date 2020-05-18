@@ -2,7 +2,7 @@ let FORNECEDORES;
 const buscarFornecedores = (nome, processo) => {
     let fornecedores = ''
     FORNECEDORES.forEach(fornecedor => {
-        if (fornecedor.nome.startsWith(nome.toUpperCase())) {
+        if (fornecedor.nome.includes(nome.toUpperCase())) {
             fornecedores += `
             <li class="list-group-item" onclick="preencherInformacoesFornecedor(${processo},'${fornecedor._id}')">${fornecedor.nome} | ${fornecedor.cnpj}</li>
             `
@@ -30,6 +30,7 @@ const getFornecedores = () => {
 const popularFornecedores = () => getFornecedores().then(({ data: { fornecedores } }) => FORNECEDORES = fornecedores)
 
 const createFornecedor = novoFornecedor => {
+    console.log('criou')
     const query = `
         mutation(
             $nome: String!,
@@ -46,5 +47,8 @@ const createFornecedor = novoFornecedor => {
         }
     `
     Graphql.exec(query, novoFornecedor)
-        .then(() => popularFornecedores())
+        .then(() => {
+            popularFornecedores()
+            console.log('criou')
+        })
 }

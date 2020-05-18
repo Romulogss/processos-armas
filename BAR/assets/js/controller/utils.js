@@ -117,7 +117,7 @@ const completarEndRes = processo => {
 const unidadeDeMedida = processo => {
     let comprimento = document.getElementById('tam-cano-' + processo)
     let uniMedida = document.getElementById('uni-medida-' + processo)
-    if(comprimento.value.match(/mm$|cm$|pol$/)) {
+    if (comprimento.value.match(/mm$|cm$|pol$/)) {
         uniMedida.hidden = '1'
     }
     if (comprimento.value.length > 0 && !comprimento.value.match(/mm$|cm$|pol$/)) {
@@ -158,7 +158,7 @@ const paiMae = processo => {
 const identificadorSI = processo => {
     let label = document.getElementById(`identificador-${processo}-label`)
     const tipoTransf = document.getElementById(`tipo-transf-${processo}`).value.split('/')[0]
-    label.textContent = tipoTransf === 'sigma' ? 'Nº SIGMA:' : 'Nº SINARM:'
+    label.innerHTML = tipoTransf === 'sigma' ? 'Nº SIGMA:' : 'Nº SINARM:'
 }
 /**
  * Função verifica se alma é raiada ou não, se for os campos #n-raias e #sentido-raias
@@ -314,8 +314,8 @@ const carregarDadosGerais = () => {
     }
     try {
         if (DadosGerais.qtdProcessosInd || DadosGerais.qtdProcessosCom
-             || DadosGerais.qtdProcessosTransf || DadosGerais.qtdProcessosPAF 
-             || DadosGerais.qtdProcessosStatus || DadosGerais.qtdProcessosMan) {
+            || DadosGerais.qtdProcessosTransf || DadosGerais.qtdProcessosPAF
+            || DadosGerais.qtdProcessosStatus || DadosGerais.qtdProcessosMan) {
             document.getElementById('informações-bar').remove()
             if (DadosGerais.qtdProcessosInd <= 0) document.getElementById('industria').remove();
             if (DadosGerais.qtdProcessosCom <= 0) document.getElementById('comercio').remove();
@@ -347,7 +347,7 @@ const carregarForm = idForm => {
  * no html
  */
 const carregarStatus = () => {
-    setTimeout( () => {
+    setTimeout(() => {
         carregarDadosGerais();
         if (DadosGerais.qtdProcessosInd) carregarForm('industria');
         if (DadosGerais.qtdProcessosCom) carregarForm('comercio');
@@ -361,8 +361,13 @@ const carregarStatus = () => {
             unidadeDeMedida(i);
             tipoAlma(i);
             paiMae(i)
+            try {
+                identificadorSI(i)
+            } catch (error) {
+                console.log(error)
+            }
         }
-    },2000)
+    }, 2000)
 }
 /**
  * Limpa todos os dados que estão e localStorage e recarrega a página
