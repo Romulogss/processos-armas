@@ -291,13 +291,15 @@ const salvarStatus = () => {
  * e criará os formulários que tem algum dado
  */
 const carregarDadosGerais = () => {
-    DadosGerais = JSON.parse(localStorage.dadosGerais)
+    try {
+        DadosGerais = JSON.parse(localStorage.dadosGerais)
+    } catch (error) {
+        console.log(error)
+    }
     if (DadosGerais.qtdProcessosInd) {
         let armasIndustria = document.getElementById('armas-da-industria')
         armasIndustria.innerHTML += DadosGerais.textInd;
         formAquicisao(DadosGerais.qtdProcessosInd, 'industria');
-    } else {
-        document.getElementById('industria').remove();
     }
 
     if (DadosGerais.qtdProcessosCom) {
@@ -308,47 +310,35 @@ const carregarDadosGerais = () => {
         } catch (Exeception) {
             console.log(Exeception)
         }
-    } else {
-        document.getElementById('comercio').remove();
     }
 
     if (DadosGerais.qtdProcessosTransf) {
         let armasTransf = document.getElementById('armas-por-transferencia')
         armasTransf.innerHTML += DadosGerais.textTransf
         formTransf();
-    } else {
-        document.getElementById('transferencia').remove();
     }
 
     if (DadosGerais.qtdProcessosPAF) {
         let armasPAF = document.getElementById('armas-paf')
         armasPAF.innerHTML += DadosGerais.textPAF
         formPAF_CRAF('paf');
-    } else {
-        document.getElementById('paf').remove();
     }
 
     if (DadosGerais.qtdProcessosCRAF) {
         let armasPAF = document.getElementById('armas-craf')
         armasPAF.innerHTML += DadosGerais.textCRAF
         formPAF_CRAF('craf');
-    } else {
-        document.getElementById('craf').remove();
     }
 
     if (DadosGerais.qtdProcessosStatus) {
         let armasStatus = document.getElementById('armas-status')
         armasStatus.innerHTML += DadosGerais.textStatus
         formStatus();
-    } else {
-        document.getElementById('status').remove();
     }
 
     if (DadosGerais.qtdProcessosMan) {
         document.getElementById('armas-manutencao').innerHTML += localStorage.texManu
         formManutencao()
-    } else {
-        document.getElementById('manutencao').remove();
     }
 
     try {
@@ -356,6 +346,12 @@ const carregarDadosGerais = () => {
             || DadosGerais.qtdProcessosTransf || DadosGerais.qtdProcessosPAF
             || DadosGerais.qtdProcessosStatus || DadosGerais.qtdProcessosMan) {
             document.getElementById('informações-bar').remove()
+            if (DadosGerais.qtdProcessosInd <= 0) document.getElementById('industria').remove();
+            if (DadosGerais.qtdProcessosCom <= 0) document.getElementById('comercio').remove();
+            if (DadosGerais.qtdProcessosTransf <= 0) document.getElementById('transferencia').remove();
+            if (DadosGerais.qtdProcessosPAF <= 0) document.getElementById('paf').remove();
+            if (DadosGerais.qtdProcessosStatus <= 0) document.getElementById('status').remove();
+            if (DadosGerais.qtdProcessosMan <= 0) document.getElementById('manutencao').remove();
         }
     } catch (error) {
         console.log(error)
