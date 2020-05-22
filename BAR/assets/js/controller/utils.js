@@ -90,7 +90,7 @@ const getDadosGerais = () => {
     if (DadosGerais.qtdProcessosMan > 0) {
         n++;
         let armasManu = document.getElementById('armas-manutencao');
-        DadosGerais.textManu = `${("0" + n).slice(-2)}. MANUNTENÇÃO DE DADOS NO “SIGMA”`
+        DadosGerais.textManu = `${("0" + n).slice(-2)}. MANUNTENÇÃO DE DADOS NO “SIGMA”.`
         armasManu.innerHTML += DadosGerais.textManu;
         formManutencao()
     } else {
@@ -337,7 +337,7 @@ const carregarDadosGerais = () => {
     }
 
     if (DadosGerais.qtdProcessosMan) {
-        document.getElementById('armas-manutencao').innerHTML += localStorage.texManu
+        document.getElementById('armas-manutencao').innerHTML += DadosGerais.textManu
         formManutencao()
     }
 
@@ -391,6 +391,9 @@ const carregarStatus = () => {
             unidadeDeMedida(i);
             tipoAlma(i);
             paiMae(i)
+            if (pegar('residencia', i).length) {
+                document.getElementById(`dados-endereco-${i}`).remove()
+            }
             try {
                 identificadorSI(i)
             } catch (error) {

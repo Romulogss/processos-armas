@@ -101,6 +101,15 @@ form[id^='lista-'] button {
     margin: 5px;
 }
 
+#tb-manutencao * {
+    padding: 0;
+    margin: 0;
+}
+
+#tb-manutencao input {
+    margin-top: 35px;
+}
+
 #btnLimpar {
     top: 90px;
     position: fixed;

@@ -4,7 +4,6 @@ const formAquicisao = (qtd, tipo) => {
         qtdProcessos++;
         let nProcesso = ("00" + i).slice(-3);
         let form = document.getElementById('lista-' + tipo);
-        console.log(tipo, qtdProcessos)
         form.innerHTML += `
         <span class="no-print"><label for="tombamento-${qtdProcessos}">TOMBAMENTO</label> <input type="text" placeholder="999/9999" name="tombamento-${qtdProcessos}" id="tombamento-${qtdProcessos}"></span><br>
         <label for="nome-${qtdProcessos}">${nProcesso}-NOME: </label>
@@ -15,7 +14,7 @@ const formAquicisao = (qtd, tipo) => {
         <label> DATA E LOCAL DE NASCIMENTO: <input type="date" onfocus="paiMae(${qtdProcessos});" name="nascimento-${qtdProcessos}" id="nascimento-${qtdProcessos}"> <span style="padding-left:10px"></span> <input
                 type="text" name="local-nascimento-${qtdProcessos}" size="40" placeholder="CIDADE NASCIMENTO-ESTADO">
         </label><br>
-        <label> END.RESID: <input placeholder="SEM A CIDADE" type="text" size="50" name="residencia-${qtdProcessos}" id="residencia-${qtdProcessos}" onblur="this.size = this.value.length + 3;"> <select name="cidade-${qtdProcessos}" id="cidade-${qtdProcessos}" style="height: 30px"></select>
+        <label> END.RESID: <input placeholder="SEM A CIDADE" type="text" size="80" name="residencia-${qtdProcessos}" id="residencia-${qtdProcessos}" onblur="this.size = this.value.length + 3;"> <select name="cidade-${qtdProcessos}" id="cidade-${qtdProcessos}" style="height: 30px"></select>
         </label><br>
         <label> END. TRABALHO: </label><i>Rdv. Augusto Montenegro, KM 09, 8401, Parque Guajará, CEP: 66821-000, Belém-PA</i> <br>
         <label> PROFISSÃO: </label> <i>Policial Militar</i> <br>
@@ -99,6 +98,7 @@ const formAquicisao = (qtd, tipo) => {
             <option value="1">Brasil</option>
             <option value="20">EUA</option>
             <option value="175">Turquia</option>
+            <option value="92">Áustria</option>
         </select>
         <p style="font-weight: bold;text-decoration: underline">LEGISLAÇÃO UTILIZADA: LEI 10.826 de 22/12/2003, DECRETO
             5.123 de 01/07/2004 e PORTARIA 069 GabCmdo Geral PMPa de 24/04/2019.</p>
@@ -152,7 +152,7 @@ const formTransf = () => {
             <label> DATA E LOCAL DE NASCIMENTO: <input type="date" onfocus="paiMae(${qtdProcessos});" name="nascimento-${qtdProcessos}" id="nascimento-${qtdProcessos}"> <span style="padding-left:10px"></span> <input
                     type="text" name="local-nascimento-${qtdProcessos}" size="40" placeholder="CIDADE NASCIMENTO-ESTADO">
             </label><br>
-            <label> END.RESID: <input placeholder="SEM A CIDADE" type="text" size="50" name="residencia-${qtdProcessos}" id="residencia-${qtdProcessos}" onblur="this.size = this.value.length + 3;"> <select name="cidade-${qtdProcessos}" id="cidade-${qtdProcessos}" style="height: 30px"></select>
+            <label> END.RESID: <input placeholder="SEM A CIDADE" type="text" size="80" name="residencia-${qtdProcessos}" id="residencia-${qtdProcessos}" onblur="this.size = this.value.length + 3;"> <select name="cidade-${qtdProcessos}" id="cidade-${qtdProcessos}" style="height: 30px"></select>
             </label><br>
             <label> END. TRABALHO: </label><i>Rdv. Augusto Montenegro, KM 09, 8401, Parque Guajará, CEP: 66821-000, Belém-PA</i> <br>
             <label> PROFISSÃO: </label> <i>Policial Militar</i> <br>
@@ -237,6 +237,7 @@ const formTransf = () => {
                 <option value="1">Brasil</option>
                 <option value="20">EUA</option>
                 <option value="175">Turquia</option>
+                <option value="92">Áustria</option>
             </select>
             <p style="font-weight: bold;text-decoration: underline">LEGISLAÇÃO UTILIZADA: LEI 10.826 de 22/12/2003, DECRETO
                 5.123 de 01/07/2004 e PORTARIA 069 GabCmdo Geral PMPa de 24/04/2019.</p>
@@ -254,7 +255,7 @@ const formPAF_CRAF = tipo => {
         let form = document.getElementById(`lista-${tipo}`);
         form.innerHTML +=
             `
-        ${i} - <input type="text" size="60" name="nome-${tipo}-${qtdProcessos}" placeholder="NOME - POST/GRAD RG"> - 
+        ${i} - <input type="text" size="75" name="nome-${tipo}-${qtdProcessos}" placeholder="NOME - POST/GRAD RG"> - 
             <label for="cpf-${tipo}-${qtdProcessos}">CPF:</label> <input maxlength="14" name="cpf-${tipo}-${qtdProcessos}" id="cpf-${tipo}-${qtdProcessos}" type="text" size="11" oninput="mascaraCPF(this.id)">
             <table border="1">
                 <thead>
@@ -301,7 +302,7 @@ const formStatus = () => {
         let form = document.getElementById('lista-status');
         form.innerHTML +=
             `
-        ${i} - <input type="text" size="60" name="nome-status-${qtdProcessos}" placeholder="NOME - POST/GRAD RG"> - 
+        ${i} - <input type="text" size="75" name="nome-status-${qtdProcessos}" placeholder="NOME - POST/GRAD RG"> - 
             <label for="cpf-status-${qtdProcessos}">CPF:</label> <input maxlength="14" name="cpf-status-${qtdProcessos}" id="cpf-status-${qtdProcessos}" type="text" size="11" oninput="mascaraCPF(this.id)">
             <table border="1" class="status">
                 <thead>
