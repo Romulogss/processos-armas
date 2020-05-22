@@ -199,16 +199,13 @@ const buscarCEP = cep => {
 }
 
 const completarEnd = async processo => {
-    if (document.getElementById(`residencia-${processo}`).value.trim() !== '') {
-        const numero = document.getElementById(`numero-${processo}`).value.trim()
-        const cep = document.getElementById(`cep-${processo}`).value.trim()
-        const endereco_cep = await buscarCEP(cep.replace(/\D/g, '')).then(({ logradouro, localidade, cep, bairro }) => { return { localidade, cep, logradouro, bairro } })
-        const cidade = procurarCidade(endereco_cep.localidade)
-        document.getElementById(`cidade-${processo}`).value = cidade.id
-        let endereco_final = `${endereco_cep.logradouro}, ${numero}, ${endereco_cep.bairro}, ${endereco_cep.cep}, ${endereco_cep.localidade}`
-        document.getElementById(`residencia-${processo}`).value = endereco_final
-        document.getElementById('dados-endereco').remove()
-    } else {
-        document.getElementById('dados-endereco').remove()
-    }
+    const numero = document.getElementById(`numero-${processo}`).value.trim()
+    const cep = document.getElementById(`cep-${processo}`).value.trim()
+    const endereco_cep = await buscarCEP(cep.replace(/\D/g, ''))
+        .then(({ logradouro, localidade, cep, bairro }) => { return { localidade, cep, logradouro, bairro } })
+    const cidade = procurarCidade(endereco_cep.localidade)
+    document.getElementById(`cidade-${processo}`).value = cidade.id
+    let endereco_final = `${endereco_cep.logradouro}, ${numero}, ${endereco_cep.bairro}, ${endereco_cep.cep}, ${endereco_cep.localidade}-PA`
+    document.getElementById(`residencia-${processo}`).value = endereco_final
+    document.getElementById(`dados-endereco-${processo}`).remove()
 }
