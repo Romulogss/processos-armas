@@ -123,10 +123,10 @@ const formTransf = () => {
         let form = document.getElementById('lista-transferencia');
         form.innerHTML += `
         <label for="tipo-transf-${qtdProcessos}">${nProcesso}-TIPO DE TRANSFERÊNCIA: </label>
-        <select name="tipo-transf-${qtdProcessos}" id="tipo-transf-${qtdProcessos}" onchange="identificadorSI(${qtdProcessos})">
-            <option value="sigma/sigma">SIGMA/SGIMA</option>
-            <option value="sinarm/sigma">SINARM/SGIMA</option>
-            <option value="sigma/sinarm">SIGMA/SINARM</option>
+        <select name="tipo-transf-${qtdProcessos}" id="tipo-transf-${qtdProcessos}" onchange="tipoTransferencia(${qtdProcessos})">
+            <option value="sigma">SIGMA/SGIMA</option>
+            <option value="sinarm">SINARM/SGIMA</option>
+            <option value="sigma">SIGMA/SINARM</option>
         </select>
         <br>
         <label for="cedente-${qtdProcessos}">DE: </label> <input type="text"
@@ -152,7 +152,7 @@ const formTransf = () => {
             <label> DATA E LOCAL DE NASCIMENTO: <input type="date" onfocus="paiMae(${qtdProcessos});" name="nascimento-${qtdProcessos}" id="nascimento-${qtdProcessos}"> <span style="padding-left:10px"></span> <input
                     type="text" name="local-nascimento-${qtdProcessos}" size="40" placeholder="CIDADE NASCIMENTO-ESTADO">
             </label><br>
-            <label> END.RESID: <input placeholder="SEM A CIDADE" type="text" size="80" name="residencia-${qtdProcessos}" id="residencia-${qtdProcessos}" onblur="this.size = this.value.length + 3;"> <select name="cidade-${qtdProcessos}" id="cidade-${qtdProcessos}" style="height: 30px"></select>
+            <label> END.RESID: <input placeholder="SEM A CIDADE" type="text" size="70" name="residencia-${qtdProcessos}" id="residencia-${qtdProcessos}" onblur="this.size = this.value.length + 3;"> <select name="cidade-${qtdProcessos}" id="cidade-${qtdProcessos}" style="height: 30px"></select>
             </label><br>
             <label> END. TRABALHO: </label><i>Rdv. Augusto Montenegro, KM 09, 8401, Parque Guajará, CEP: 66821-000, Belém-PA</i> <br>
             <label> PROFISSÃO: </label> <i>Policial Militar</i> <br>

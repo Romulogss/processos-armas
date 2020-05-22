@@ -168,9 +168,18 @@ const paiMae = processo => {
  * do sistema de cadastro que a arma está de acordo com o sistema
  * @param {number} processo número contido no id de cada elemente html do processo
  */
-const identificadorSI = processo => {
+const tipoTransferencia = processo => {
     let label = document.getElementById(`identificador-${processo}-label`)
-    const tipoTransf = document.getElementById(`tipo-transf-${processo}`).value.split('/')[0]
+    let profissaoCedente = document.getElementById(`profissao-cedente-${processo}`)
+    let orgaoEmissor = document.getElementById(`emissor-cedente-${processo}`)
+    const tipoTransf = document.getElementById(`tipo-transf-${processo}`).value
+    if(tipoTransf === 'sigma') {
+        profissaoCedente.value = 'Policial Militar'
+        orgaoEmissor.value = 'PMPA'
+    } else {
+        profissaoCedente.value = ''
+        orgaoEmissor.value = ''
+    }
     label.innerHTML = tipoTransf === 'sigma' ? 'Nº SIGMA:' : 'Nº SINARM:'
 }
 /**
@@ -395,7 +404,7 @@ const carregarStatus = () => {
                 document.getElementById(`dados-endereco-${i}`).remove()
             }
             try {
-                identificadorSI(i)
+                tipoTransferencia(i)
             } catch (error) {
                 console.log(error)
             }
