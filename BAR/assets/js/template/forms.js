@@ -15,6 +15,11 @@ const formAquicisao = (qtd, tipo) => {
         <label> DATA E LOCAL DE NASCIMENTO: <input type="date" onfocus="paiMae(${qtdProcessos});" name="nascimento-${qtdProcessos}" id="nascimento-${qtdProcessos}"> <span style="padding-left:10px"></span> <input
                 type="text" name="local-nascimento-${qtdProcessos}" size="40" placeholder="CIDADE NASCIMENTO-ESTADO">
         </label><br>
+        <div id="dados-endereco">
+            <label> Número da casa/apt:</label><input type="text" id="numero-${qtdProcessos}">
+            <label> CEP:</label> <input type="text" id="cep-${qtdProcessos}"> <button class="btn btn-primary" type="button" onclick="completarEnd(${qtdProcessos})">CEP e Nº OK</button>
+            <br>
+            </div>
         <label> END.RESID: <input placeholder="SEM A CIDADE" type="text" size="50" name="residencia-${qtdProcessos}" id="residencia-${qtdProcessos}" onblur="this.size = this.value.length + 3;"> <select name="cidade-${qtdProcessos}" id="cidade-${qtdProcessos}" style="height: 30px"></select>
         </label><br>
         <label> END. TRABALHO: </label><i>Rdv. Augusto Montenegro, KM 09, 8401, Parque Guajará, CEP: 66821-000, Belém-PA</i> <br>
@@ -152,6 +157,11 @@ const formTransf = () => {
             <label> DATA E LOCAL DE NASCIMENTO: <input type="date" onfocus="paiMae(${qtdProcessos});" name="nascimento-${qtdProcessos}" id="nascimento-${qtdProcessos}"> <span style="padding-left:10px"></span> <input
                     type="text" name="local-nascimento-${qtdProcessos}" size="40" placeholder="CIDADE NASCIMENTO-ESTADO">
             </label><br>
+            <div id="dados-endereco">
+            <label> Número da casa/apt:</label><input type="text" id="numero-${qtdProcessos}">
+            <label> CEP:</label> <input type="text" id="cep-${qtdProcessos}"> <button class="btn btn-primary" type="button" onclick="completarEnd(${qtdProcessos})">CEP e Nº OK</button>
+            <br>
+            </div>
             <label> END.RESID: <input placeholder="SEM A CIDADE" type="text" size="50" name="residencia-${qtdProcessos}" id="residencia-${qtdProcessos}" onblur="this.size = this.value.length + 3;"> <select name="cidade-${qtdProcessos}" id="cidade-${qtdProcessos}" style="height: 30px"></select>
             </label><br>
             <label> END. TRABALHO: </label><i>Rdv. Augusto Montenegro, KM 09, 8401, Parque Guajará, CEP: 66821-000, Belém-PA</i> <br>
