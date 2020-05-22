@@ -31,7 +31,6 @@ const getDadosGerais = () => {
     DadosGerais.qtdProcessosTransf = parseInt(document.getElementById('qtd-armas-transf').value);
     DadosGerais.qtdProcessosPAF = parseInt(document.getElementById('qtd-armas-paf').value);
     DadosGerais.qtdProcessosStatus = parseInt(document.getElementById('qtd-armas-status').value);
-    DadosGerais.qtdProcessosMan = parseInt(document.getElementById('qtd-armas-manu').value);
     let n = 0;
     if (ind.length > 0) {
         n++;
@@ -90,7 +89,7 @@ const getDadosGerais = () => {
     if (DadosGerais.qtdProcessosMan > 0) {
         n++;
         let armasManu = document.getElementById('armas-manutencao');
-        DadosGerais.textManu = `${("0" + n).slice(-2)}. MANUNTENÇÃO DE DADOS NO “SIGMA”`
+        DadosGerais.textManu = `${("0" + n).slice(-2)}. MANUNTENÇÃO DE DADOS NO “SIGMA”.`
         armasManu.innerHTML += DadosGerais.textManu;
         formManutencao()
     } else {
@@ -332,7 +331,7 @@ const carregarDadosGerais = () => {
     }
 
     if (DadosGerais.qtdProcessosMan) {
-        document.getElementById('armas-manutencao').innerHTML += localStorage.texManu
+        document.getElementById('armas-manutencao').innerHTML += DadosGerais.textManu
         formManutencao()
     }
 

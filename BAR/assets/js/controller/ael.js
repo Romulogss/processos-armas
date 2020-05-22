@@ -161,7 +161,7 @@ const montarAEL = () => {
         salvarDadosOf(numeroDeLinhas);
     } catch (Excepiton) {
         console.log(Excepiton)
-        alert('VOCÊ ESQUECEU DE ALGUMA INFORMAÇÃO IMPORTANTE!')
+        alert('VOCÊ ESQUECEU DE ALGUMA INFORMAÇÃO IMPORTANTE!\n' + Excepiton)
     }
     window.print()
     window.alert('Você seré redirecionado para a página de ofício!')

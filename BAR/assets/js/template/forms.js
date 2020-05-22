@@ -4,7 +4,6 @@ const formAquicisao = (qtd, tipo) => {
         qtdProcessos++;
         let nProcesso = ("00" + i).slice(-3);
         let form = document.getElementById('lista-' + tipo);
-        console.log(tipo, qtdProcessos)
         form.innerHTML += `
         <span class="no-print"><label for="tombamento-${qtdProcessos}">TOMBAMENTO</label> <input type="text" placeholder="999/9999" name="tombamento-${qtdProcessos}" id="tombamento-${qtdProcessos}"></span><br>
         <label for="nome-${qtdProcessos}">${nProcesso}-NOME: </label>
@@ -27,7 +26,7 @@ const formAquicisao = (qtd, tipo) => {
         <label for="rg-${qtdProcessos}"> NÚMERO DA CÉDULA DE IDENTIDADE: </label> <input type="number" name="rg-${qtdProcessos}" id="rg-${qtdProcessos}">
         <br>
         <label for="emissao-${qtdProcessos}">
-        DATA DA EMISSÃO: </label> <input type="date" name="emissao-${qtdProcessos}" id="emissao-${qtdProcessos}" onfocus="completarEndRes(${qtdProcessos})"> <br>
+        DATA DA EMISSÃO: </label> <input type="date" name="emissao-${qtdProcessos}" id="emissao-${qtdProcessos}"> <br>
         <label for="expedidor-${qtdProcessos}">ORGÃO EXPEDIDOR/UF: </label> <span id="expedidor-${qtdProcessos}"><i>PMPA</i></span> <br>
         <label for="cpf-${qtdProcessos}">CPF: </label><input maxlength="14" oninput="mascaraCPF(this.id)" placeholder="SOMENTE NÚMEROS" type="text" name="cpf-${qtdProcessos}" id="cpf-${qtdProcessos}"><br>
         <strong><i>DADOS DA ARMA</i></strong> <br>
@@ -104,6 +103,7 @@ const formAquicisao = (qtd, tipo) => {
             <option value="1">Brasil</option>
             <option value="20">EUA</option>
             <option value="175">Turquia</option>
+            <option value="92">Áustria</option>
         </select>
         <p style="font-weight: bold;text-decoration: underline">LEGISLAÇÃO UTILIZADA: LEI 10.826 de 22/12/2003, DECRETO
             5.123 de 01/07/2004 e PORTARIA 069 GabCmdo Geral PMPa de 24/04/2019.</p>
@@ -169,7 +169,7 @@ const formTransf = () => {
             <label for="rg-${qtdProcessos}"> NÚMERO DA CÉDULA DE IDENTIDADE: </label> <input type="number" name="rg-${qtdProcessos}" id="rg-${qtdProcessos}">
             <br>
             <label for="emissao-${qtdProcessos}">
-            DATA DA EMISSÃO: </label> <input type="date" name="emissao-${qtdProcessos}" id="emissao-${qtdProcessos}" onfocus="completarEndRes(${qtdProcessos})"> <br>
+            DATA DA EMISSÃO: </label> <input type="date" name="emissao-${qtdProcessos}" id="emissao-${qtdProcessos}"> <br>
             <label for="expedidor-${qtdProcessos}">ORGÃO EXPEDIDOR/UF: </label> <span id="expedidor-${qtdProcessos}"><i>PMPA</i></span> <br>
             <label for="cpf-${qtdProcessos}">CPF: </label><input maxlength="14" oninput="mascaraCPF(this.id)" placeholder="SOMENTE NÚMEROS" type="text" name="cpf-${qtdProcessos}" id="cpf-${qtdProcessos}"><br>
             <strong><i>DADOS DA ARMA</i></strong> <br>
@@ -263,7 +263,7 @@ const formPAF_CRAF = tipo => {
         let form = document.getElementById(`lista-${tipo}`);
         form.innerHTML +=
             `
-        ${i} - <input type="text" size="60" name="nome-${tipo}-${qtdProcessos}" placeholder="NOME - POST/GRAD RG"> - 
+        ${i} - <input type="text" size="70" name="nome-${tipo}-${qtdProcessos}" placeholder="NOME - POST/GRAD RG"> - 
             <label for="cpf-${tipo}-${qtdProcessos}">CPF:</label> <input maxlength="14" name="cpf-${tipo}-${qtdProcessos}" id="cpf-${tipo}-${qtdProcessos}" type="text" size="11" oninput="mascaraCPF(this.id)">
             <table border="1">
                 <thead>
