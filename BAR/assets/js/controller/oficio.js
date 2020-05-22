@@ -38,5 +38,4 @@ const salvarDadosOf = linhas => {
     }
 
     localStorage.setItem('listaProcessos', JSON.stringify(listaProcessos))
-
 }

@@ -2,6 +2,7 @@ table {
     width: 100%;
     border-width: 1px;
     text-align: center;
+    font-size: 14px !important;
 }
 
 th hr {

@@ -1,4 +1,4 @@
-const cidades = [
+const CIDADES = [
     { id: '119278', nome: 'Ipixuna do Pará' },
     { id: '119291', nome: 'Jacareacanga' },
     { id: '119299', nome: 'Jacundá' },
@@ -171,18 +171,44 @@ const cidades = [
     { id: '5206', nome: 'Santa Cruz do Arari' },
     { id: '5217', nome: 'Santo Antônio do Tauá' }
 ]
-
+const procurarCidade = nome => {
+    return CIDADES.find(cidade => cidade.nome === nome)
+}
 const popularCidades = processo => {
     let select = document.getElementById('cidade-' + processo)
-    cidades.sort((a,b) => {
+    CIDADES.sort((a, b) => {
         if (a.nome > b.nome) return 1;
-        if(a.nome < b.nome) return -1;
+        if (a.nome < b.nome) return -1;
         return 0;
     })
-    cidades.forEach(cidade => {
+    CIDADES.forEach(cidade => {
         let option = document.createElement('option')
         option.setAttribute('value', cidade.id);
         option.textContent = cidade.nome
         select.appendChild(option);
     })
+}
+
+const buscarCEP = cep => {
+    const url = `https://viacep.com.br/ws/${cep}/json/`
+    return fetch(url, {
+        method: 'GET'
+    })
+        .then(resposta => resposta.json())
+        .catch(err => console.log(err))
+}
+
+const completarEnd = async processo => {
+    if (document.getElementById(`residencia-${processo}`).value.trim() !== '') {
+        const numero = document.getElementById(`numero-${processo}`).value.trim()
+        const cep = document.getElementById(`cep-${processo}`).value.trim()
+        const endereco_cep = await buscarCEP(cep.replace(/\D/g, '')).then(({ logradouro, localidade, cep, bairro }) => { return { localidade, cep, logradouro, bairro } })
+        const cidade = procurarCidade(endereco_cep.localidade)
+        document.getElementById(`cidade-${processo}`).value = cidade.id
+        let endereco_final = `${endereco_cep.logradouro}, ${numero}, ${endereco_cep.bairro}, ${endereco_cep.cep}, ${endereco_cep.localidade}`
+        document.getElementById(`residencia-${processo}`).value = endereco_final
+        document.getElementById('dados-endereco').remove()
+    } else {
+        document.getElementById('dados-endereco').remove()
+    }
 }

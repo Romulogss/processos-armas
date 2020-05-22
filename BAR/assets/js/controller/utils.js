@@ -4,12 +4,14 @@ let DadosGerais = {
     qtdProcessosInd: 0,
     qtdProcessosTransf: 0,
     qtdProcessosPAF: 0,
+    qtdProcessosCRAF: 0,
     qtdProcessosStatus: 0,
     qtdProcessosMan: 0,
     textCom: '',
     textInd: '',
     textTransf: '',
     textPAF: '',
+    textCRAF: '',
     textStatus: '',
     textManu: ''
 }
@@ -22,6 +24,7 @@ const getDadosGerais = () => {
     const com = document.getElementById('text-aux-com').value
     const transf = document.getElementById('text-aux-transf').value
     const paf = document.getElementById('text-aux-paf').value
+    const craf = document.getElementById('text-aux-craf').value
     const status = document.getElementById('text-aux-status').value
     DadosGerais.qtdProcessosInd = parseInt(document.getElementById('qtd-armas-ind').value);
     DadosGerais.qtdProcessosCom = parseInt(document.getElementById('qtd-armas-com').value);
@@ -62,7 +65,16 @@ const getDadosGerais = () => {
         let armasPAF = document.getElementById('armas-paf')
         DadosGerais.textPAF = `${("0" + n).slice(-2)}. SOLICITAÇÃO PARA EXPEDIÇÃO DE PAF (PORTE DE ARMA DE FOGO) PARA POLICIAL MILITAR DA RESERVA REMUNERADA, DE CALIBRE PERMITIDO, DE ${paf}.`;
         armasPAF.innerHTML += DadosGerais.textPAF;
-        formPAF()
+        formPAF_CRAF('paf')
+    } else {
+        document.getElementById('paf').remove();
+    }
+    if (craf.length > 0) {
+        n++;
+        let armasCRAF = document.getElementById('armas-craf')
+        DadosGerais.textCRAF = `${("0" + n).slice(-2)}. SOLICITAÇÃO PARA SEGUNDA VIA DE CRAF (CERTIFICADO DE REGISTRO DE ARMA DE FOGO) PARA POLICIAL MILITAR DA ATIVA E/OU RESERVA REMUNERADA, DE ${craf}.`;
+        armasCRAF.innerHTML += DadosGerais.textCRAF;
+        formPAF_CRAF('craf')
     } else {
         document.getElementById('paf').remove();
     }
@@ -99,6 +111,7 @@ const completarEndRes = processo => {
     if (endereco.value.length > 0) {
         if (endereco.value.match(/-PA$/)) {
             document.getElementById('cidade-' + processo).hidden = '1'
+            endereco.size = '90'
             return
         }
         cidades.forEach(city => {
@@ -106,7 +119,7 @@ const completarEndRes = processo => {
         })
         document.getElementById('cidade-' + processo).hidden = '1'
         endereco.value += ', ' + cidade + '-PA'
-        endereco.size = '100'
+        endereco.size = '90'
     }
 }
 /**
@@ -283,7 +296,10 @@ const carregarDadosGerais = () => {
         let armasIndustria = document.getElementById('armas-da-industria')
         armasIndustria.innerHTML += DadosGerais.textInd;
         formAquicisao(DadosGerais.qtdProcessosInd, 'industria');
+    } else {
+        document.getElementById('industria').remove();
     }
+
     if (DadosGerais.qtdProcessosCom) {
         try {
             let armasComercio = document.getElementById('armas-do-comercio')
@@ -292,37 +308,54 @@ const carregarDadosGerais = () => {
         } catch (Exeception) {
             console.log(Exeception)
         }
+    } else {
+        document.getElementById('comercio').remove();
     }
+
     if (DadosGerais.qtdProcessosTransf) {
         let armasTransf = document.getElementById('armas-por-transferencia')
         armasTransf.innerHTML += DadosGerais.textTransf
         formTransf();
+    } else {
+        document.getElementById('transferencia').remove();
     }
+
     if (DadosGerais.qtdProcessosPAF) {
         let armasPAF = document.getElementById('armas-paf')
         armasPAF.innerHTML += DadosGerais.textPAF
-        formPAF();
+        formPAF_CRAF('paf');
+    } else {
+        document.getElementById('paf').remove();
     }
+
+    if (DadosGerais.qtdProcessosCRAF) {
+        let armasPAF = document.getElementById('armas-craf')
+        armasPAF.innerHTML += DadosGerais.textCRAF
+        formPAF_CRAF('craf');
+    } else {
+        document.getElementById('craf').remove();
+    }
+
     if (DadosGerais.qtdProcessosStatus) {
         let armasStatus = document.getElementById('armas-status')
         armasStatus.innerHTML += DadosGerais.textStatus
         formStatus();
+    } else {
+        document.getElementById('status').remove();
     }
+
     if (DadosGerais.qtdProcessosMan) {
         document.getElementById('armas-manutencao').innerHTML += localStorage.texManu
         formManutencao()
+    } else {
+        document.getElementById('manutencao').remove();
     }
+
     try {
         if (DadosGerais.qtdProcessosInd || DadosGerais.qtdProcessosCom
             || DadosGerais.qtdProcessosTransf || DadosGerais.qtdProcessosPAF
             || DadosGerais.qtdProcessosStatus || DadosGerais.qtdProcessosMan) {
             document.getElementById('informações-bar').remove()
-            if (DadosGerais.qtdProcessosInd <= 0) document.getElementById('industria').remove();
-            if (DadosGerais.qtdProcessosCom <= 0) document.getElementById('comercio').remove();
-            if (DadosGerais.qtdProcessosTransf <= 0) document.getElementById('transferencia').remove();
-            if (DadosGerais.qtdProcessosPAF <= 0) document.getElementById('paf').remove();
-            if (DadosGerais.qtdProcessosStatus <= 0) document.getElementById('status').remove();
-            if (DadosGerais.qtdProcessosMan <= 0) document.getElementById('manutencao').remove();
         }
     } catch (error) {
         console.log(error)
@@ -353,6 +386,7 @@ const carregarStatus = () => {
         if (DadosGerais.qtdProcessosCom) carregarForm('comercio');
         if (DadosGerais.qtdProcessosTransf) carregarForm('transferencia');
         if (DadosGerais.qtdProcessosPAF) carregarForm('paf');
+        if (DadosGerais.qtdProcessosCRAF) carregarForm('craf');
         if (DadosGerais.qtdProcessosStatus) carregarForm('status');
         if (DadosGerais.qtdProcessosMan) carregarForm('manutencao');
         const qtdAquisicoes = DadosGerais.qtdProcessosCom + DadosGerais.qtdProcessosInd + DadosGerais.qtdProcessosTransf

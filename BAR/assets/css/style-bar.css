@@ -41,7 +41,7 @@ input[id='dia-pub'], input[id='mes-pub'] {
 }
 
 main {
-    font-size: 16px;
+    font-size: 16pt;
 }
 
 P {
@@ -53,7 +53,8 @@ table, table th, table tr, table td, table input {
     font-size: 12px !important;
     border-width: 1px;
     border-color: #000 !important;
-    padding: 3px;
+    padding: 0px;
+    margin: 0px;
 }
 
 .table * {
@@ -87,6 +88,17 @@ table, table th, table tr, table td, table input {
     text-decoration: underline;
     color: blue;
     cursor: pointer;
+}
+
+.status, .status * {
+    padding: 0;
+}
+
+form[id^='lista-'] button {
+    font-size: 15px !important;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 5px;
+    margin: 5px;
 }
 
 #btnLimpar {
@@ -127,18 +139,17 @@ table, table th, table tr, table td, table input {
 
 @media print {
     body.container {
-        width: 18.6cm;
-        height: 100%;
-        padding-bottom: 0;
-        margin-bottom: 0;
+        width: 21cm;
+        height: 29.7cm;
+        margin-top: 20px;
     }
     
     @page {
         size: 'A4';
-        width: 18.6cm;
-        height: 100%;
-        margin-bottom: 0;
-        margin-top: 0;
+        width: 21cm;
+        height: 29.7cm;
+        margin-top: 30px;
+        margin-bottom: 30px;
     }
     input, select {
         border-color: transparent;

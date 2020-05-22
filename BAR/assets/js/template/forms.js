@@ -10,7 +10,7 @@ const formAquicisao = (qtd, tipo) => {
         <label for="nome-${qtdProcessos}">${nProcesso}-NOME: </label>
         <input type="text" size="90" onblur="pegarRg(${qtdProcessos})" name="nome-${qtdProcessos}" id="nome-${qtdProcessos}" placeholder="FULANO - SUB TEN PM RG 99999"><br>
         <label> FILIAÇÃO: <input type="text" size="30" name="pai-${qtdProcessos}" id="pai-${qtdProcessos}" onblur="this.style.width = (this.value.length * 10) + 'px';" placeholder="PAI">
-            <span style="font-weight: normal;" id="e-${qtdProcessos}">e</span> <input type="text" onblur="this.size = this.value.length + 6;" placeholder="MAE" size="30" name="mae-${qtdProcessos}" id="mae-${qtdProcessos}">
+            <span style="font-weight: normal;" id="e-${qtdProcessos}">e</span> <input type="text" onblur="this.size = this.value.length + 6;" placeholder="MAE" size="50" name="mae-${qtdProcessos}" id="mae-${qtdProcessos}">
         </label><br>
         <label> DATA E LOCAL DE NASCIMENTO: <input type="date" onfocus="paiMae(${qtdProcessos});" name="nascimento-${qtdProcessos}" id="nascimento-${qtdProcessos}"> <span style="padding-left:10px"></span> <input
                 type="text" name="local-nascimento-${qtdProcessos}" size="40" placeholder="CIDADE NASCIMENTO-ESTADO">
@@ -122,9 +122,6 @@ const formTransf = () => {
         const nProcesso = ("00" + i).slice(-3)
         let form = document.getElementById('lista-transferencia');
         form.innerHTML += `
-        <span class="no-print"><label for="tombamento-${qtdProcessos}">TOMBAMENTO</label> <input
-                type="text" placeholder="999/9999" name="tombamento-${qtdProcessos}"
-                id="tombamento-${qtdProcessos}"></span><br>
         <label for="tipo-transf-${qtdProcessos}">${nProcesso}-TIPO DE TRANSFERÊNCIA: </label>
         <select name="tipo-transf-${qtdProcessos}" id="tipo-transf-${qtdProcessos}" onchange="identificadorSI(${qtdProcessos})">
             <option value="sigma/sigma">SIGMA/SGIMA</option>
@@ -150,7 +147,7 @@ const formTransf = () => {
             <label for="nome-${qtdProcessos}">${nProcesso}-NOME: </label>
             <input type="text" size="90" onblur="pegarRg(${qtdProcessos})" name="nome-${qtdProcessos}" id="nome-${qtdProcessos}" placeholder="FULANO - SUB TEN PM RG 99999"><br>
             <label> FILIAÇÃO: <input type="text" size="30" name="pai-${qtdProcessos}" id="pai-${qtdProcessos}" onblur="this.style.width = (this.value.length * 10) + 'px';" placeholder="PAI">
-                <span style="font-weight: normal;" id="e-${qtdProcessos}">e</span> <input type="text" onblur="this.size = this.value.length + 6;" placeholder="MAE" size="30" name="mae-${qtdProcessos}" id="mae-${qtdProcessos}">
+                <span style="font-weight: normal;" id="e-${qtdProcessos}">e</span> <input type="text" onblur="this.size = this.value.length + 6;" placeholder="MAE" size="50" name="mae-${qtdProcessos}" id="mae-${qtdProcessos}">
             </label><br>
             <label> DATA E LOCAL DE NASCIMENTO: <input type="date" onfocus="paiMae(${qtdProcessos});" name="nascimento-${qtdProcessos}" id="nascimento-${qtdProcessos}"> <span style="padding-left:10px"></span> <input
                     type="text" name="local-nascimento-${qtdProcessos}" size="40" placeholder="CIDADE NASCIMENTO-ESTADO">
@@ -167,7 +164,7 @@ const formTransf = () => {
             <label for="cpf-${qtdProcessos}">CPF: </label><input maxlength="14" oninput="mascaraCPF(this.id)" placeholder="SOMENTE NÚMEROS" type="text" name="cpf-${qtdProcessos}" id="cpf-${qtdProcessos}"><br>
             <strong><i>DADOS DA ARMA</i></strong> <br>
             <label for="identificador-${qtdProcessos}" id="identificador-${qtdProcessos}-label">Nº SGIMA: </label>
-            <input type="number" name="identificador-${qtdProcessos}" id="identificador-${qtdProcessos}" style="width:280px"><br>
+            <input type="text" name="identificador-${qtdProcessos}" id="identificador-${qtdProcessos}" style="width:280px"><br>
             <label for="fabricante-${qtdProcessos}">IDENTIFICAÇÃO DO FABRICANTE: </label>
             <select name="fabricante-${qtdProcessos}" id="fabricante-${qtdProcessos}">
                 <option value="TAURUS S/A">TAURUS S/A</option>    
@@ -247,17 +244,18 @@ const formTransf = () => {
             <br>
         `
         popularCidades(qtdProcessos);
+        // completarEnd(qtdProcessos)
     }
 }
 
-const formPAF = () => {
-    for (let i = 1; i <= DadosGerais.qtdProcessosPAF; i++) {
+const formPAF_CRAF = tipo => {
+    for (let i = 1; i <= eval(`DadosGerais.qtdProcessos${tipo.toUpperCase()}`); i++) {
         qtdProcessos++;
-        let form = document.getElementById('lista-paf');
+        let form = document.getElementById(`lista-${tipo}`);
         form.innerHTML +=
             `
-        ${i} - <input type="text" size="60" name="nome-paf-${qtdProcessos}" placeholder="NOME - POST/GRAD RG"> - 
-            <label for="cpf-paf-${qtdProcessos}">CPF:</label> <input maxlength="14" name="cpf-paf-${qtdProcessos}" id="cpf-paf-${qtdProcessos}" type="text" size="11" oninput="mascaraCPF(this.id)">
+        ${i} - <input type="text" size="60" name="nome-${tipo}-${qtdProcessos}" placeholder="NOME - POST/GRAD RG"> - 
+            <label for="cpf-${tipo}-${qtdProcessos}">CPF:</label> <input maxlength="14" name="cpf-${tipo}-${qtdProcessos}" id="cpf-${tipo}-${qtdProcessos}" type="text" size="11" oninput="mascaraCPF(this.id)">
             <table border="1">
                 <thead>
                     <tr>
@@ -277,18 +275,18 @@ const formPAF = () => {
                 </thead>
                 <tbody>
                     <tr>
-                        <td><input type="text" style="width: 120px" name="bar-paf-${qtdProcessos}"></td>
-                        <td><input type="text" style="width: 80px" name="esp-paf-${qtdProcessos}"></td>
-                        <td><input type="text" style="width: 80px" name="fun-paf-${qtdProcessos}"></td>
-                        <td><input type="text" style="width: 95px" name="acab-paf-${qtdProcessos}"></td>
-                        <td><input type="text" style="width: 75px" name="marca-paf-${qtdProcessos}"></td>
-                        <td><input type="text" style="width: 60px" name="cal-paf-${qtdProcessos}"></td>
-                        <td><input type="text" style="width: 90px" name="mod-paf-${qtdProcessos}"></td>
-                        <td><input type="text" style="width: 60px" name="capac-paf-${qtdProcessos}"></td>
-                        <td><input type="text" style="width: 55px" name="cano-paf-${qtdProcessos}"></td>
-                        <td><input type="text" style="width: 70px" name="pais-paf-${qtdProcessos}"></td>
-                        <td><input type="text" style="width: 80px" name="n-serie-paf-${qtdProcessos}"></td>
-                        <td><input type="text" style="width: 60px" name="sigma-paf-${qtdProcessos}"></td>
+                        <td><input type="text" style="width: 120px" name="bar-${tipo}-${qtdProcessos}"></td>
+                        <td><input type="text" style="width: 80px" name="esp-${tipo}-${qtdProcessos}"></td>
+                        <td><input type="text" style="width: 80px" name="fun-${tipo}-${qtdProcessos}"></td>
+                        <td><input type="text" style="width: 95px" name="acab-${tipo}-${qtdProcessos}"></td>
+                        <td><input type="text" style="width: 75px" name="marca-${tipo}-${qtdProcessos}"></td>
+                        <td><input type="text" style="width: 60px" name="cal-${tipo}-${qtdProcessos}"></td>
+                        <td><input type="text" style="width: 90px" name="mod-${tipo}-${qtdProcessos}"></td>
+                        <td><input type="text" style="width: 60px" name="capac-${tipo}-${qtdProcessos}"></td>
+                        <td><input type="text" style="width: 55px" name="cano-${tipo}-${qtdProcessos}"></td>
+                        <td><input type="text" style="width: 70px" name="pais-${tipo}-${qtdProcessos}"></td>
+                        <td><input type="text" style="width: 80px" name="n-serie-${tipo}-${qtdProcessos}"></td>
+                        <td><input type="text" style="width: 60px" name="sigma-${tipo}-${qtdProcessos}"></td>
                     </tr>
                 </tbody>
             </table>
@@ -305,7 +303,7 @@ const formStatus = () => {
             `
         ${i} - <input type="text" size="60" name="nome-status-${qtdProcessos}" placeholder="NOME - POST/GRAD RG"> - 
             <label for="cpf-status-${qtdProcessos}">CPF:</label> <input maxlength="14" name="cpf-status-${qtdProcessos}" id="cpf-status-${qtdProcessos}" type="text" size="11" oninput="mascaraCPF(this.id)">
-            <table border="1">
+            <table border="1" class="status">
                 <thead>
                     <tr>
                         <th>BOP</th>
@@ -325,14 +323,14 @@ const formStatus = () => {
                 </thead>
                 <tbody>
                     <tr>
-                        <td><input type="text" style="width: 120px" name="bop-status-${qtdProcessos}"></td>
-                        <td><input type="text" style="width: 120px" name="bar-status-${qtdProcessos}"></td>
+                        <td><input type="text" style="width: 100px" name="bop-status-${qtdProcessos}"></td>
+                        <td><input type="text" style="width: 85px" name="bar-status-${qtdProcessos}"></td>
                         <td><input type="text" style="width: 80px" name="esp-status-${qtdProcessos}"></td>
                         <td><input type="text" style="width: 80px" name="fun-status-${qtdProcessos}"></td>
                         <td><input type="text" style="width: 95px" name="acab-status-${qtdProcessos}"></td>
                         <td><input type="text" style="width: 75px" name="marca-status-${qtdProcessos}"></td>
                         <td><input type="text" style="width: 60px" name="cal-status-${qtdProcessos}"></td>
-                        <td><input type="text" style="width: 90px" name="mod-status-${qtdProcessos}"></td>
+                        <td><input type="text" style="width: 70px" name="mod-status-${qtdProcessos}"></td>
                         <td><input type="text" style="width: 60px" name="capac-status-${qtdProcessos}"></td>
                         <td><input type="text" style="width: 55px" name="cano-status-${qtdProcessos}"></td>
                         <td><input type="text" style="width: 70px" name="pais-status-${qtdProcessos}"></td>
