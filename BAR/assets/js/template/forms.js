@@ -124,8 +124,8 @@ const formTransf = () => {
         form.innerHTML += `
         <label for="tipo-transf-${qtdProcessos}">${nProcesso}-TIPO DE TRANSFERÊNCIA: </label>
         <select name="tipo-transf-${qtdProcessos}" id="tipo-transf-${qtdProcessos}" onchange="tipoTransferencia(${qtdProcessos})">
-            <option value="sigma">SIGMA/SGIMA</option>
-            <option value="sinarm">SINARM/SGIMA</option>
+            <option value="sigma">SIGMA/SIGMA</option>
+            <option value="sinarm">SINARM/SIGMA</option>
             <option value="sigma">SIGMA/SINARM</option>
         </select>
         <br>
@@ -352,7 +352,7 @@ const formManutencao = () => {
         form.innerHTML +=
             `
        <label for="nome-manu">${("0" + i).slice(-2)}-NOME: </label> <input type="text" onblur="pegarRg(${qtdProcessos})" name="nome-manu-${qtdProcessos}" size="80"> <br>
-            <label for="om-manu">OM: </label> <input type="text" name="om-manu-${qtdProcessos}" size="30"><br>
+            <label for="om-manu">OPM: </label> <input type="text" name="om-manu-${qtdProcessos}" size="30"><br>
             <label for="objeto-manu">OBJETO: </label> <input type="text" size="90" name="objeto-manu-${qtdProcessos}"><br>
             DADOS DA ARMA A SER MANUTENINDO.
             <table class="table" border="1" id="tb-manutencao">
