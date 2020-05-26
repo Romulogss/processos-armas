@@ -867,8 +867,7 @@ const buscarCidades = (nome, processo) => {
 const preencherInformacoesCidade = (id, processo) => {
     document.getElementById(`lista-cidades-${processo}`).innerHTML = ''
     document.getElementById(`cidade-${processo}`).value = id
-    console.log(id)
-    console.log(CIDADES.find(cidade => cidade.id ==  id))
+    
 }
 
 const buscarCEP = cep => {

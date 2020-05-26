@@ -108,6 +108,7 @@ const completarEndRes = processo => {
     let endereco = document.getElementById('residencia-' + processo)
     let cidade = document.getElementById('cidade-' + processo).value
     if (endereco.value.length > 0) {
+        document.getElementById(`cidades-input-${processo}`).remove()
         if (endereco.value.match(/-PA$/)) {
             document.getElementById('cidade-' + processo).hidden = '1'
             endereco.size = '90'
@@ -261,8 +262,10 @@ const salvarForm = idForm => {
     let form = document.body.querySelector(`#lista-${idForm}`);
     let json = {};
     for (let dados of form) {
-        const val = dados.value;
-        json[dados.name] = val;
+        if (dados.name.trim().length) {
+            const val = dados.value;
+            json[dados.name] = val;
+        }
     }
 
     localStorage.setItem(`formulario-${idForm}`, JSON.stringify(json));

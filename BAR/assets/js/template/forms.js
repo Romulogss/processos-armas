@@ -15,16 +15,16 @@ const formAquicisao = (qtd, tipo) => {
                 type="text" name="local-nascimento-${qtdProcessos}" size="40" placeholder="CIDADE NASCIMENTO-ESTADO">
         </label><br>
         <div id="dados-endereco-${qtdProcessos}">
-            <label> Número da casa/apt:</label><input type="text" id="numero-${qtdProcessos}">
+            <label> COMPLEMENTE E Nº DA CASA/APT:</label><input type="text" id="numero-${qtdProcessos}">
             <label> CEP:</label> <input type="text" id="cep-${qtdProcessos}">
             <button class="btn btn-primary" type="button" onclick="completarEnd(${qtdProcessos})">CEP e Nº OK</button>
             <button class="btn btn-danger" type="button" onclick="document.getElementById('dados-endereco-${qtdProcessos}').remove();">Digitar Endereço</button>
             <br>
             </div>
-        <label>Cidade: </label><input type="text" oninput="procurarCidades(this.value, ${qtdProcessos})">
+        <label>CIDADE: </label><input type="text" oninput="procurarCidades(this.value, ${qtdProcessos})" id="cidades-input-${qtdProcessos}">
         <ul class="list-group" id="lista-cidades-${qtdProcessos}">
         </ul>
-        <label> END.RESID: <input placeholder="SEM A CIDADE" type="text" size="80" name="residencia-${qtdProcessos}" id="residencia-${qtdProcessos}" onblur="this.size = this.value.length + 3;"> <select hidden name="cidade-${qtdProcessos}" id="cidade-${qtdProcessos}" style="height: 30px"></select>
+        <label> END.RESID: <input placeholder="SEM A CIDADE" type="text" size="80" name="residencia-${qtdProcessos}" id="residencia-${qtdProcessos}"> <select hidden name="cidade-${qtdProcessos}" id="cidade-${qtdProcessos}" style="height: 30px"></select>
         </label><br>
         <label> END. TRABALHO: </label><i>Rdv. Augusto Montenegro, KM 09, 8401, Parque Guajará, CEP: 66821-000, Belém-PA</i> <br>
         <label> PROFISSÃO: </label> <i>Policial Militar</i> <br>
@@ -384,7 +384,7 @@ const formManutencao = () => {
                         <th><input type="text" name="marca-manu-${qtdProcessos}"></th>
                         <th><input type="text" name="cal-serie-manu-${qtdProcessos}"></th>
                         <th><input type="text" name="sigma-manu-${qtdProcessos}"></th>
-                        <th><textarea name="procedimento-manu-${qtdProcessos}" cols="19" rows="4"></textarea></th>
+                        <th><textarea class="procedimento-manu" name="procedimento-manu-${qtdProcessos}" cols="25" rows="5"></textarea></th>
                     </tr>
                 </tbody>
             </table>
