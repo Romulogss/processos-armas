@@ -73,6 +73,12 @@ table, table th, table tr, table td, table input {
     position: absolute;
 }
 
+.list-group[id^="lista-cidades"] {
+    width: 213px;
+    margin-left: 65px;
+    position: absolute;
+}
+
 .list-group[id^="lista-acabamento"] {
     width: 212px;
     margin-left: 145px;

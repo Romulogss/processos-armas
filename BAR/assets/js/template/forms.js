@@ -16,9 +16,14 @@ const formAquicisao = (qtd, tipo) => {
         </label><br>
         <div id="dados-endereco-${qtdProcessos}">
             <label> Número da casa/apt:</label><input type="text" id="numero-${qtdProcessos}">
-            <label> CEP:</label> <input type="text" id="cep-${qtdProcessos}"> <button class="btn btn-primary" type="button" onclick="completarEnd(${qtdProcessos})">CEP e Nº OK</button>
+            <label> CEP:</label> <input type="text" id="cep-${qtdProcessos}">
+            <button class="btn btn-primary" type="button" onclick="completarEnd(${qtdProcessos})">CEP e Nº OK</button>
+            <button class="btn btn-danger" type="button" onclick="document.getElementById('dados-endereco-${qtdProcessos}').remove();">Digitar Endereço</button>
             <br>
             </div>
+        <label>Cidade: </label><input type="text" oninput="procurarCidades(this.value, ${qtdProcessos})">
+        <ul class="list-group" id="lista-cidades-${qtdProcessos}">
+        </ul>
         <label> END.RESID: <input placeholder="SEM A CIDADE" type="text" size="80" name="residencia-${qtdProcessos}" id="residencia-${qtdProcessos}" onblur="this.size = this.value.length + 3;"> <select hidden name="cidade-${qtdProcessos}" id="cidade-${qtdProcessos}" style="height: 30px"></select>
         </label><br>
         <label> END. TRABALHO: </label><i>Rdv. Augusto Montenegro, KM 09, 8401, Parque Guajará, CEP: 66821-000, Belém-PA</i> <br>
@@ -26,7 +31,7 @@ const formAquicisao = (qtd, tipo) => {
         <label for="rg-${qtdProcessos}"> NÚMERO DA CÉDULA DE IDENTIDADE: </label> <input type="number" name="rg-${qtdProcessos}" id="rg-${qtdProcessos}">
         <br>
         <label for="emissao-${qtdProcessos}">
-        DATA DA EMISSÃO: </label> <input type="date" name="emissao-${qtdProcessos}" id="emissao-${qtdProcessos}"> <br>
+        DATA DA EMISSÃO: </label> <input type="date" name="emissao-${qtdProcessos}" id="emissao-${qtdProcessos}" onfocus="completarEndRes(${qtdProcessos})"> <br>
         <label for="expedidor-${qtdProcessos}">ORGÃO EXPEDIDOR/UF: </label> <span id="expedidor-${qtdProcessos}"><i>PMPA</i></span> <br>
         <label for="cpf-${qtdProcessos}">CPF: </label><input maxlength="14" oninput="mascaraCPF(this.id)" placeholder="SOMENTE NÚMEROS" type="text" name="cpf-${qtdProcessos}" id="cpf-${qtdProcessos}"><br>
         <strong><i>DADOS DA ARMA</i></strong> <br>

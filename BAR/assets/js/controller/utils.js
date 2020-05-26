@@ -113,7 +113,7 @@ const completarEndRes = processo => {
             endereco.size = '90'
             return
         }
-        cidades.forEach(city => {
+        CIDADES.forEach(city => {
             cidade = city.id === cidade ? city.nome : cidade;
         })
         document.getElementById('cidade-' + processo).hidden = '1'
