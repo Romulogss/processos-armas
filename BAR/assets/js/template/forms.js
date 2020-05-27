@@ -371,7 +371,7 @@ const formManutencao = () => {
                         <th><input type="text" name="marca-manu-${qtdProcessos}"></th>
                         <th><input type="text" name="cal-serie-manu-${qtdProcessos}"></th>
                         <th><input type="text" name="sigma-manu-${qtdProcessos}"></th>
-                        <th><textarea name="procedimento-manu-${qtdProcessos}" cols="19" rows="4"></textarea></th>
+                        <th><textarea name="procedimento-manu-${qtdProcessos}" cols="25" rows="5" style="font-size:12px !important"></textarea></th>
                     </tr>
                 </tbody>
             </table>
