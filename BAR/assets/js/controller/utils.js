@@ -145,22 +145,26 @@ const unidadeDeMedida = processo => {
  * @param {number} processo número contido no id de cada elemente html do processo
  */
 const paiMae = processo => {
-    let input_pai = document.getElementById(`pai-${processo}`);
-    let input_mae = document.getElementById(`mae-${processo}`);
-    if (input_mae.value || input_pai.value) {
-        if (!input_pai.value) {
-            input_pai.remove()
-            document.getElementById(`e-${processo}`).remove()
-        }
-        if (!input_mae.value) {
-            input_mae.remove()
-            try {
+    try {
+        let input_pai = document.getElementById(`pai-${processo}`);
+        let input_mae = document.getElementById(`mae-${processo}`);
+        if (input_mae.value || input_pai.value) {
+            if (!input_pai.value) {
+                input_pai.remove()
                 document.getElementById(`e-${processo}`).remove()
-            } catch (error) {
-                console.warn(error)
             }
+            if (!input_mae.value) {
+                input_mae.remove()
+                try {
+                    document.getElementById(`e-${processo}`).remove()
+                } catch (error) {
+                    console.warn(error)
+                }
 
+            }
         }
+    } catch (error) {
+        console.log(error)
     }
 }
 /**
@@ -173,7 +177,7 @@ const tipoTransferencia = processo => {
     let profissaoCedente = document.getElementById(`profissao-cedente-${processo}`)
     let orgaoEmissor = document.getElementById(`emissor-cedente-${processo}`)
     const tipoTransf = document.getElementById(`tipo-transf-${processo}`).value
-    if(tipoTransf === 'sigma') {
+    if (tipoTransf === 'sigma') {
         profissaoCedente.value = 'Policial Militar'
         orgaoEmissor.value = 'PMPA'
     } else {
@@ -404,7 +408,7 @@ const carregarStatus = () => {
                 if (pegar('residencia', i).length) {
                     document.getElementById(`dados-endereco-${i}`).remove()
                 }
-            } catch(error) {
+            } catch (error) {
                 console.log(error)
             }
             try {
