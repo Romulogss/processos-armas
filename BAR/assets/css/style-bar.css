@@ -73,6 +73,12 @@ table, table th, table tr, table td, table input {
     position: absolute;
 }
 
+.list-group[id^="lista-cidades"] {
+    width: 213px;
+    margin-left: 65px;
+    position: absolute;
+}
+
 .list-group[id^="lista-acabamento"] {
     width: 212px;
     margin-left: 145px;
@@ -94,6 +100,10 @@ table, table th, table tr, table td, table input {
     padding: 0;
 }
 
+.procedimento-manu {
+    font-size: 12px !important;
+}
+
 form[id^='lista-'] button {
     font-size: 15px !important;
     font-family: Arial, Helvetica, sans-serif;
@@ -112,6 +122,14 @@ form[id^='lista-'] button {
 
 #btnLimpar {
     top: 90px;
+    position: fixed;
+    right: 5px;
+    font-size: 15px !important;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#btnAlterar {
+    top: 130px;
     position: fixed;
     right: 5px;
     font-size: 15px !important;
