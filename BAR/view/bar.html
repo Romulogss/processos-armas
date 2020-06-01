@@ -19,7 +19,8 @@
 
 <body class="container">
     <div id="corpo">
-        <!--DADOS DE QUANTIDADE DE ARMAS INCIO--> {QUANTIDADE_ARMAS}
+        <!--DADOS DE QUANTIDADE DE ARMAS INCIO-->
+        <div id="dados-iniciais"> {QUANTIDADE_ARMAS} </div>
         <!--DADOS DE QUANTIDADE DE ARMAS FIM-->
         <div class="row">
             <div class="col">
@@ -56,7 +57,7 @@
                 </table>
             </div>
         </header>
-        <main>
+        <main id="principal">
             <section style="font-weight: bold;">
                 <p style="text-align: center;"> Para Conhecimento da PMPA e devida execução, pubico o seguinte: <br> 1ª
                     PARTE - Serviços Diários <br><br> Sem alteração <br><br> 2ª PARTE - Instrução <br><br> Sem alteração
@@ -85,8 +86,8 @@
                             permitido, adquiridas através do fabricante, dou o seguinte despacho: <br> <br> <span
                                 style="text-decoration: underline">Deferido para:</span>
                         </i></p>
-                    <form id="lista-industria">
-                    </form>
+                    <div id="lista-industria">
+                    </div>
                 </div>
                 <div id="comercio">
                     <p style="font-style: italic;text-decoration: underline;"><strong id="armas-do-comercio">
@@ -96,8 +97,8 @@
                             permitido, adquiridas através do comércio, dou o seguinte despacho: <br> <br> <span
                                 style="text-decoration: underline">Deferido para:</span>
                         </i></p>
-                    <form id="lista-comercio">
-                    </form>
+                    <div id="lista-comercio">
+                    </div>
                 </div>
                 <div id="transferencia">
                     <p style="font-style: italic;text-decoration: underline;"><strong id="armas-por-transferencia">
@@ -107,8 +108,8 @@
                             uso permitido, dou o seguinte despacho: <br> <br> <span
                                 style="text-decoration: underline">Deferido para:</span>
                         </i></p>
-                    <form id="lista-transferencia">
-                    </form>
+                    <div id="lista-transferencia">
+                    </div>
                 </div>
                 <div id="paf">
                     <p style="font-style: italic;text-decoration: underline;"><strong id="armas-paf">
@@ -118,8 +119,8 @@
                             de Fogo) de arma de calibre permitido, dou o seguinte despacho: <br> <br> <span
                                 style="text-decoration: underline">Deferido para:</span>
                         </i></p>
-                    <form id="lista-paf">
-                    </form>
+                    <div id="lista-paf">
+                    </div>
                 </div>
                 <div id="craf">
                     <p style="font-style: italic;text-decoration: underline;"><strong id="armas-craf">
@@ -130,8 +131,8 @@
                             dou o seguinte despacho; <br> <br> <span style="text-decoration: underline">Deferido
                                 para:</span>
                         </i></p>
-                    <form id="lista-craf">
-                    </form>
+                    <div id="lista-craf">
+                    </div>
                 </div>
                 <div id="status">
                     <p style="font-style: italic;text-decoration: underline;"><strong id="armas-status">
@@ -142,14 +143,14 @@
                             extraviada, conforme informações abaixo, dou o seguinte despacho: <br> <br>
                             <span style="text-decoration: underline">Deferido para:</span>
                         </i></p>
-                    <form id="lista-status">
-                    </form>
+                    <div id="lista-status">
+                    </div>
                 </div>
                 <div id="manutencao">
                     <p style="font-style: italic;text-decoration: underline;"><strong id="armas-manutencao">
                         </strong></p>
-                    <form id="lista-manutencao">
-                    </form>
+                    <div id="lista-manutencao">
+                    </div>
                 </div>
             </section>
             <button class="btn btn-warning no-print" id="btnSalvar" onclick="salvarStatus()">TERMINAR DEPOIS</button>
@@ -214,6 +215,7 @@
             </section>
         </main>
         <button onclick="montarAEL()" id="btnAEL" class="btn btn-success no-print">GERAR AEL E IMPRIMIR</button>
+        <button onclick="alterarDadosGerais()" id="btnAlterar" class="btn btn-primary no-print">Alterar Quantidade de Processos</button>
     </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script

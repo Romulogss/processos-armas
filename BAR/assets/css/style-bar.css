@@ -128,6 +128,14 @@ form[id^='lista-'] button {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+#btnAlterar {
+    top: 130px;
+    position: fixed;
+    right: 5px;
+    font-size: 15px !important;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 #btnSalvar {
     top: 10px;
     position: fixed;

@@ -827,7 +827,7 @@ const CIDADES = [
     { id: '119203', nome: 'Nova Maringá' }
 ]
 const procurarCidade = nome => {
-    return CIDADES.find(cidade => cidade.nome === nome)
+    return CIDADES.find(cidade => cidade.nome.split('-')[0] === nome)
 }
 const popularCidades = processo => {
     let select = document.getElementById('cidade-' + processo)
@@ -883,10 +883,11 @@ const completarEnd = async processo => {
     const numero = document.getElementById(`numero-${processo}`).value.trim()
     const cep = document.getElementById(`cep-${processo}`).value.trim()
     const endereco_cep = await buscarCEP(cep.replace(/\D/g, ''))
-        .then(({ logradouro, localidade, cep, bairro }) => { return { localidade, cep, logradouro, bairro } })
+        .then(({ logradouro, localidade, cep, bairro, uf }) => { return { localidade, cep, logradouro, bairro, uf } })
     const cidade = procurarCidade(endereco_cep.localidade)
     document.getElementById(`cidade-${processo}`).value = cidade.id
-    let endereco_final = `${endereco_cep.logradouro}, ${numero}, ${endereco_cep.bairro}, ${endereco_cep.cep}, ${endereco_cep.localidade}-PA`
+    let endereco_final = `${endereco_cep.logradouro}, ${numero}, ${endereco_cep.bairro}, ${endereco_cep.cep}, ${endereco_cep.localidade}-${endereco_cep.uf}`
     document.getElementById(`residencia-${processo}`).value = endereco_final
+    document.getElementById(`cidade-${processo}`).hidden = '1'
     document.getElementById(`dados-endereco-${processo}`).remove()
 }
