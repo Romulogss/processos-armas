@@ -466,7 +466,7 @@ const carregarDadosGerais = () => {
     if (DadosGerais.qtdProcessosPAF) {
         n++;
         let armasPAF = document.getElementById('armas-paf')
-        armasPAF.innerHTML = DadosGerais.textPAF.startsWith('0') ? DadosGerais.textCRAF : `${("0" + n).slice(-2)}${DadosGerais.textPAF}`;
+        armasPAF.innerHTML = DadosGerais.textPAF.startsWith('0') ? DadosGerais.textPAF : `${("0" + n).slice(-2)}${DadosGerais.textPAF}`;
         formPAF_CRAF('paf');
     }
 
