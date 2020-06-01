@@ -140,10 +140,14 @@ const montarAEL = () => {
     try {
         const aquisicoes = DadosGerais.qtdProcessosCom + DadosGerais.qtdProcessosInd + DadosGerais.qtdProcessosTransf
         for (let i = 1; i <= aquisicoes; i++) {
-            paiMae(i);
-            completarEndRes(i);
-            unidadeDeMedida(i);
-            tipoAlma(i);
+            try {
+                paiMae(i);
+                completarEndRes(i);
+                unidadeDeMedida(i);
+                tipoAlma(i);   
+            } catch (error) {
+                console.log(error)
+            }
         }
         numeroDeLinhas = aquisicoes - DadosGerais.qtdProcessosTransf;
         let mes = new Date().getMonth() + 1
@@ -161,9 +165,9 @@ const montarAEL = () => {
         salvarDadosOf(numeroDeLinhas);
     } catch (Excepiton) {
         console.log(Excepiton)
-        alert('VOCÊ ESQUECEU DE ALGUMA INFORMAÇÃO IMPORTANTE!')
+        alert('VOCÊ ESQUECEU DE ALGUMA INFORMAÇÃO IMPORTANTE!\n' + Excepiton)
     }
     window.print()
     window.alert('Você seré redirecionado para a página de ofício!')
-    window.location.href += 'of.php'
+    window.location.href = 'of.php'
 }
