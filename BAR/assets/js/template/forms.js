@@ -374,14 +374,15 @@ const formStatus = () => {
 const formManutencao = () => {
     let div = document.getElementById('lista-manutencao')
     div.innerHTML = ''
-    for (let i = 1; i <= DadosGerais.qtdProcessosMan; i++) {
+    for (let i = 1; i <= DadosGerais.qtdProcessosManu; i++) {
         qtdProcessos++;
+        let nProcesso = ("00" + i).slice(-3);
         div.innerHTML +=
             `
             <form id="manutencao-${i}">
-       <label for="nome-manui0" + i).slice(-2)}-NOME: </label> <input type="text" onblur="pegarRg(${qtdProcessos})" name="nome-manu-${i}" size="80"> <br>
-            <label for="om-manu">i: </label> <input type="text" name="om-manu-${i}" size="30"><br>
-            <label for="objeto-manu">i: </label> <input type="text" size="90" name="objeto-manu-${i}"><br>
+       <label for="nome-manu">${nProcesso.slice(-2)}-NOME: </label> <input type="text" onblur="pegarRg(${qtdProcessos})" name="nome-manu-${i}" size="80"> <br>
+            <label for="om-manu">OPM: </label> <input type="text" name="om-manu-${i}" size="30"><br>
+            <label for="objeto-manu">OBJETO: </label> <input type="text" size="90" name="objeto-manu-${i}"><br>
             DADOS DA ARMA A SER MANUTENINDO.
             <table class="table" border="1" id="tb-manutencao">
                 <thead>

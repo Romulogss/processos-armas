@@ -8,14 +8,14 @@ const procurarFornecedor = (nome, processo) => {
 
 const preencherInformacoesFornecedor = (processo, id) => {
     try {
-        document.getElementById(`lista-fornecedores-${processo}`).innerHTML = '';    
+        document.getElementById(`lista-fornecedores-${processo}`).innerHTML = '';
+        const FORNECEDOR = FORNECEDORES.find(forne => forne._id === id)
+        document.getElementById('fornecedor-' + processo).value = FORNECEDOR.nome
+        document.getElementById('end-fornecedor-' + processo).value = FORNECEDOR.endereco
+        document.getElementById('cnpj-' + processo).value = FORNECEDOR.cnpj
     } catch (error) {
         console.log(error)
     }
-    const FORNECEDOR = FORNECEDORES.find(forne => forne._id === id)
-    document.getElementById('fornecedor-' + processo).value = FORNECEDOR.nome
-    document.getElementById('end-fornecedor-' + processo).value = FORNECEDOR.endereco
-    document.getElementById('cnpj-' + processo).value = FORNECEDOR.cnpj
 }
 /**
  * Função ira verificar se o cnpj naquele processo já está no banco,
