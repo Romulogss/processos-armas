@@ -1,5 +1,4 @@
 let DadosGerais = {
-    qtdProcessos: 0,
     qtdProcessosCom: 0,
     qtdProcessosInd: 0,
     qtdProcessosTransf: 0,
@@ -7,13 +6,13 @@ let DadosGerais = {
     qtdProcessosCRAF: 0,
     qtdProcessosStatus: 0,
     qtdProcessosManu: 0,
+    qtdProcessosRetificacao: 0,
     textCom: '',
     textInd: '',
     textTransf: '',
     textPAF: '',
     textCRAF: '',
-    textStatus: '',
-    textManu: ''
+    textStatus: ''
 }
 
 /**
@@ -34,6 +33,7 @@ const setDadosGerais = alterando => {
     DadosGerais.qtdProcessosCRAF = parseInt(document.getElementById('qtd-armas-craf').value);
     DadosGerais.qtdProcessosStatus = parseInt(document.getElementById('qtd-armas-status').value);
     DadosGerais.qtdProcessosManu = parseInt(document.getElementById('qtd-armas-manu').value);
+    DadosGerais.qtdProcessosRetificacao = parseInt(document.getElementById('qtd-armas-retificacao').value);
     let n = 0;
     if (DadosGerais.qtdProcessosInd) {
         n++;
@@ -122,8 +122,7 @@ const setDadosGerais = alterando => {
     if (DadosGerais.qtdProcessosManu > 0) {
         n++;
         let armasManu = document.getElementById('armas-manutencao');
-        DadosGerais.textManu = `${("0" + n).slice(-2)}. MANUNTENÇÃO DE DADOS NO “SIGMA”.`
-        armasManu.innerHTML = DadosGerais.textManu;
+        armasManu.innerHTML = `${("0" + n).slice(-2)}. MANUNTENÇÃO DE DADOS NO “SIGMA”.`
         formManutencao()
     } else {
         try {
@@ -133,15 +132,32 @@ const setDadosGerais = alterando => {
         }
     }
 
+    if (DadosGerais.qtdProcessosRetificacao > 0) {
+        n++;
+        let armasRetificacao = document.getElementById('armas-retificacao');
+        armasRetificacao.innerHTML = `${("0" + n).slice(-2)}. TORNA-SE SEM EFEITO AS SEGUINTES PUBLICAÇÕE.`
+        formRetificacao()
+    } else {
+        try {
+            document.getElementById('retificacao').remove();
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     localStorage.setItem('dadosGerais', JSON.stringify(DadosGerais))
     document.getElementById('informações-bar').remove()
-    if(alterando) {
+    if (alterando) {
         carregarStatus()
     }
 }
 
+/**
+ * Adiciona o template de quantidade de armas, no topo da página
+ * para poder alterar a quantidade dee processos
+ */
 const alterarDadosGerais = () => {
-    window.location.href = '#dados-inicais'
+    window.location.href = '#dados-iniciais'
     qtdProcessos = 0
     salvarStatus()
     let div = document.getElementById('dados-iniciais')
@@ -243,6 +259,12 @@ const alterarDadosGerais = () => {
                 <input value="${DadosGerais.qtdProcessosManu}" type="number" id="qtd-armas-manu" class="form-control">
             </div>
             <!--FORM DADOS PARA MUDANÇA DE STATUS FIM-->
+            <!--FORM DADOS PARA RETIFICAÇÃO DE PUBLICAÇÃO-->
+            <div class="form-group">
+                <label for="qtd-armas-retificacao">Quantas retificações serão feitas?</label>
+                <input type="number" id="qtd-armas-retificacao" class="form-control" value="${DadosGerais.qtdProcessosRetificacao}">
+            </div>
+            <!--FORM DADOS PARA RETIFICAÇÃO DE PUBLICAÇÃO FIM-->
             <button class="btn btn-primary" style="position: relative;" onclick="setDadosGerais(true);"> Dados Ok</button>
         </div>
     `
@@ -259,7 +281,7 @@ const completarEndRes = processo => {
     if (endereco.value.length > 0) {
         if (endereco.value.match(/-PA$/)) {
             document.getElementById('cidade-' + processo).hidden = '1'
-            endereco.size = '90'
+            endereco.size = '85'
             return
         }
         CIDADES.forEach(city => {
@@ -267,7 +289,7 @@ const completarEndRes = processo => {
         })
         document.getElementById('cidade-' + processo).hidden = '1'
         endereco.value += ', ' + cidade + '-PA'
-        endereco.size = '90'
+        endereco.size = '85'
     }
 }
 /**
@@ -321,9 +343,13 @@ const paiMae = processo => {
  * @param {number} processo número contido no id de cada elemente html do processo
  */
 const identificadorSI = processo => {
-    let label = document.getElementById(`identificador-${processo}-label`)
-    const tipoTransf = document.getElementById(`tipo-transf-${processo}`).value.split('/')[0]
-    label.innerHTML = tipoTransf === 'sigma' ? 'Nº SIGMA:' : 'Nº SINARM:'
+    try {
+        let label = document.getElementById(`identificador-${processo}-label`)
+        const tipoTransf = document.getElementById(`tipo-transf-${processo}`).value
+        label.innerHTML = tipoTransf === 'sigma' ? 'Nº SIGMA:' : 'Nº SINARM:'
+    } catch (error) {
+        console.log(error)
+    }
 }
 /**
  * Função verifica se alma é raiada ou não, se for os campos #n-raias e #sentido-raias
@@ -438,6 +464,7 @@ const salvarStatus = () => {
     if (DadosGerais.qtdProcessosPAF > 0) salvarForm('paf');
     if (DadosGerais.qtdProcessosStatus > 0) salvarForm('status');
     if (DadosGerais.qtdProcessosManu > 0) salvarForm('manutencao');
+    if (DadosGerais.qtdProcessosRetificacao > 0) salvarForm('retificacao');
 
     alert('Dados  Salvos Localmente!')
 }
@@ -500,21 +527,31 @@ const carregarDadosGerais = () => {
 
     if (DadosGerais.qtdProcessosManu) {
         n++;
-        document.getElementById('armas-manutencao').innerHTML = DadosGerais.textManu
+        document.getElementById('armas-manutencao').innerHTML = `${("0" + n).slice(-2)}. MANUNTENÇÃO DE DADOS NO “SIGMA”`;
         formManutencao()
+    }
+
+    if (DadosGerais.qtdProcessosRetificacao) {
+        console.log('retificação')
+        n++;
+        document.getElementById('armas-retificacao').innerHTML = `${("0" + n).slice(-2)}. TORNA-SE SEM EFEITO AS SEGUINTES PUBLICAÇÕE.`
+        formRetificacao()
     }
 
     try {
         if (DadosGerais.qtdProcessosInd || DadosGerais.qtdProcessosCom
             || DadosGerais.qtdProcessosTransf || DadosGerais.qtdProcessosPAF
-            || DadosGerais.qtdProcessosStatus || DadosGerais.qtdProcessosManu) {
+            || DadosGerais.qtdProcessosStatus || DadosGerais.qtdProcessosManu
+            || DadosGerais.qtdProcessosRetificacao) {
             document.getElementById('informações-bar').remove()
             if (DadosGerais.qtdProcessosInd <= 0) document.getElementById('industria').remove();
             if (DadosGerais.qtdProcessosCom <= 0) document.getElementById('comercio').remove();
             if (DadosGerais.qtdProcessosTransf <= 0) document.getElementById('transferencia').remove();
             if (DadosGerais.qtdProcessosPAF <= 0) document.getElementById('paf').remove();
+            if (DadosGerais.qtdProcessosCRAF <= 0) document.getElementById('craf').remove();
             if (DadosGerais.qtdProcessosStatus <= 0) document.getElementById('status').remove();
             if (DadosGerais.qtdProcessosManu <= 0) document.getElementById('manutencao').remove();
+            if (DadosGerais.qtdProcessosRetificacao <= 0) document.getElementById('retificacao').remove();
         }
     } catch (error) {
         console.log(error)
@@ -558,6 +595,7 @@ const carregarStatus = () => {
         if (DadosGerais.qtdProcessosCRAF) carregarForm('craf');
         if (DadosGerais.qtdProcessosStatus) carregarForm('status');
         if (DadosGerais.qtdProcessosManu) carregarForm('manutencao');
+        if (DadosGerais.qtdProcessosRetificacao) carregarForm('retificacao');
         const qtdAquisicoes = DadosGerais.qtdProcessosCom + DadosGerais.qtdProcessosInd + DadosGerais.qtdProcessosTransf
         for (let i = 1; i <= qtdAquisicoes; i++) {
             completarEndRes(i);
@@ -565,11 +603,7 @@ const carregarStatus = () => {
             tipoAlma(i);
             paiMae(i)
             if (pegar('residencia', i).length) document.getElementById(`dados-endereco-${i}`).remove()
-            try {
-                identificadorSI(i)
-            } catch (error) {
-                console.log(error)
-            }
+            identificadorSI(i)
         }
     }, 2000)
 }

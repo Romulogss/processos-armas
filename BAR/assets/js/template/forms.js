@@ -137,9 +137,9 @@ const formTransf = () => {
         <form id="transferencia-${i}">
         <label for="tipo-transf-${i}">${nProcesso}-TIPO DE TRANSFERÊNCIA: </label>
         <select name="tipo-transf-${i}" id="tipo-transf-${qtdProcessos}" onchange="identificadorSI(${qtdProcessos})">
-            <option value="sigma/sigma">SIGMA/SGIMA</option>
-            <option value="sinarm/sigma">SINARM/SGIMA</option>
-            <option value="sigma/sinarm">SIGMA/SINARM</option>
+            <option value="sigma">SIGMA/SIGMA</option>
+            <option value="sinarm">SINARM/SIGMA</option>
+            <option value="sigma">SIGMA/SINARM</option>
         </select>
         <br>
         <label for="cedente-${i}">DE: </label> <input type="text"
@@ -376,11 +376,11 @@ const formManutencao = () => {
     div.innerHTML = ''
     for (let i = 1; i <= DadosGerais.qtdProcessosManu; i++) {
         qtdProcessos++;
-        let nProcesso = ("00" + i).slice(-3);
+        const nProcesso = ("00" + i).slice(-3)
         div.innerHTML +=
             `
             <form id="manutencao-${i}">
-       <label for="nome-manu">${nProcesso.slice(-2)}-NOME: </label> <input type="text" onblur="pegarRg(${qtdProcessos})" name="nome-manu-${i}" size="80"> <br>
+       <label for="nome-manu">${nProcesso}-NOME: </label> <input type="text" onblur="pegarRg(${qtdProcessos})" name="nome-manu-${i}" size="80"> <br>
             <label for="om-manu">OPM: </label> <input type="text" name="om-manu-${i}" size="30"><br>
             <label for="objeto-manu">OBJETO: </label> <input type="text" size="90" name="objeto-manu-${i}"><br>
             DADOS DA ARMA A SER MANUTENINDO.
@@ -405,6 +405,23 @@ const formManutencao = () => {
                 </tbody>
             </table>
             </form>
+        `
+    }
+}
+
+const formRetificacao = () => {
+    let div = document.getElementById('lista-retificacao')
+    div.innerHTML = ''
+    for(let i = 1; i <= DadosGerais.qtdProcessosRetificacao; i++) {
+        qtdProcessos++;
+        let nProcesso = ("00" + i).slice(-3)
+        div.innerHTML += `
+        <form id="retificacao-${i}">
+            <label>${nProcesso}-DO: </label> <input type="text" name="nome-${i}" size="80" id="nome-${qtdProcessos}">
+            <br>
+            <label>NO BAR:</label> <input type="text" name="boletim-${i}" id="boletim-${qtdProcessos}">
+        </form>
+        <br>
         `
     }
 }

@@ -18,6 +18,8 @@
 </head>
 
 <body class="container">
+    <button type="button" class="btn btn-danger no-print" data-toggle="modal" data-target="#exampleModal"
+        id="btnLimpar">Limpar BAR</button>
     <div id="corpo">
         <!--DADOS DE QUANTIDADE DE ARMAS INCIO-->
         <div id="dados-iniciais"> {QUANTIDADE_ARMAS} </div>
@@ -152,6 +154,11 @@
                     <div id="lista-manutencao">
                     </div>
                 </div>
+                <div id="retificacao">
+                    <p style="font-style: italic;text-decoration: underline;"><strong id="armas-retificacao"></strong></p>
+                    <div id="lista-retificacao">
+                    </div>
+                </div>
             </section>
             <button class="btn btn-warning no-print" id="btnSalvar" onclick="salvarStatus()">TERMINAR DEPOIS</button>
             <section style="text-align: center; page-break-before: always;">
@@ -234,8 +241,6 @@
     <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
     <!--MODAL PARA LIMPAR AEL INÍCIO--> {MODAL}
     <!--MODAL PARA LIMPAR AEL FIM-->
-    <button type="button" class="btn btn-danger no-print" data-toggle="modal" data-target="#exampleModal"
-        id="btnLimpar">Limpar BAR</button>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
