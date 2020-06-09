@@ -258,6 +258,7 @@ const formTransf = () => {
                 <option value="1">Brasil</option>
                 <option value="20">EUA</option>
                 <option value="175">Turquia</option>
+                <option value="92">Áustria</option>
             </select>
             </form>
             <p style="font-weight: bold;text-decoration: underline">LEGISLAÇÃO UTILIZADA: LEI 10.826 de 22/12/2003, DECRETO
