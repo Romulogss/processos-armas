@@ -144,7 +144,6 @@ const setDadosGerais = alterando => {
             console.log(error)
         }
     }
-
     localStorage.setItem('dadosGerais', JSON.stringify(DadosGerais))
     document.getElementById('informações-bar').remove()
     if (alterando) {
@@ -602,8 +601,18 @@ const carregarStatus = () => {
             unidadeDeMedida(i);
             tipoAlma(i);
             paiMae(i)
-            if (pegar('residencia', i).length) document.getElementById(`dados-endereco-${i}`).remove()
-            identificadorSI(i)
+            try {
+                if (pegar('residencia', i).length) {
+                    document.getElementById(`dados-endereco-${i}`).remove()
+                }
+            } catch(error) {
+                console.log(error)
+            }
+            try {
+                tipoTransferencia(i)
+            } catch (error) {
+                console.log(error)
+            }
         }
     }, 2000)
 }
