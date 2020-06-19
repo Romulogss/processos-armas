@@ -15,6 +15,32 @@ let DadosGerais = {
     textStatus: ''
 }
 
+const mudarChefes = () => {
+    let div = document.getElementById('chefes-dados')
+    div.innerHTML = `
+    <div class="row" id="chefes">
+        <div class="col">
+            <label>Chefe da seção: <input id="chefe" type="text" size="90"></label>
+            <label>Diretor da DAL: <input id="diretor" type="text" size="90"></label>
+            <label>General do Exército: <input id="general" type="text" size="80"></label>
+        </div>
+    </div>
+    <button onclick="mudarNomes()" class="btn btn-success">Mudar nomes</button>
+    `
+    window.location.href = '#chefes'
+}
+
+const mudarNomes = () => {
+    const chefe = document.getElementById('chefe').value
+    const diretor = document.getElementById('diretor').value
+    const general = document.getElementById('general').value
+    if(chefe) localStorage.setItem('chefeDaSecao', chefe)
+    if(diretor) localStorage.setItem('diretorDAL', diretor)
+    if(general) localStorage.setItem('general', general)
+    document.getElementById('chefes-dados').innerHTML = ''
+    carregarNomes()
+}
+
 /**
  * Função que irá pegar as quantidades de cada tipo de processo e
  * a descrição dos calibres de cada tipo de processo e salvará localmente
@@ -580,11 +606,32 @@ const carregarForm = idForm => {
         };
     }
 }
+
+const carregarNomes = () => {
+    try {
+        if(localStorage.chefeDaSecao) document.getElementById('chefe-da-secao').innerHTML = localStorage.chefeDaSecao
+    } catch(error) {
+        console.log(error)
+    }
+
+    try {
+        if(localStorage.diretorDAL) document.getElementById('diretor-da-dal').innerHTML = localStorage.diretorDAL
+    } catch(error) {
+        console.log(error)
+    }
+
+    try {
+        if(localStorage.general) document.getElementById('general').innerHTML = localStorage.general
+    } catch(error) {
+        console.log(error)
+    }
+}
 /**
  * Carrega todas as informações contidas em localStorage e carrega os dados
  * no html
  */
 const carregarStatus = () => {
+    
     setTimeout(() => {
         carregarDadosGerais();
         if (DadosGerais.qtdProcessosInd) carregarForm('industria');
@@ -620,6 +667,12 @@ const carregarStatus = () => {
  * Limpa todos os dados que estão e localStorage e recarrega a página
  */
 const limparDados = () => {
+    const chefe = localStorage.chefeDaSecao
+    const diretor = localStorage.diretorDAL
+    const general = localStorage.general
     localStorage.clear();
+    localStorage.setItem('chefeDaSecao', chefe)
+    localStorage.setItem('diretorDAL', diretor)
+    localStorage.setItem('general', general)
     document.location.reload(true);
 }

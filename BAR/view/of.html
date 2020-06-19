@@ -8,6 +8,7 @@
     <script
         src="https://cdn.rawgit.com/eligrey/FileSaver.js/5ed507ef8aa53d8ecfea96d96bc7214cd2476fd2/FileSaver.min.js"></script>
     <script src="./assets/js/controller/oficio.js?{TIME}"></script>
+    <script src="./assets/js/controller/utils.js?{TIME}"></script>
     <script src="./assets/js/template/oficio-remessa.js?{TIME}"></script>
     <link rel="stylesheet" href="./assets/css/style-of.css?{TIME}">
     <script>
@@ -52,7 +53,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <p>Ao Exm Sr. ANÍSIO DAVID DE OLIVEIRA JÚNIOR. <br> Comandante da 8ª RM </p>
+                <p>Ao Exm Sr. <span id="general">ANÍSIO DAVID DE OLIVEIRA JÚNIOR</span>. <br> Comandante da 8ª RM </p>
             </div>
         </div>
         <div class="row">
@@ -126,6 +127,7 @@
         <div class="col"> {FOOTER} </div>
     </footer>
     <script>montarOf()</script>
+    <script>carregarNomes()</script>
 </body>
 
 </html>

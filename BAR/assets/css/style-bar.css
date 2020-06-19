@@ -111,6 +111,11 @@ form[id^='lista-'] button {
     margin: 5px;
 }
 
+button[class^='btn'] {
+    font-size: 15px !important;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 #tb-manutencao * {
     padding: 0;
     margin: 0;
@@ -118,6 +123,12 @@ form[id^='lista-'] button {
 
 #tb-manutencao input {
     margin-top: 35px;
+}
+
+#btnChefes {
+    top: 170px;
+    position: fixed;
+    right: 5px;
 }
 
 #btnLimpar {

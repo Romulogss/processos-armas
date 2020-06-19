@@ -18,12 +18,15 @@
 </head>
 
 <body class="container">
-    <button type="button" class="btn btn-danger no-print" data-toggle="modal" data-target="#exampleModal"
-        id="btnLimpar">Limpar BAR</button>
+    <button onclick="mudarChefes()" id="btnChefes" class="btn btn-secondary">Mudar nomes dos Chefes</button>
+    <button class="btn btn-danger" id="btnLimpar">Limpar BAR</button>
     <div id="corpo">
         <!--DADOS DE QUANTIDADE DE ARMAS INCIO-->
         <div id="dados-iniciais"> {QUANTIDADE_ARMAS} </div>
         <!--DADOS DE QUANTIDADE DE ARMAS FIM-->
+        <div id="chefes-dados">
+
+        </div>
         <div class="row">
             <div class="col">
                 <p id="cabecalho">BOLETIM ADMINISTRATIVO - ARMAMENTO Nº <input type="text" size="1cm" id="num-bar"
@@ -188,7 +191,7 @@
                 <br>
                 <br>
                 <br>
-                <span style="text-align: center;font-weight: normal;"><strong>SIDNEY PROFETA</strong> DA SILVA - CEL
+                <span style="text-align: center;font-weight: normal;" id="diretor-da-dal"><strong> SIDNEY PROFETA</strong> DA SILVA - CEL
                     QOPM RG 21183</span>
                 <p style="text-align: center;">Diretor de Apoio Logístico da PMPA</p>
                 <br>
@@ -213,8 +216,8 @@
                     </div>
                     <div class="col-9 align-items-center"
                         style="font-family: Arial, Helvetica, sans-serif;font-size: 1.2em;">
-                        <p style="font-family: Arial, Helvetica, sans-serif;">MARCELO <strong
-                                style="font-family: Arial, Helvetica, sans-serif;">AMARO</strong>DA GAMA  - MAJ QOPM 29201 <br>
+                        <p style="font-family: Arial, Helvetica, sans-serif;"> <span id="chefe-da-secao">PAULO UBIRANTAN LOPES <strong
+                                style="font-family: Arial, Helvetica, sans-serif;">CASSEB</strong> - MAJ QOPM 33450</span> <br>
                             <span style="font-family: Arial, Helvetica, sans-serif">Chefe da Subseção de
                                 Intendência e Subsistência</span></p>
                     </div>
@@ -238,6 +241,7 @@
     <script src="./assets/js/controller/oficio.js?{TIME}"></script>
     <script>carregarStatus()</script>
     <script>carregarDados()</script>
+    <script>carregarNomes()</script>
     <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
     <!--MODAL PARA LIMPAR AEL INÍCIO--> {MODAL}
     <!--MODAL PARA LIMPAR AEL FIM-->

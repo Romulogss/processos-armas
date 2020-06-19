@@ -18,5 +18,4 @@
     $tpl->TIME = time();
     $tpl->addFile("MAJOR", "view/chefe-da-secao.html");
     $tpl->show();
-
 ?>

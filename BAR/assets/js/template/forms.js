@@ -184,7 +184,7 @@ const formTransf = () => {
             <label for="expedidor-${i}">ORGÃO EXPEDIDOR/UF: </label> <span id="expedidor-${qtdProcessos}"><i>PMPA</i></span> <br>
             <label for="cpf-${i}">CPF: </label><input maxlength="14" oninput="mascaraCPF(this.id)" placeholder="SOMENTE NÚMEROS" type="text" name="cpf-${i}" id="cpf-${qtdProcessos}"><br>
             <strong><i>DADOS DA ARMA</i></strong> <br>
-            <label for="identificador-${i}" id="identificador-${qtdProcessos}-label">Nº SGIMA: </label>
+            <label for="identificador-${i}" id="identificador-${qtdProcessos}-label">Nº SIGMA: </label>
             <input type="text" name="identificador-${i}" id="identificador-${qtdProcessos}" style="width:280px"><br>
             <label for="fabricante-${i}">IDENTIFICAÇÃO DO FABRICANTE: </label>
             <select name="fabricante-${i}" id="fabricante-${qtdProcessos}">
@@ -294,7 +294,7 @@ const formPAF_CRAF = tipo => {
                         <th>CANO</th>
                         <th>PAÍS</th>
                         <th>N° SÉRIE</th>
-                        <th>SGIMA</th>
+                        <th>SIGMA</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -345,7 +345,7 @@ const formStatus = () => {
                         <th>CANO</th>
                         <th>PAÍS</th>
                         <th>N° SÉRIE</th>
-                        <th>SGIMA</th>
+                        <th>SIGMA</th>
                     </tr>
                 </thead>
                 <tbody>
