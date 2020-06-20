@@ -60,9 +60,13 @@ const formAquicisao = (qtd, tipo) => {
         <label for="marca-${i}">MARCA: </label>
         <select name="marca-${i}" id="marca-${qtdProcessos}">
             <option value="1">TAURUS S/A</option>    
-            <option value="24">GLOCK</option>
             <option value="4">CBC</option>
+            <option value="5">BOITO</option>
             <option value="3">IMBEL</option>
+            <option value="24">GLOCK</option>
+            <option value="984">HATSAN</option>
+            <option value="1039">ARMSAN</option>
+            <option value="9">BERETTA</option>
         </select> <br>
         <label for="modelo-${i}">MODELO: </label> <input autocomplete="off" oninput="procurarModelos(this.value,${qtdProcessos})" type="text" maxlength="15" name="modelo-${i}" id="modelo-${qtdProcessos}"> <br>
         <ul class="list-group" id="lista-modelos-${qtdProcessos}">
@@ -109,6 +113,7 @@ const formAquicisao = (qtd, tipo) => {
             <option value="20">EUA</option>
             <option value="175">Turquia</option>
             <option value="92">Áustria</option>
+            <option value="27">Itália</option>
         </select>
     </form>
         <p style="font-weight: bold;text-decoration: underline">LEGISLAÇÃO UTILIZADA: LEI 10.826 de 22/12/2003, DECRETO
@@ -210,9 +215,13 @@ const formTransf = () => {
             <label for="marca-${i}">MARCA: </label>
             <select name="marca-${i}" id="marca-${qtdProcessos}">
                 <option value="1">TAURUS S/A</option>    
-                <option value="24">GLOCK</option>
                 <option value="4">CBC</option>
+                <option value="5">BOITO</option>
                 <option value="3">IMBEL</option>
+                <option value="24">GLOCK</option>
+                <option value="984">HATSAN</option>
+                <option value="1039">ARMSAN</option>
+                <option value="9">BERETTA</option>
             </select> <br>
             <label for="modelo-${i}">MODELO: </label> <input autocomplete="off" oninput="procurarModelos(this.value,${qtdProcessos})" type="text" maxlength="15" name="modelo-${i}" id="modelo-${qtdProcessos}"> <br>
             <ul class="list-group" id="lista-modelos-${i}">
@@ -259,6 +268,7 @@ const formTransf = () => {
                 <option value="20">EUA</option>
                 <option value="175">Turquia</option>
                 <option value="92">Áustria</option>
+                <option value="27">Itália</option>
             </select>
             </form>
             <p style="font-weight: bold;text-decoration: underline">LEGISLAÇÃO UTILIZADA: LEI 10.826 de 22/12/2003, DECRETO
@@ -294,7 +304,12 @@ const formPAF_CRAF = tipo => {
                         <th>CANO</th>
                         <th>PAÍS</th>
                         <th>N° SÉRIE</th>
-                        <th>SIGMA</th>
+                        <th>
+                            <select name="sistema-${tipo}-${i}" style="font-size: 12px !important">
+                                <option value="sigma" style="font-size: 12px !important">SIGMA</option>
+                                <option value="sinarm" style="font-size: 12px !important">SINARM</option>
+                            </select>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -310,7 +325,7 @@ const formPAF_CRAF = tipo => {
                         <td><input type="text" style="width: 55px" name="cano-${tipo}-${i}"></td>
                         <td><input type="text" style="width: 70px" name="pais-${tipo}-${i}"></td>
                         <td><input type="text" style="width: 80px" name="n-serie-${tipo}-${i}"></td>
-                        <td><input type="text" style="width: 60px" name="sigma-${tipo}-${i}"></td>
+                        <td><input type="text" style="width: 85px" name="sigma-${tipo}-${i}"></td>
                     </tr>
                 </tbody>
             </table>

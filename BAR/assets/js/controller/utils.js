@@ -14,7 +14,9 @@ let DadosGerais = {
     textCRAF: '',
     textStatus: ''
 }
-
+/**
+ * Ira montar uma div para inserir os nomes que foram alterados
+ */
 const mudarChefes = () => {
     let div = document.getElementById('chefes-dados')
     div.innerHTML = `
@@ -30,6 +32,10 @@ const mudarChefes = () => {
     window.location.href = '#chefes'
 }
 
+/**
+ * Irá pegar os nomes inseridos na div de mudarChefes() e salvará
+ * localmente
+ */
 const mudarNomes = () => {
     const chefe = document.getElementById('chefe').value
     const diretor = document.getElementById('diretor').value
@@ -39,6 +45,18 @@ const mudarNomes = () => {
     if(general) localStorage.setItem('general', general)
     document.getElementById('chefes-dados').innerHTML = ''
     carregarNomes()
+}
+
+/**
+ * Irá remover o atributo hidden da div mandada por parâmetro
+ * @param {string} nome nome da div
+ */
+const mostrarDiv = nome => {
+    try {
+        document.getElementById(nome).removeAttribute('hidden')   
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 /**
@@ -62,6 +80,7 @@ const setDadosGerais = alterando => {
     DadosGerais.qtdProcessosRetificacao = parseInt(document.getElementById('qtd-armas-retificacao').value);
     let n = 0;
     if (DadosGerais.qtdProcessosInd) {
+        mostrarDiv('industria')
         n++;
         let armasIndustria = document.getElementById('armas-da-industria')
         DadosGerais.textInd = ind
@@ -76,6 +95,7 @@ const setDadosGerais = alterando => {
     }
 
     if (DadosGerais.qtdProcessosCom) {
+        mostrarDiv('comercio')
         n++;
         let armasComercio = document.getElementById('armas-do-comercio')
         DadosGerais.textCom = com;
@@ -90,6 +110,7 @@ const setDadosGerais = alterando => {
     }
 
     if (DadosGerais.qtdProcessosTransf) {
+        mostrarDiv('transferencia')
         n++;
         let armasTransferencia = document.getElementById('armas-por-transferencia')
         DadosGerais.textTransf = transf;
@@ -104,6 +125,7 @@ const setDadosGerais = alterando => {
     }
 
     if (DadosGerais.qtdProcessosPAF) {
+        mostrarDiv('paf')
         n++;
         let armasPAF = document.getElementById('armas-paf')
         DadosGerais.textPAF = paf;
@@ -118,6 +140,7 @@ const setDadosGerais = alterando => {
     }
 
     if (DadosGerais.qtdProcessosCRAF) {
+        mostrarDiv('craf')
         n++;
         let armasCRAF = document.getElementById('armas-craf')
         DadosGerais.textCRAF = craf;
@@ -132,6 +155,7 @@ const setDadosGerais = alterando => {
     }
 
     if (DadosGerais.qtdProcessosStatus) {
+        mostrarDiv('status')
         n++;
         let armasStatus = document.getElementById('armas-status')
         DadosGerais.textStatus = status;
@@ -146,6 +170,7 @@ const setDadosGerais = alterando => {
     }
 
     if (DadosGerais.qtdProcessosManu > 0) {
+        mostrarDiv('manutencao')
         n++;
         let armasManu = document.getElementById('armas-manutencao');
         armasManu.innerHTML = `${("0" + n).slice(-2)}. MANUNTENÇÃO DE DADOS NO “SIGMA”.`
@@ -159,6 +184,7 @@ const setDadosGerais = alterando => {
     }
 
     if (DadosGerais.qtdProcessosRetificacao > 0) {
+        mostrarDiv('retificacao')
         n++;
         let armasRetificacao = document.getElementById('armas-retificacao');
         armasRetificacao.innerHTML = `${("0" + n).slice(-2)}. TORNA-SE SEM EFEITO AS SEGUINTES PUBLICAÇÕE.`
@@ -174,6 +200,7 @@ const setDadosGerais = alterando => {
     document.getElementById('informações-bar').hidden = '1'
     if (alterando) {
         carregarStatus()
+
     }
 }
 
