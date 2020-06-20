@@ -69,7 +69,7 @@ const setDadosGerais = alterando => {
         formAquicisao(DadosGerais.qtdProcessosInd, 'industria');
     } else {
         try {
-            document.getElementById('industria').remove();
+            document.getElementById('industria').hidden = '1'; 
         } catch (error) {
             console.log(error)
         }
@@ -83,7 +83,7 @@ const setDadosGerais = alterando => {
         formAquicisao(DadosGerais.qtdProcessosCom, 'comercio');
     } else {
         try {
-            document.getElementById('comercio').remove();
+            document.getElementById('comercio').hidden = '1';
         } catch (error) {
             console.log(error)
         }
@@ -97,7 +97,7 @@ const setDadosGerais = alterando => {
         formTransf()
     } else {
         try {
-            document.getElementById('transferencia').remove();
+            document.getElementById('transferencia').hidden = '1';
         } catch (error) {
             console.log(error)
         }
@@ -111,7 +111,7 @@ const setDadosGerais = alterando => {
         formPAF_CRAF('paf')
     } else {
         try {
-            document.getElementById('paf').remove();
+            document.getElementById('paf').hidden = '1';
         } catch (error) {
             console.log(error)
         }
@@ -125,7 +125,7 @@ const setDadosGerais = alterando => {
         formPAF_CRAF('craf')
     } else {
         try {
-            document.getElementById('craf').remove();
+            document.getElementById('craf').hidden = '1';
         } catch (error) {
             console.log(error)
         }
@@ -139,7 +139,7 @@ const setDadosGerais = alterando => {
         formStatus()
     } else {
         try {
-            document.getElementById('status').remove();
+            document.getElementById('status').hidden = '1';
         } catch (error) {
             console.log(error)
         }
@@ -152,7 +152,7 @@ const setDadosGerais = alterando => {
         formManutencao()
     } else {
         try {
-            document.getElementById('manutencao').remove();
+            document.getElementById('manutencao').hidden = '1';
         } catch (error) {
             console.log(error)
         }
@@ -165,13 +165,13 @@ const setDadosGerais = alterando => {
         formRetificacao()
     } else {
         try {
-            document.getElementById('retificacao').remove();
+            document.getElementById('retificacao').hidden = '1';
         } catch (error) {
             console.log(error)
         }
     }
     localStorage.setItem('dadosGerais', JSON.stringify(DadosGerais))
-    document.getElementById('informações-bar').remove()
+    document.getElementById('informações-bar').hidden = '1'
     if (alterando) {
         carregarStatus()
     }
@@ -345,13 +345,13 @@ const paiMae = processo => {
         let input_mae = document.getElementById(`mae-${processo}`);
         if (input_mae.value || input_pai.value) {
             if (!input_pai.value) {
-                input_pai.remove()
-                document.getElementById(`e-${processo}`).remove()
+                input_pai.hidden = '1'
+                document.getElementById(`e-${processo}`).hidden = '1'
             }
             if (!input_mae.value) {
-                input_mae.remove()
+                input_mae.hidden = '1'
                 try {
-                    document.getElementById(`e-${processo}`).remove()
+                    document.getElementById(`e-${processo}`).hidden = '1'
                 } catch (error) {
                     console.warn(error)
                 }
@@ -569,14 +569,14 @@ const carregarDadosGerais = () => {
             || DadosGerais.qtdProcessosStatus || DadosGerais.qtdProcessosManu
             || DadosGerais.qtdProcessosRetificacao) {
             document.getElementById('informações-bar').remove()
-            if (DadosGerais.qtdProcessosInd <= 0) document.getElementById('industria').remove();
-            if (DadosGerais.qtdProcessosCom <= 0) document.getElementById('comercio').remove();
-            if (DadosGerais.qtdProcessosTransf <= 0) document.getElementById('transferencia').remove();
-            if (DadosGerais.qtdProcessosPAF <= 0) document.getElementById('paf').remove();
-            if (DadosGerais.qtdProcessosCRAF <= 0) document.getElementById('craf').remove();
-            if (DadosGerais.qtdProcessosStatus <= 0) document.getElementById('status').remove();
-            if (DadosGerais.qtdProcessosManu <= 0) document.getElementById('manutencao').remove();
-            if (DadosGerais.qtdProcessosRetificacao <= 0) document.getElementById('retificacao').remove();
+            if (DadosGerais.qtdProcessosInd <= 0) document.getElementById('industria').hidden = '1';
+            if (DadosGerais.qtdProcessosCom <= 0) document.getElementById('comercio').hidden = '1';
+            if (DadosGerais.qtdProcessosTransf <= 0) document.getElementById('transferencia').hidden = '1';
+            if (DadosGerais.qtdProcessosPAF <= 0) document.getElementById('paf').hidden = '1';
+            if (DadosGerais.qtdProcessosCRAF <= 0) document.getElementById('craf').hidden = '1';
+            if (DadosGerais.qtdProcessosStatus <= 0) document.getElementById('status').hidden = '1';
+            if (DadosGerais.qtdProcessosManu <= 0) document.getElementById('manutencao').hidden = '1';
+            if (DadosGerais.qtdProcessosRetificacao <= 0) document.getElementById('retificacao').hidden = '1';
         }
     } catch (error) {
         console.log(error)
@@ -650,7 +650,7 @@ const carregarStatus = () => {
             paiMae(i)
             try {
                 if (pegar('residencia', i).length) {
-                    document.getElementById(`dados-endereco-${i}`).remove()
+                    document.getElementById(`dados-endereco-${i}`).hidden = '1'
                 }
             } catch(error) {
                 console.log(error)
