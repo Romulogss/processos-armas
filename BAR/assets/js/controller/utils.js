@@ -40,9 +40,9 @@ const mudarNomes = () => {
     const chefe = document.getElementById('chefe').value
     const diretor = document.getElementById('diretor').value
     const general = document.getElementById('general').value
-    if(chefe) localStorage.setItem('chefeDaSecao', chefe)
-    if(diretor) localStorage.setItem('diretorDAL', diretor)
-    if(general) localStorage.setItem('general', general)
+    if (chefe) localStorage.setItem('chefeDaSecao', chefe)
+    if (diretor) localStorage.setItem('diretorDAL', diretor)
+    if (general) localStorage.setItem('general', general)
     document.getElementById('chefes-dados').innerHTML = ''
     carregarNomes()
 }
@@ -53,7 +53,7 @@ const mudarNomes = () => {
  */
 const mostrarDiv = nome => {
     try {
-        document.getElementById(nome).removeAttribute('hidden')   
+        document.getElementById(nome).removeAttribute('hidden')
     } catch (error) {
         console.log(error)
     }
@@ -88,7 +88,7 @@ const setDadosGerais = alterando => {
         formAquicisao(DadosGerais.qtdProcessosInd, 'industria');
     } else {
         try {
-            document.getElementById('industria').hidden = '1'; 
+            document.getElementById('industria').hidden = '1';
         } catch (error) {
             console.log(error)
         }
@@ -514,6 +514,7 @@ const salvarStatus = () => {
     if (DadosGerais.qtdProcessosCom > 0) salvarForm('comercio');
     if (DadosGerais.qtdProcessosTransf > 0) salvarForm('transferencia');
     if (DadosGerais.qtdProcessosPAF > 0) salvarForm('paf');
+    if (DadosGerais.qtdProcessosCRAF > 0) salvarForm('craf');
     if (DadosGerais.qtdProcessosStatus > 0) salvarForm('status');
     if (DadosGerais.qtdProcessosManu > 0) salvarForm('manutencao');
     if (DadosGerais.qtdProcessosRetificacao > 0) salvarForm('retificacao');
@@ -636,20 +637,23 @@ const carregarForm = idForm => {
 
 const carregarNomes = () => {
     try {
-        if(localStorage.chefeDaSecao) document.getElementById('chefe-da-secao').innerHTML = localStorage.chefeDaSecao
-    } catch(error) {
+        if (localStorage.chefeDaSecao !== 'undefined') {
+            document.getElementById('chefe-da-secao').innerHTML = localStorage.chefeDaSecao
+            console.log(localStorage.chefeDaSecao)
+        }
+    } catch (error) {
         console.log(error)
     }
 
     try {
-        if(localStorage.diretorDAL) document.getElementById('diretor-da-dal').innerHTML = localStorage.diretorDAL
-    } catch(error) {
+        if (localStorage.diretorDAL !== 'undefined') document.getElementById('diretor-da-dal').innerHTML = localStorage.diretorDAL
+    } catch (error) {
         console.log(error)
     }
 
     try {
-        if(localStorage.general) document.getElementById('general').innerHTML = localStorage.general
-    } catch(error) {
+        if (localStorage.general !== 'undefined') document.getElementById('general').innerHTML = localStorage.general
+    } catch (error) {
         console.log(error)
     }
 }
@@ -658,7 +662,7 @@ const carregarNomes = () => {
  * no html
  */
 const carregarStatus = () => {
-    
+
     setTimeout(() => {
         carregarDadosGerais();
         if (DadosGerais.qtdProcessosInd) carregarForm('industria');
@@ -679,7 +683,7 @@ const carregarStatus = () => {
                 if (pegar('residencia', i).length) {
                     document.getElementById(`dados-endereco-${i}`).hidden = '1'
                 }
-            } catch(error) {
+            } catch (error) {
                 console.log(error)
             }
             try {
