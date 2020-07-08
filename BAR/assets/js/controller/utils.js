@@ -637,7 +637,7 @@ const carregarForm = idForm => {
 
 const carregarNomes = () => {
     try {
-        if (localStorage.chefeDaSecao !== 'undefined') {
+        if (localStorage.chefeDaSecao !== undefined) {
             document.getElementById('chefe-da-secao').innerHTML = localStorage.chefeDaSecao
             console.log(localStorage.chefeDaSecao)
         }
@@ -646,13 +646,13 @@ const carregarNomes = () => {
     }
 
     try {
-        if (localStorage.diretorDAL !== 'undefined') document.getElementById('diretor-da-dal').innerHTML = localStorage.diretorDAL
+        if (localStorage.diretorDAL !== undefined) document.getElementById('diretor-da-dal').innerHTML = localStorage.diretorDAL
     } catch (error) {
         console.log(error)
     }
 
     try {
-        if (localStorage.general !== 'undefined') document.getElementById('general').innerHTML = localStorage.general
+        if (localStorage.general !== undefined) document.getElementById('general').innerHTML = localStorage.general
     } catch (error) {
         console.log(error)
     }
