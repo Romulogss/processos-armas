@@ -687,7 +687,7 @@ const carregarStatus = () => {
                 console.log(error)
             }
             try {
-                tipoTransferencia(i)
+//                 tipoTransferencia(i)
             } catch (error) {
                 console.log(error)
             }
