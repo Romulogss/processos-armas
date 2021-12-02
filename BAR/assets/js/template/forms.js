@@ -36,12 +36,8 @@ const formAquicisao = (qtd, tipo) => {
         <label for="cpf-${i}">CPF: </label><input maxlength="14" oninput="mascaraCPF(this.id)" placeholder="SOMENTE NÚMEROS" type="text" name="cpf-${i}" id="cpf-${qtdProcessos}"><br>
         <strong><i>DADOS DA ARMA</i></strong> <br>
         <label for="fabricante-${i}">IDENTIFICAÇÃO DO FABRICANTE: </label>
-        <select name="fabricante-${i}" id="fabricante-${qtdProcessos}">
-            <option value="TAURUS S/A">TAURUS S/A</option>    
-            <option value="GLOCK">GLOCK</option>
-            <option value="CBC">CBC</option>
-            <option value="IMBEL">IMBEL</option>
-        </select> <br>
+        <input name="fabricante-${i}" id="fabricante-${qtdProcessos}" type="text">
+        <br>
         <label for="fornecedor-${i}">IDENTIFICAÇÃO DO VENDEDOR: </label><input type="text" size="65" name="fornecedor-${i}" id="fornecedor-${qtdProcessos}" oninput="procurarFornecedor(this.value, ${qtdProcessos})"><br>
         <ul class="list-group" id="lista-fornecedores-${qtdProcessos}">
         </ul>
@@ -58,16 +54,8 @@ const formAquicisao = (qtd, tipo) => {
             <option value="4">CARABINA/FUZIL</option>
         </select> <br>
         <label for="marca-${i}">MARCA: </label>
-        <select name="marca-${i}" id="marca-${qtdProcessos}">
-            <option value="1">TAURUS S/A</option>    
-            <option value="4">CBC</option>
-            <option value="5">BOITO</option>
-            <option value="3">IMBEL</option>
-            <option value="24">GLOCK</option>
-            <option value="984">HATSAN</option>
-            <option value="1039">ARMSAN</option>
-            <option value="9">BERETTA</option>
-        </select> <br>
+        <input name="marca-${i}" id="marca-${qtdProcessos}" type="text">
+        <br>
         <label for="modelo-${i}">MODELO: </label> <input autocomplete="off" oninput="procurarModelos(this.value,${qtdProcessos})" type="text" maxlength="15" name="modelo-${i}" id="modelo-${qtdProcessos}"> <br>
         <ul class="list-group" id="lista-modelos-${qtdProcessos}">
         </ul>
@@ -192,12 +180,7 @@ const formTransf = () => {
             <label for="identificador-${i}" id="identificador-${qtdProcessos}-label">Nº SIGMA: </label>
             <input type="text" name="identificador-${i}" id="identificador-${qtdProcessos}" style="width:280px"><br>
             <label for="fabricante-${i}">IDENTIFICAÇÃO DO FABRICANTE: </label>
-            <select name="fabricante-${i}" id="fabricante-${qtdProcessos}">
-                <option value="TAURUS S/A">TAURUS S/A</option>    
-                <option value="GLOCK">GLOCK</option>
-                <option value="CBC">CBC</option>
-                <option value="IMBEL">IMBEL</option>
-            </select> <br>
+            <input name="fabricante-${i}" id="fabricante-${qtdProcessos}" type="text"> <br>
             <label for="fornecedor-${i}">IDENTIFICAÇÃO DO VENDEDOR: </label><input type="text" size="65" name="fornecedor-${i}" id="fornecedor-${qtdProcessos}" oninput="procurarFornecedor(this.value, ${qtdProcessos})"><br>
             <ul class="list-group" id="lista-fornecedores-${qtdProcessos}">
             </ul>
@@ -213,16 +196,8 @@ const formTransf = () => {
                 <option value="4">CARABINA/FUZIL</option>
             </select> <br>
             <label for="marca-${i}">MARCA: </label>
-            <select name="marca-${i}" id="marca-${qtdProcessos}">
-                <option value="1">TAURUS S/A</option>    
-                <option value="4">CBC</option>
-                <option value="5">BOITO</option>
-                <option value="3">IMBEL</option>
-                <option value="24">GLOCK</option>
-                <option value="984">HATSAN</option>
-                <option value="1039">ARMSAN</option>
-                <option value="9">BERETTA</option>
-            </select> <br>
+            <input name="marca-${i}" id="marca-${qtdProcessos}" type="text">
+             <br>
             <label for="modelo-${i}">MODELO: </label> <input autocomplete="off" oninput="procurarModelos(this.value,${qtdProcessos})" type="text" maxlength="15" name="modelo-${i}" id="modelo-${qtdProcessos}"> <br>
             <ul class="list-group" id="lista-modelos-${i}">
             </ul>
@@ -428,7 +403,7 @@ const formManutencao = () => {
 const formRetificacao = () => {
     let div = document.getElementById('lista-retificacao')
     div.innerHTML = ''
-    for(let i = 1; i <= DadosGerais.qtdProcessosRetificacao; i++) {
+    for (let i = 1; i <= DadosGerais.qtdProcessosRetificacao; i++) {
         qtdProcessos++;
         let nProcesso = ("00" + i).slice(-3)
         div.innerHTML += `
